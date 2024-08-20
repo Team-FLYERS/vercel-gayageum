@@ -552,8 +552,8 @@ function loadSound() {
 }
 
 function playString(event, val, _selectedTuning, _selectedTechnic) {
-  return function (direction, mouseEvent) {
-    console.log('>>>>>>>> playString', mouseEvent, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
+  if (lastEventHandled?.value?.eventType !== 'mouseenter' || lastEventHandled?.value?.['구음'] !== val['구음']) {
+    console.log('>>>>>>>> playString', event, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
@@ -566,11 +566,8 @@ function playString(event, val, _selectedTuning, _selectedTechnic) {
       source.connect(audioContext.destination);
       source.start(0);
     })();
-    // _audio.pause();
-    // _audio.currentTime = 0;
-    // _audio.play();
-    lastEventHandled.value = { eventType: event?.type, ['구음']: val['구음'] };
-  };
+  }
+  lastEventHandled.value = { eventType: event.type, ['구음']: val['구음'] };
 }
 
 onMounted(() => {
@@ -719,7 +716,8 @@ onBeforeUnmount(() => {
 <!--        >-->
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-               v-touch:tap="playString($event, val, settingStore.selectedTuning, selectedTechnic)"
+               @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"
+               @mouseenter="playString($event, val, settingStore.selectedTuning, selectedTechnic)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
