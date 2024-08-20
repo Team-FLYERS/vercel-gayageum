@@ -577,6 +577,7 @@ function playString(event, val, _selectedTuning, _selectedTechnic, index) {
 
 function setSelectedTechnic(technic) {
   return function (direction, mouseEvent) {
+    console.log(">>>>>>>> setSelectedTechnic", technic);
     selectedTechnic.value = technic;
   };
 }
