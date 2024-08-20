@@ -664,6 +664,11 @@ onBeforeUnmount(() => {
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
            style="z-index: 101">
       </div>
+      <div
+          class="absolute top-0 left-0 h-full w-[10%] z-[100]"
+          v-touch:press="setSelectedTechnic('농현')"
+          v-touch:release="setSelectedTechnic('평음')"
+      />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
             class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[26px]"
@@ -680,8 +685,6 @@ onBeforeUnmount(() => {
         <div
             class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[26px]"
             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-            v-touch:press="setSelectedTechnic('농현')"
-            v-touch:release="setSelectedTechnic('평음')"
         >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
