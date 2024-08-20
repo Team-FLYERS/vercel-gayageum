@@ -513,6 +513,20 @@ function selectedNote(val, selectedNote, selectedTuning) {
   }
 }
 
+async function getMedia(constrains) {
+  const initialContrains = {
+    audio: true,
+    video: false
+  } // 특별한 요구사항 없이 오디오와 비디오 요청
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
+    const video = document.createElement('video');
+    video.srcObject = stream;
+  } catch(error) {
+    console.log(error)
+  }
+}
+
 function loadSound() {
   console.log(">>> loadSound");
   stringInfo.forEach((info, index) => {
@@ -570,6 +584,7 @@ function setSelectedTechnic(technic) {
 onMounted(() => {
   window.addEventListener('resize', handleResize)
   updateImageSrc()
+  getMedia();
   loadSound()
 })
 
