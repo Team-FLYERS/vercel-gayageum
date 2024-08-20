@@ -532,7 +532,7 @@ function loadSound() {
   stringInfo.forEach((info, index) => {
     ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
       ['평음', '농현', '꺾는음'].forEach((__info, __index) => {
-        const _path = `/assets/wav/${info['audio'][_info][__info]}`;
+        const _path = new URL(`/src/assets/wav/${info['audio'][_info][__info]}`, import.meta.url).href;
         console.log('try', _path);
         try {
           (async () => {
