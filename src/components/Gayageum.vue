@@ -451,40 +451,40 @@ function handleKeydown(event) {
   if (event.repeat) return;
   switch (event.keyCode) {
     case 49:
-      playString(event, stringInfo?.[0], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[0], settingStore.selectedTuning, selectedTechnic.value, 0);
       return;
     case 50:
-      playString(event, stringInfo?.[1], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[1], settingStore.selectedTuning, selectedTechnic.value, 1);
       return;
     case 51:
-      playString(event, stringInfo?.[2], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[2], settingStore.selectedTuning, selectedTechnic.value, 2);
       return;
     case 52:
-      playString(event, stringInfo?.[3], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[3], settingStore.selectedTuning, selectedTechnic.value, 3);
       return;
     case 53:
-      playString(event, stringInfo?.[4], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[4], settingStore.selectedTuning, selectedTechnic.value, 4);
       return;
     case 54:
-      playString(event, stringInfo?.[5], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[5], settingStore.selectedTuning, selectedTechnic.value, 5);
       return;
     case 55:
-      playString(event, stringInfo?.[6], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[6], settingStore.selectedTuning, selectedTechnic.value, 6);
       return;
     case 56:
-      playString(event, stringInfo?.[7], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[7], settingStore.selectedTuning, selectedTechnic.value, 7);
       return;
     case 57:
-      playString(event, stringInfo?.[8], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[8], settingStore.selectedTuning, selectedTechnic.value, 8);
       return;
     case 48:
-      playString(event, stringInfo?.[9], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[9], settingStore.selectedTuning, selectedTechnic.value, 9);
       return;
     case 189:
-      playString(event, stringInfo?.[10], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[10], settingStore.selectedTuning, selectedTechnic.value, 10);
       return;
     case 187:
-      playString(event, stringInfo?.[11], settingStore.selectedTuning, selectedTechnic.value);
+      playString(event, stringInfo?.[11], settingStore.selectedTuning, selectedTechnic.value, 11);
       return;
   }
 }
@@ -551,7 +551,7 @@ function loadSound() {
   console.log(">>>>> stringInfo", stringInfo);
 }
 
-function playString(event, val, _selectedTuning, _selectedTechnic) {
+function playString(event, val, _selectedTuning, _selectedTechnic, index) {
   if (lastEventHandled?.value?.eventType !== 'mouseenter' || lastEventHandled?.value?.['구음'] !== val['구음']) {
     console.log('>>>>>>>> playString', event, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
 
@@ -565,6 +565,11 @@ function playString(event, val, _selectedTuning, _selectedTechnic) {
       source.buffer = _audio;
       source.connect(audioContext.destination);
       source.start(0);
+      stringInfo[index].isShaking = true;
+      const _e = setTimeout(() => {
+        stringInfo[index].isShaking = false;
+        clearTimeout(_e);
+      }, 3000);
     })();
   }
   lastEventHandled.value = { eventType: event.type, ['구음']: val['구음'] };
@@ -716,8 +721,8 @@ onBeforeUnmount(() => {
 <!--        >-->
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-               @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"
-               @mouseenter="playString($event, val, settingStore.selectedTuning, selectedTechnic)"
+               @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
+               @mouseenter="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
