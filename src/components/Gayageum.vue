@@ -451,40 +451,40 @@ function handleKeydown(event) {
   if (event.repeat) return;
   switch (event.keyCode) {
     case 49:
-      playString(event, stringInfo?.[0], settingStore.selectedTuning, selectedTechnic.value, 0);
+      playString(event, stringInfo?.[0], settingStore.selectedTuning, 0)();
       return;
     case 50:
-      playString(event, stringInfo?.[1], settingStore.selectedTuning, selectedTechnic.value, 1);
+      playString(event, stringInfo?.[1], settingStore.selectedTuning, 1)();
       return;
     case 51:
-      playString(event, stringInfo?.[2], settingStore.selectedTuning, selectedTechnic.value, 2);
+      playString(event, stringInfo?.[2], settingStore.selectedTuning, 2)();
       return;
     case 52:
-      playString(event, stringInfo?.[3], settingStore.selectedTuning, selectedTechnic.value, 3);
+      playString(event, stringInfo?.[3], settingStore.selectedTuning, 3)();
       return;
     case 53:
-      playString(event, stringInfo?.[4], settingStore.selectedTuning, selectedTechnic.value, 4);
+      playString(event, stringInfo?.[4], settingStore.selectedTuning, 4)();
       return;
     case 54:
-      playString(event, stringInfo?.[5], settingStore.selectedTuning, selectedTechnic.value, 5);
+      playString(event, stringInfo?.[5], settingStore.selectedTuning, 5)();
       return;
     case 55:
-      playString(event, stringInfo?.[6], settingStore.selectedTuning, selectedTechnic.value, 6);
+      playString(event, stringInfo?.[6], settingStore.selectedTuning, 6)();
       return;
     case 56:
-      playString(event, stringInfo?.[7], settingStore.selectedTuning, selectedTechnic.value, 7);
+      playString(event, stringInfo?.[7], settingStore.selectedTuning, 7)();
       return;
     case 57:
-      playString(event, stringInfo?.[8], settingStore.selectedTuning, selectedTechnic.value, 8);
+      playString(event, stringInfo?.[8], settingStore.selectedTuning, 8)();
       return;
     case 48:
-      playString(event, stringInfo?.[9], settingStore.selectedTuning, selectedTechnic.value, 9);
+      playString(event, stringInfo?.[9], settingStore.selectedTuning, 9)();
       return;
     case 189:
-      playString(event, stringInfo?.[10], settingStore.selectedTuning, selectedTechnic.value, 10);
+      playString(event, stringInfo?.[10], settingStore.selectedTuning, 10)();
       return;
     case 187:
-      playString(event, stringInfo?.[11], settingStore.selectedTuning, selectedTechnic.value, 11);
+      playString(event, stringInfo?.[11], settingStore.selectedTuning, 11)();
       return;
   }
 }
@@ -551,16 +551,16 @@ function loadSound() {
   console.log(">>>>> stringInfo", stringInfo);
 }
 
-function playString(event, val, _selectedTuning, _selectedTechnic, index) {
+function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log('>>>>>>>> playString', mouseEvent, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
+    console.log('>>>>>>>> playString', mouseEvent, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
         console.log('>>>>>> audioContext.state', audioContext.state);
         await audioContext.resume();
       }
-      const _audio = val['audio'][_selectedTuning][_selectedTechnic];
+      const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
       const source = audioContext.createBufferSource();
       source.buffer = _audio;
       source.connect(audioContext.destination);
@@ -730,7 +730,7 @@ onBeforeUnmount(() => {
 <!--        >-->
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-               v-touch:press="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
+               v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
