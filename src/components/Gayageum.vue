@@ -513,20 +513,6 @@ function selectedNote(val, selectedNote, selectedTuning) {
   }
 }
 
-async function getMedia(constrains) {
-  const initialContrains = {
-    audio: true,
-    video: false
-  } // 특별한 요구사항 없이 오디오와 비디오 요청
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
-    const video = document.createElement('video');
-    video.srcObject = stream;
-  } catch(error) {
-    console.log(error)
-  }
-}
-
 function loadSound() {
   console.log(">>> loadSound");
   stringInfo.forEach((info, index) => {
@@ -552,8 +538,8 @@ function loadSound() {
 }
 
 function playString(event, val, _selectedTuning, _selectedTechnic, index) {
-  if (lastEventHandled?.value?.eventType !== 'mouseenter' || lastEventHandled?.value?.['구음'] !== val['구음']) {
-    console.log('>>>>>>>> playString', event, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
+  return function (direction, mouseEvent) {
+    console.log('>>>>>>>> playString', mouseEvent, { _selectedTuning, _selectedTechnic }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
@@ -571,14 +557,19 @@ function playString(event, val, _selectedTuning, _selectedTechnic, index) {
         clearTimeout(_e);
       }, 3000);
     })();
-  }
-  lastEventHandled.value = { eventType: event.type, ['구음']: val['구음'] };
+    lastEventHandled.value = { eventType: mouseEvent?.type, ['구음']: val['구음'] };
+  };
+}
+
+function setSelectedTechnic(technic) {
+  return function (direction, mouseEvent) {
+    selectedTechnic.value = technic;
+  };
 }
 
 onMounted(() => {
   window.addEventListener('resize', handleResize)
   updateImageSrc()
-  getMedia();
   loadSound()
 })
 
@@ -673,8 +664,8 @@ onBeforeUnmount(() => {
         <div
             class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[26px]"
             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-            @mouseenter="selectedTechnic.value = '농현'"
-            @mouseleave="selectedTechnic.value = '평음'"
+            v-touch:press="setSelectedTechnic('농현')"
+            v-touch:release="setSelectedTechnic('평음')"
         >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
@@ -723,8 +714,7 @@ onBeforeUnmount(() => {
 <!--        >-->
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-               @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
-               @mouseenter="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
+               v-touch:press="playString($event, val, settingStore.selectedTuning, selectedTechnic, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
