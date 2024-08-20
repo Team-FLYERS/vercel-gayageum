@@ -673,6 +673,8 @@ onBeforeUnmount(() => {
         <div
             class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[26px]"
             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+            @mouseenter="selectedTechnic.value = '농현'"
+            @mouseleave="selectedTechnic.value = '평음'"
         >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
