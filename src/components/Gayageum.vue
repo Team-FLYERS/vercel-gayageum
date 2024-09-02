@@ -18,7 +18,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 9.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '1 청',
     hexCode: '#FF7C00',
     ['구음']: '청',
@@ -53,7 +53,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 9,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '2 흥',
     hexCode: '#0073FF',
     ['구음']: '홍',
@@ -88,7 +88,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 8.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '3 둥',
     hexCode: '#2F2D59',
     ['구음']: '동',
@@ -123,7 +123,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 8,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '4 당',
     hexCode: '#FF7C00',
     ['구음']: '당',
@@ -159,7 +159,7 @@ const stringInfo = reactive([
     isShaking: false,
     id: 5,
     height: 7.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '5 동',
     hexCode: '#FFC500',
     ['구음']: '동',
@@ -194,7 +194,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 7,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '6 징',
     hexCode: '#0073FF',
     ['구음']: '징',
@@ -229,7 +229,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 6.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '7 땅',
     hexCode: '#2F2D59',
     ['구음']: '땅',
@@ -264,7 +264,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 6,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '8 지',
     hexCode: '#8C2FE8',
     ['구음']: '지',
@@ -299,7 +299,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 5.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '9 찡',
     hexCode: '#FF7C00',
     ['구음']: '찡',
@@ -334,7 +334,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '10 칭',
     hexCode: '#FFC500',
     ['구음']: '칭',
@@ -369,7 +369,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 4.5,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '11 쫑',
     hexCode: '#0073FF',
     ['구음']: '쫑',
@@ -405,7 +405,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 4,
-    position: {},
+    position: { top: 0, height: 0 },
     label: '12 챙',
     hexCode: '#2F2D59',
     ['구음']: '챙',
@@ -507,7 +507,8 @@ function handleResize() {
   windowWidth.value = window.innerWidth;
   imageSrc.value = getImageSrc();
   stringRef.value.forEach((ref, index) => {
-    stringInfo[index].postision = ref.getBoundingClientRect();
+    stringInfo[index].postision.top = ref.getBoundingClientRect().top;
+    stringInfo[index].postision.height = ref.getBoundingClientRect().height;
   })
   // drawCanvas()
 }
@@ -597,8 +598,8 @@ function playString(event, val, _selectedTuning, index) {
 function dragString(){
   return function (direction, mouseEvent) {
     console.log(">>>>>>>> dragString", { direction, mouseEvent });
-    console.log(">>>>>>>> direction", );
     stringInfo.forEach((info, index) => {
+      console.log(">>>>>>>> info.position", info.position);
       if (info.position.top < direction.pageY && (info.position.top + info.position.height) > direction.pageY) {
         playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
       }
