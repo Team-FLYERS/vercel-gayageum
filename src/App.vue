@@ -6,5 +6,9 @@ import Home from './pages/index.vue'
   <Home/>
 </template>
 
-<style scoped>
+<style>
+html, body {
+  overscroll-behavior: none; /* Prevents pull-to-refresh in most cases */
+  touch-action: none;
+}
 </style>
