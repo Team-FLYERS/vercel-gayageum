@@ -553,8 +553,7 @@ function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log(">>>>>>>> Event", { direction, mouseEvent });
-    console.log('>>>>>>>> playString', { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
+    console.log('>>>>>>>> playString', { direction, mouseEvent }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
@@ -574,6 +573,12 @@ function playString(event, val, _selectedTuning, index) {
     })();
     lastEventHandled.value = { eventType: mouseEvent?.type, ['구음']: val['구음'] };
   };
+}
+
+function dragString(){
+  return function (direction, mouseEvent) {
+    console.log(">>>>>>>> dragString", { direction, mouseEvent });
+  }
 }
 
 function setSelectedTechnic(technic) {
@@ -737,6 +742,7 @@ onBeforeUnmount(() => {
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
                style="z-index: 99"
+               v-touch:drag="dragString()"
                v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
