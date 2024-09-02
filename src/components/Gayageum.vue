@@ -711,16 +711,18 @@ onBeforeUnmount(() => {
              :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div
-                class="absolute transform -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-tr-[16px] rounded-tl-[16px] bg-opacity-60 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[30px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[12px]"
-                style="z-index: 10"
+                class="absolute bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[20px] bg-opacity-40 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[30px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[12px]"
+                style="z-index: 100"
             >
-              <span class="text-[18px] font-normal text-[#fff] flex justify-center items-center w-[22px]">{{ index + 1 }}</span>
+              <span class="text-[20px] font-extrabold text-[#fff] flex justify-center items-center">{{ index + 1 }}</span>
               <div
                   v-if="settingStore.selectedNote !== '표시 안함'"
                   class="flex justify-center items-center w-[30px] h-[30px] rounded-full"
                   :style="{ backgroundColor: settingStore.isLineColor ? val.hexCode : 'transparent' }"
               >
-                <span class="text-[18px] font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}</span>
+                <span class="text-[20px] font-extrabold text-[#fff] flex justify-center items-center">
+                  {{ selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}
+                </span>
               </div>
             </div>
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
