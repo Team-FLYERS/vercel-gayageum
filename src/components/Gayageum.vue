@@ -18,6 +18,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 9.5,
+    pageY: 0,
     label: '1 청',
     hexCode: '#FF7C00',
     ['구음']: '청',
@@ -52,6 +53,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 9,
+    pageY: 0,
     label: '2 흥',
     hexCode: '#0073FF',
     ['구음']: '홍',
@@ -86,6 +88,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 8.5,
+    pageY: 0,
     label: '3 둥',
     hexCode: '#2F2D59',
     ['구음']: '동',
@@ -120,6 +123,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 8,
+    pageY: 0,
     label: '4 당',
     hexCode: '#FF7C00',
     ['구음']: '당',
@@ -155,6 +159,7 @@ const stringInfo = reactive([
     isShaking: false,
     id: 5,
     height: 7.5,
+    pageY: 0,
     label: '5 동',
     hexCode: '#FFC500',
     ['구음']: '동',
@@ -189,6 +194,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 7,
+    pageY: 0,
     label: '6 징',
     hexCode: '#0073FF',
     ['구음']: '징',
@@ -223,6 +229,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 6.5,
+    pageY: 0,
     label: '7 땅',
     hexCode: '#2F2D59',
     ['구음']: '땅',
@@ -257,6 +264,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 6,
+    pageY: 0,
     label: '8 지',
     hexCode: '#8C2FE8',
     ['구음']: '지',
@@ -291,6 +299,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 5.5,
+    pageY: 0,
     label: '9 찡',
     hexCode: '#FF7C00',
     ['구음']: '찡',
@@ -325,6 +334,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 5,
+    pageY: 0,
     label: '10 칭',
     hexCode: '#FFC500',
     ['구음']: '칭',
@@ -359,6 +369,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 4.5,
+    pageY: 0,
     label: '11 쫑',
     hexCode: '#0073FF',
     ['구음']: '쫑',
@@ -394,6 +405,7 @@ const stringInfo = reactive([
   {
     isShaking: false,
     height: 4,
+    pageY: 0,
     label: '12 챙',
     hexCode: '#2F2D59',
     ['구음']: '챙',
@@ -426,6 +438,8 @@ const stringInfo = reactive([
     },
   },
 ]);
+
+const stringRef = ref([]);
 
 const windowWidth = ref(window.innerWidth)
 const imageSrc = ref(mobileBridge)
@@ -490,12 +504,12 @@ function handleKeydown(event) {
 }
 
 function handleResize() {
-  windowWidth.value = window.innerWidth
+  windowWidth.value = window.innerWidth;
+  imageSrc.value = getImageSrc();
+  stringRef.value.forEach((ref, index) => {
+    stringInfo[index].pageY = ref.getBoundingClientRect().top;
+  })
   // drawCanvas()
-}
-
-function updateImageSrc() {
-  imageSrc.value = getImageSrc()
 }
 
 function selectedNote(val, selectedNote, selectedTuning) {
@@ -553,7 +567,9 @@ function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log('>>>>>>>> playString', { direction, mouseEvent }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
+
+    if (lastEventHandled?.value?.eventType === 'mousemove' && lastEventHandled?.value?.['구음'] === val['구음']) return;
+    console.log('>>>>>>>> playString', { direction, mouseEvent, event }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
@@ -571,13 +587,19 @@ function playString(event, val, _selectedTuning, index) {
         clearTimeout(_e);
       }, 3000);
     })();
-    lastEventHandled.value = { eventType: mouseEvent?.type, ['구음']: val['구음'] };
+    lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
   };
 }
 
 function dragString(){
   return function (direction, mouseEvent) {
     console.log(">>>>>>>> dragString", { direction, mouseEvent });
+    console.log(">>>>>>>> direction", );
+    stringInfo.forEach((info, index) => {
+      if (info.pageY < direction.pageY) {
+        playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
+      }
+    });
   }
 }
 
@@ -590,7 +612,6 @@ function setSelectedTechnic(technic) {
 
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-  updateImageSrc()
   getMedia();
   loadSound()
 })
@@ -600,7 +621,7 @@ onBeforeUnmount(() => {
 })
 
 watchEffect(() => {
-  updateImageSrc()
+  handleResize();
 })
 
 watchEffect(() => {
@@ -650,14 +671,12 @@ watchEffect(() => {
 // }
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-  window.addEventListener('resize', updateImageSrc)
   window.addEventListener('keyup', handleKeyup);
   window.addEventListener('keydown', handleKeydown);
   // drawCanvas()
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateImageSrc)
   window.removeEventListener('resize', handleResize)
   window.addEventListener('keyup', handleKeyup);
   window.removeEventListener('keydown', handleKeydown)
@@ -746,7 +765,7 @@ onBeforeUnmount(() => {
                v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
+            <div ref="stringRef" :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
           </div>
         </div>
         <!--     현침     -->
