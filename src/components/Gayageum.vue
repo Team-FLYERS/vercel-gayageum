@@ -553,7 +553,8 @@ function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log('>>>>>>>> playString', mouseEvent, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
+    console.log(">>>>>>>> Event", { direction, mouseEvent });
+    console.log('>>>>>>>> playString', { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
 
     (async () => {
       if (audioContext.state === 'suspended') {
