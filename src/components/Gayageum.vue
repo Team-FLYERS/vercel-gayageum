@@ -596,7 +596,7 @@ function dragString(){
     console.log(">>>>>>>> dragString", { direction, mouseEvent });
     console.log(">>>>>>>> direction", );
     stringInfo.forEach((info, index) => {
-      if (info.pageY < direction.pageY) {
+      if (info.pageY < direction.pageY && (info.pageY + info.height) > direction.pageY) {
         playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
       }
     });
