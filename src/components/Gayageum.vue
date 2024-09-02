@@ -507,9 +507,9 @@ function handleResize() {
   windowWidth.value = window.innerWidth;
   imageSrc.value = getImageSrc();
   stringRef.value.forEach((ref, index) => {
-    stringInfo[index].postision.top = ref.getBoundingClientRect().top;
-    stringInfo[index].postision.height = ref.getBoundingClientRect().height;
-  })
+    stringInfo[index].position.top = ref.getBoundingClientRect().top;
+    stringInfo[index].position.height = ref.getBoundingClientRect().height;
+  });
   // drawCanvas()
 }
 
