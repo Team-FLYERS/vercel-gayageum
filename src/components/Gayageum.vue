@@ -736,7 +736,7 @@ onBeforeUnmount(() => {
           <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
                :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
                style="z-index: 99"
-               v-touch:rollover="playString($event, val, settingStore.selectedTuning, index)"
+               v-touch:drag="playString($event, val, settingStore.selectedTuning, index)"
           >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
