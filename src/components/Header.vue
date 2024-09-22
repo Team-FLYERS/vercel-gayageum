@@ -3,6 +3,11 @@ import {ref} from 'vue';
 import SettingsPanel from './SettingPanel.vue';
 import {useGuideStore} from "../stores/guide.js";
 
+import Bars from '../assets/bars-3.vue'
+import BarsMobile from '../assets/bars-3-mobile.vue'
+import Logo from '../assets/logo.vue'
+import LogoMobile from '../assets/logo-mobile.vue'
+
 const guideStore = useGuideStore()
 
 const settingsOpen = ref(false);
@@ -15,53 +20,23 @@ function toggleSettings() {
 </script>
 
 <template>
-  <header class="relative flex w-full min-h-[40px] h-[40px] bg-[#290A00]" aria-label="Header"
-          style="z-index:102">
+  <header class="relative flex w-full h-[72px] bg-transparent" aria-label="Header" style="z-index:102">
     <div class="flex flex-row w-full justify-between items-center" style="z-index: 2">
-      <div v-if="settingsOpen" @click="toggleSettings"
-           class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[1]"></div>
-      <div v-if="guideStore.openGuide" class="absolute w-full h-full bg-black bg-opacity-50" style="z-index: 101;"/>
-      <div class="flex flex-1 h-full justify-start items-center pl-10 mobile:pl-6">
-        <svg width="39" height="24" viewBox="0 0 39 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <rect x="0.218254" y="9.53674e-07" width="38" height="9" fill="url(#pattern0_253_787)"/>
-          <path d="M0.963042 21.2583C3.00625 20.9921 4.54192 20.1403 4.54192 16.8663V14.6437C4.54192 14.4573 4.42479 14.3109 4.21656 14.3109H1.24935C0.468507 14.3109 0.156169 13.6987 0.156169 13.1531C0.156169 12.6207 0.455493 12.0085 1.24935 12.0085H5.07549C6.54608 12.0085 7.1187 12.7139 7.1187 13.9516V16.8796C7.1187 21.591 4.62 23.2946 1.24935 23.4676C0.611662 23.4943 0 23.1083 0 22.323C0 21.7641 0.312338 21.3382 0.963042 21.2583ZM8.69341 24V12.7937C8.69341 11.9419 9.30507 11.5027 9.9818 11.5027C10.6455 11.5027 11.2702 11.9552 11.2702 12.7937V16.1609H11.6997C12.4935 16.1609 12.7278 16.7864 12.7278 17.3188C12.7278 17.8645 12.4805 18.4767 11.6997 18.4767H11.2702V24H8.69341Z" fill="#929295"/>
-          <path d="M13.1703 20.167V15.2958C13.1703 12.9401 14.6539 11.7157 16.7882 11.7157C18.9225 11.7157 20.3931 12.9401 20.3931 15.2958V20.167C20.3931 22.5227 18.9225 23.7471 16.7882 23.7471C14.6539 23.7471 13.1703 22.5227 13.1703 20.167ZM21.7075 24V12.7937C21.7075 11.9419 22.3192 11.5027 22.9959 11.5027C23.6596 11.5027 24.2713 11.9552 24.2713 12.7937V14.2976H24.7137C25.5076 14.2976 25.6768 14.8832 25.6768 15.4555C25.6768 16.0411 25.4946 16.6134 24.7137 16.6134H24.2713V18.6897H24.7137C25.5076 18.6897 25.6768 19.2753 25.6768 19.8475C25.6768 20.4332 25.4946 21.0054 24.7137 21.0054H24.2713V24H21.7075ZM15.721 15.2293V20.2335C15.721 21.1385 16.1635 21.5644 16.7882 21.5644C17.4128 21.5644 17.8553 21.1385 17.8553 20.2335V15.2293C17.8553 14.3376 17.4128 13.8984 16.7882 13.8984C16.1635 13.8984 15.721 14.3376 15.721 15.2293Z" fill="#929295"/>
-          <path d="M37.4936 24H28.2015C26.6528 24 26.3665 23.5342 26.3665 22.0036V20.9788C26.3665 19.4483 26.6528 18.9825 28.2015 18.9825H35.6586C37.2073 18.9825 37.4936 19.4483 37.4936 20.9788V24ZM26.9261 16.1343H34.2791C34.5394 15.5753 34.6955 14.9232 34.6955 14.2311V14.0847C34.6955 13.9117 34.6045 13.7919 34.3702 13.7919H27.5638C26.7179 13.7919 26.3665 13.3394 26.3665 12.7272C26.3665 12.1549 26.7049 11.689 27.5638 11.689H35.5415C36.7908 11.689 37.2854 11.9685 37.2854 13.0865V13.8185C37.2854 14.8699 37.1032 15.6019 36.8429 16.1343H36.947C37.7278 16.1343 38.0272 16.6667 38.0272 17.199C38.0272 17.7314 37.7148 18.2638 36.947 18.2638H26.9261C26.1583 18.2638 25.846 17.7314 25.846 17.199C25.846 16.6667 26.1453 16.1343 26.9261 16.1343ZM28.9694 21.2716V21.6975C28.9694 21.9903 29.0214 22.0702 29.2687 22.0702H34.9038V21.2716C34.9038 21.0054 34.8387 20.9123 34.5784 20.9123H29.2687C29.0214 20.9123 28.9694 21.0054 28.9694 21.2716Z" fill="#929295"/>
-          <defs>
-            <pattern id="pattern0_253_787" patternContentUnits="objectBoundingBox" width="1" height="1">
-              <use xlink:href="#image0_253_787" transform="matrix(0.0077952 0 0 0.0333333 0 -0.966667)"/>
-            </pattern>
-            <image id="image0_253_787" width="242" height="88" xlink:href="data:image/png;base64,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"/>
-          </defs>
-        </svg>
-
+      <div class="flex flex-1 h-full justify-start items-center pl-[28px] mobile:pl-6">
+        <Logo class="hidden notMobile:flex" />
+        <LogoMobile class="hidden mobile:flex" />
       </div>
-      <div class="flex flex-1 h-full justify-end items-center pr-10 mobile:pr-6">
+      <div v-if="!settingsOpen" class="flex flex-1 h-full justify-end pt-4 pr-4 mobile:pr-2">
         <button
-            type="button"
-            aria-label="도움말"
-            class="w-[32px] h-[32px] bg-transparent flex justify-center items-center"
-            @click="guideStore.openGuide = true"
+          type="button"
+          aria-label="셋팅"
+          class="notMobile:w-[56px] notMobile:h-[56px] mobile:w-[40px] mobile:h-[40px] flex justify-center items-center bg-[#fff] border-[1px] border-[#0000001A] rounded-full"
+          style="box-shadow: 0 8px 8px 0 #000000A6"
+          @click="toggleSettings"
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M18 10C18 14.4183 14.4183 18 10 18C5.58172 18 2 14.4183 2 10C2 5.58172 5.58172 2 10 2C14.4183 2 18 5.58172 18 10ZM8.93934 6.93931C8.64645 7.23221 8.17157 7.23221 7.87868 6.93931C7.58579 6.64642 7.58579 6.17155 7.87868 5.87865C9.05025 4.70708 10.9497 4.70708 12.1213 5.87865C13.2929 7.05023 13.2929 8.94972 12.1213 10.1213C11.7288 10.5138 11.2528 10.7756 10.75 10.9051V11.25C10.75 11.6642 10.4142 12 10 12C9.58579 12 9.25 11.6642 9.25 11.25V10.75C9.25 10.0297 9.81995 9.57826 10.3313 9.46322C10.5982 9.40318 10.8516 9.26969 11.0607 9.06063C11.6464 8.47485 11.6464 7.5251 11.0607 6.93931C10.4749 6.35353 9.52513 6.35353 8.93934 6.93931ZM10 15C10.5523 15 11 14.5523 11 14C11 13.4477 10.5523 13 10 13C9.44771 13 9 13.4477 9 14C9 14.5523 9.44771 15 10 15Z" fill="white"/>
-          </svg>
+          <Bars class="hidden notMobile:flex" />
+          <BarsMobile class="hidden mobile:flex" />
         </button>
-        <div
-            class="flex justify-center items-center w-10 h-10 rounded-full"
-            :class="[guideStore.openGuide ? 'bg-[#fff] z-[101]' : 'bg-transparent']"
-            @click="toggleSettings"
-        >
-          <button
-              type="button"
-              aria-label="셋팅"
-              class="w-[32px] h-[32px] bg-transparent flex justify-center items-center"
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M2 4.75C2 4.33579 2.33579 4 2.75 4H17.25C17.6642 4 18 4.33579 18 4.75C18 5.16421 17.6642 5.5 17.25 5.5H2.75C2.33579 5.5 2 5.16421 2 4.75ZM2 10C2 9.58579 2.33579 9.25 2.75 9.25H17.25C17.6642 9.25 18 9.58579 18 10C18 10.4142 17.6642 10.75 17.25 10.75H2.75C2.33579 10.75 2 10.4142 2 10ZM2 15.25C2 14.8358 2.33579 14.5 2.75 14.5H17.25C17.6642 14.5 18 14.8358 18 15.25C18 15.6642 17.6642 16 17.25 16H2.75C2.33579 16 2 15.6642 2 15.25Z" fill="white"/>
-            </svg>
-          </button>
-        </div>
       </div>
       <transition name="slide-fade" style="z-index: 2">
         <SettingsPanel v-if="settingsOpen" @close="toggleSettings"/>

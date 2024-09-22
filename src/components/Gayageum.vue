@@ -1,5 +1,5 @@
 <script setup>
-import {onBeforeUnmount, onMounted, reactive, ref, watchEffect} from 'vue';
+import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick} from 'vue';
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
 import {useGuideStore} from "../stores/guide.js";
@@ -20,7 +20,7 @@ const stringInfo = reactive([
     height: 9.5,
     position: { top: 0, height: 0 },
     label: '1 청',
-    hexCode: '#FF7C00',
+    hexCode: '#FF7C00CC',
     ['구음']: '청',
     ['기보음']: {
       ['C본청']: '레',
@@ -55,7 +55,7 @@ const stringInfo = reactive([
     height: 9,
     position: { top: 0, height: 0 },
     label: '2 흥',
-    hexCode: '#0073FF',
+    hexCode: '#0073FFCC',
     ['구음']: '홍',
     ['기보음']: {
       ['C본청']: '솔',
@@ -90,7 +90,7 @@ const stringInfo = reactive([
     height: 8.5,
     position: { top: 0, height: 0 },
     label: '3 둥',
-    hexCode: '#2F2D59',
+    hexCode: '#2F2D59CC',
     ['구음']: '동',
     ['기보음']: {
       ['C본청']: '라',
@@ -125,7 +125,7 @@ const stringInfo = reactive([
     height: 8,
     position: { top: 0, height: 0 },
     label: '4 당',
-    hexCode: '#FF7C00',
+    hexCode: '#FF7C00CC',
     ['구음']: '당',
     ['기보음']: {
       ['C본청']: '레',
@@ -161,7 +161,7 @@ const stringInfo = reactive([
     height: 7.5,
     position: { top: 0, height: 0 },
     label: '5 동',
-    hexCode: '#FFC500',
+    hexCode: '#FFC500CC',
     ['구음']: '동',
     ['기보음']: {
       ['C본청']: '미',
@@ -196,7 +196,7 @@ const stringInfo = reactive([
     height: 7,
     position: { top: 0, height: 0 },
     label: '6 징',
-    hexCode: '#0073FF',
+    hexCode: '#0073FFCC',
     ['구음']: '징',
     ['기보음']: {
       ['C본청']: '솔',
@@ -231,7 +231,7 @@ const stringInfo = reactive([
     height: 6.5,
     position: { top: 0, height: 0 },
     label: '7 땅',
-    hexCode: '#2F2D59',
+    hexCode: '#2F2D59CC',
     ['구음']: '땅',
     ['기보음']: {
       ['C본청']: '라',
@@ -266,7 +266,7 @@ const stringInfo = reactive([
     height: 6,
     position: { top: 0, height: 0 },
     label: '8 지',
-    hexCode: '#8C2FE8',
+    hexCode: '#8C2FE8CC',
     ['구음']: '지',
     ['기보음']: {
       ['C본청']: '시',
@@ -301,7 +301,7 @@ const stringInfo = reactive([
     height: 5.5,
     position: { top: 0, height: 0 },
     label: '9 찡',
-    hexCode: '#FF7C00',
+    hexCode: '#FF7C00CC',
     ['구음']: '찡',
     ['기보음']: {
       ['C본청']: '레',
@@ -336,7 +336,7 @@ const stringInfo = reactive([
     height: 5,
     position: { top: 0, height: 0 },
     label: '10 칭',
-    hexCode: '#FFC500',
+    hexCode: '#FFC500CC',
     ['구음']: '칭',
     ['기보음']: {
       ['C본청']: '미',
@@ -371,7 +371,7 @@ const stringInfo = reactive([
     height: 4.5,
     position: { top: 0, height: 0 },
     label: '11 쫑',
-    hexCode: '#0073FF',
+    hexCode: '#0073FFCC',
     ['구음']: '쫑',
     ['기보음']: {
       ['C본청']: '솔',
@@ -407,7 +407,7 @@ const stringInfo = reactive([
     height: 4,
     position: { top: 0, height: 0 },
     label: '12 챙',
-    hexCode: '#2F2D59',
+    hexCode: '#2F2D59CC',
     ['구음']: '챙',
     ['기보음']: {
       ['C본청']: '라',
@@ -450,6 +450,12 @@ const countLoadedAudios = ref(0)
 
 const lastEventHandled = ref(null);
 
+const hcImage1Ele = ref(null)
+const hcImage2Ele = ref(null)
+
+const hcImage1Width = ref(null)
+const hcImage2Width = ref(0)
+
 function getImageSrc() {
   return windowWidth.value <= 599 ? mobileBridge : desktopBridge
 }
@@ -458,6 +464,7 @@ function handleKeyup(event) {
   if (!event.ctrlKey) selectedTechnic.value = '평음';
   else if (!event.altKey) selectedTechnic.value = '평음';
 }
+
 function handleKeydown(event) {
   console.log(">>>>>>>>>> handleKeydown", event);
   if (event.ctrlKey) selectedTechnic.value = '농현';
@@ -510,9 +517,15 @@ function handleResize() {
     stringInfo[index].position.top = ref.getBoundingClientRect().top;
     stringInfo[index].position.height = ref.getBoundingClientRect().height;
   });
+
+  if (hcImage1Ele.value) {
+    hcImage1Width.value = hcImage1Ele.value.clientWidth
+  }
+  if (hcImage2Ele.value) {
+    hcImage2Width.value = hcImage2Ele.value.clientWidth - 4
+  }
   // drawCanvas()
 }
-
 function selectedNote(val, selectedNote, selectedTuning) {
   switch (selectedNote) {
     case '구음':
@@ -537,7 +550,7 @@ async function getMedia(constrains) {
     const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
     const video = document.createElement('video');
     video.srcObject = stream;
-  } catch(error) {
+  } catch (error) {
     console.log(error)
   }
 }
@@ -568,7 +581,6 @@ function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-
     console.log('>>>>>>>> playString', { direction, mouseEvent, event }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
     if (lastEventHandled?.value?.eventType?.includes('move') && lastEventHandled?.value?.['구음'] === val['구음']) return;
 
@@ -641,36 +653,9 @@ watchEffect(() => {
   }
 })
 
-// const canvas = ref(null)
-//
-// const drawCanvas = () => {
-//   const ctx = canvas.value.getContext('2d')
-//   const width = window.innerWidth
-//   const height = Math.min(window.innerHeight, 900)
-//
-//   canvas.value.width = width
-//   canvas.value.height = height
-//
-//   const backgroundImage = new Image()
-//   backgroundImage.src = backgroundImgPath
-//   backgroundImage.onload = () => {
-//     ctx.drawImage(backgroundImage, 0, 0, width, height)
-//
-//     // ctx.strokeStyle = '#FFFFFF'
-//     ctx.strokeStyle = 'red'
-//     ctx.lineWidth = 4
-//     const numStrings = 12
-//     for (let i = 0; i < numStrings; i++) {
-//       const y = (i + 1) * (height / (numStrings + 1))
-//       ctx.lineWidth = hyun[i].height
-//       ctx.beginPath()
-//       ctx.moveTo(0, y)
-//       ctx.lineTo(width, y)
-//       ctx.stroke()
-//     }
-//   }
-// }
 onMounted(() => {
+  getMedia()
+  loadSound()
   window.addEventListener('resize', handleResize)
   window.addEventListener('keyup', handleKeyup);
   window.addEventListener('keydown', handleKeydown);
@@ -679,7 +664,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
-  window.addEventListener('keyup', handleKeyup);
+  window.addEventListener('keyup', handleKeyup)
   window.removeEventListener('keydown', handleKeydown)
 })
 </script>
@@ -687,9 +672,6 @@ onBeforeUnmount(() => {
 <template>
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col mt-[69px] notMobile:h-[85%] mobile:mt-[12px]">
-      <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"
-           style="z-index: 101">
-      </div>
       <div
           class="absolute top-0 left-0 h-full w-[10%] z-[100]"
           v-touch:press="setSelectedTechnic('농현')"
@@ -697,14 +679,21 @@ onBeforeUnmount(() => {
       />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
-            class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[26px]"
-            :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[26px]"
+          :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
         >
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
+          <div class="flex justify-start items-center w-full h-[16px] border-none">
             <div
-                :class="{ 'w-full': true, 'stringBackground': true, 'border-none': true, shake: stringInfo[index].isShaking }"
-                :style="`height: ${val.height}px; z-index: 99`"
-            ></div>
+                class="stringBackground border-none notMobile:rounded-r-full"
+                :class="{ shake: stringInfo[index].isShaking }"
+                :style="`width: calc(100% - ${hcImage2Width}px); height: ${val.height}px; z-index: 99`"
+            />
+            <img
+                class="absolute"
+                src="../assets/hole.png" draggable="false"
+                alt="hole"
+                :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
+            >
           </div>
         </div>
         <!--     시김새 영역     -->
@@ -737,35 +726,35 @@ onBeforeUnmount(() => {
              :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div
-                class="absolute bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[20px] bg-opacity-40 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[30px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[12px]"
-                style="z-index: 100"
+              class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[20px]"
+              style="z-index: 100"
+              :class="index === 0 ? 'mobile:top-[21px] notMobile:top-1/2' : 'top-1/2'"
+              :style="settingStore.isLineColor ? { backgroundColor: val.hexCode } : {}"
             >
-              <span class="text-[20px] font-extrabold text-[#fff] flex justify-center items-center">{{ index + 1 }}</span>
+              <span
+                class="notMobile:text-[24px] mobile:text-[20px] font-normal text-[#fff] flex justify-center items-center w-[22px]">{{index + 1 }}</span>
               <div
-                  v-if="settingStore.selectedNote !== '표시 안함'"
-                  class="flex justify-center items-center w-[30px] h-[30px] rounded-full"
-                  :style="{ backgroundColor: settingStore.isLineColor ? val.hexCode : 'transparent' }"
+                v-if="settingStore.selectedNote !== '표시 안함'"
+                class="flex justify-center items-center rounded-full"
               >
-                <span class="text-[20px] font-extrabold text-[#fff] flex justify-center items-center">
-                  {{ selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}
-                </span>
+                <span class="notMobile:text-[24px] mobile:text-[20px] font-normal text-[#fff] flex justify-center items-center">{{selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}</span>
               </div>
             </div>
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
         </div>
         <!--     연주 영역     -->
-<!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"-->
-<!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"-->
-<!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
-<!--        >-->
-          <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
-               :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
-               style="z-index: 99"
-               ref="stringRef"
-               v-touch:drag.once="dragString()"
-               v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
-          >
+        <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"-->
+        <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"-->
+        <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
+        <!--        >-->
+        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
+             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+             style="z-index: 99"
+             ref="stringRef"
+             v-touch:drag.once="dragString()"
+             v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
+        >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
           </div>
@@ -779,25 +768,29 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </div>
-    <!--    <div class="w-full h-[900px] absolute" style="z-index: 2">-->
-    <!--      <canvas ref="canvas" style="z-index: 5"></canvas>-->
-    <!--      <div class="absolute right-0 top-[-40px] mobile:hidden" style="z-index: 3">-->
-    <!--        <img src="../assets/hyunchime.png" class="">-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <div class="absolute right-0 top-[-40px] mobile:hidden" style="z-index: 2">
-      <img src="../assets/hyunchime.png" class="h-screen" draggable="false">
+    <div class="absolute right-0 top-[-72px] mobile:hidden flex flex-row" style="z-index: 2">
+      <img
+        ref="hcImage1Ele"
+        src="../assets/hyunchime-pattern.png"
+        draggable="false"
+        alt="pattern"
+        class="h-screen absolute"
+        :style="`right: ${hcImage1Width + hcImage2Width - 34}px;`"
+      >
+      <img src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
+      <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen" draggable="false" alt="hyunchime-2">
     </div>
-    <button
-        v-if="guideStore.openGuide"
-        type="button"
-        aria-label="닫기"
-        class="absolute bottom-[32px] notMobile:left-1/2 notMobile:-translate-x-1/2 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px]"
-        style="z-index: 101"
-        @click="guideStore.openGuide = false"
-    >
-      닫기
-    </button>
+
+    <!--    <button-->
+    <!--        v-if="guideStore.openGuide"-->
+    <!--        type="button"-->
+    <!--        aria-label="닫기"-->
+    <!--        class="absolute bottom-[32px] notMobile:left-1/2 notMobile:-translate-x-1/2 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px]"-->
+    <!--        style="z-index: 101"-->
+    <!--        @click="guideStore.openGuide = false"-->
+    <!--    >-->
+    <!--      닫기-->
+    <!--    </button>-->
   </div>
 </template>
 
