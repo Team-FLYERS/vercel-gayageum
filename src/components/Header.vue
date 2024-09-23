@@ -3,10 +3,10 @@ import {ref} from 'vue';
 import SettingsPanel from './SettingPanel.vue';
 import {useGuideStore} from "../stores/guide.js";
 
-import Bars from '@/assets/bars-3.vue'
-import BarsMobile from '@/assets/bars-3-mobile.vue'
-import Logo from '@/assets/logo.vue'
-import LogoMobile from '@/assets/logo-mobile.vue'
+import Bars from '../assets/bars-3.vue'
+import BarsMobile from '../assets/bars-3-mobile.vue'
+import Logo from '../assets/logo.vue'
+import LogoMobile from '../assets/logo-mobile.vue'
 
 const guideStore = useGuideStore()
 
