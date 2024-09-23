@@ -555,6 +555,7 @@ async function getMedia(constrains) {
     const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
     const video = document.createElement('video');
     video.srcObject = stream;
+    video.muted = true;
   } catch (error) {
     console.log(error)
   }
