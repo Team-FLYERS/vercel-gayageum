@@ -515,11 +515,14 @@ function handleResize() {
   updateImageSize()
   imageSrc.value = getImageSrc()
 
-  stringRef.value.forEach((ref, index) => {
-    stringInfo[index].position.top = ref.getBoundingClientRect().top
-    stringInfo[index].position.height = ref.getBoundingClientRect().height
-  });
-
+  let evt = null;
+  evt = setTimeout(() => {
+    stringRef.value.forEach((ref, index) => {
+      stringInfo[index].position.top = ref.getBoundingClientRect().top
+      stringInfo[index].position.height = ref.getBoundingClientRect().height
+    });
+    clearTimeout(evt);
+  }, 500);
 }
 
 const updateImageSize = () => {
