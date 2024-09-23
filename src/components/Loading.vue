@@ -1,5 +1,5 @@
 <script setup>
-import LoadingLogo from '../assets/logo-loading.vue'
+import LoadingLogo from '@/assets/logo-loading.vue'
 </script>
 
 <template>

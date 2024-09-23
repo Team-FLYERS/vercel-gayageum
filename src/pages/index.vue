@@ -18,7 +18,7 @@ const commonStore = useCommonStore()
 <template>
   <!--  bg-custom-image bg-cover-->
   <div class="w-full flex flex-col bg-custom-image bg-cover flex-1 bg-center h-screen overflow-hidden">
-    <div class="w-full flex flex-col h-full mobile:h-auto">
+    <div class="w-full flex flex-col h-full">
       <GayageumHeader/>
       <GayageumBody/>
 <!--      <Guide v-if="guideStore.openGuide"/>-->

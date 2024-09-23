@@ -3,10 +3,10 @@ import {ref} from 'vue';
 import SettingsPanel from './SettingPanel.vue';
 import {useGuideStore} from "../stores/guide.js";
 
-import Bars from '../assets/bars-3.vue'
-import BarsMobile from '../assets/bars-3-mobile.vue'
-import Logo from '../assets/logo.vue'
-import LogoMobile from '../assets/logo-mobile.vue'
+import Bars from '@/assets/bars-3.vue'
+import BarsMobile from '@/assets/bars-3-mobile.vue'
+import Logo from '@/assets/logo.vue'
+import LogoMobile from '@/assets/logo-mobile.vue'
 
 const guideStore = useGuideStore()
 
@@ -20,13 +20,13 @@ function toggleSettings() {
 </script>
 
 <template>
-  <header class="relative flex w-full h-[72px] bg-transparent" aria-label="Header" style="z-index:102">
-    <div class="flex flex-row w-full justify-between items-center" style="z-index: 2">
-      <div class="flex flex-1 h-full justify-start items-center pl-[28px] mobile:pl-6">
+  <header class="relative flex w-full notMobile:min-h-[53px] notMobile:h-[53px] mobile:h-[26px] bg-transparent" aria-label="Header" style="z-index:102">
+    <div class="flex flex-row w-full justify-between" style="z-index: 2">
+      <div class="flex flex-1 h-fit justify-start notMobile:pt-8 mobile:pt-4 notMobile:pl-[28px] mobile:pl-5">
         <Logo class="hidden notMobile:flex" />
         <LogoMobile class="hidden mobile:flex" />
       </div>
-      <div v-if="!settingsOpen" class="flex flex-1 h-full justify-end pt-4 pr-4 mobile:pr-2">
+      <div v-if="!settingsOpen" class="flex flex-1 h-full justify-end notMobile:pt-4 notMobile:pr-4 mobile:pt-2 mobile:pr-2">
         <button
           type="button"
           aria-label="셋팅"

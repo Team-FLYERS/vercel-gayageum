@@ -511,21 +511,26 @@ function handleKeydown(event) {
 }
 
 function handleResize() {
-  windowWidth.value = window.innerWidth;
-  imageSrc.value = getImageSrc();
+  windowWidth.value = window.innerWidth
+  updateImageSize()
+  imageSrc.value = getImageSrc()
+
   stringRef.value.forEach((ref, index) => {
-    stringInfo[index].position.top = ref.getBoundingClientRect().top;
-    stringInfo[index].position.height = ref.getBoundingClientRect().height;
+    stringInfo[index].position.top = ref.getBoundingClientRect().top
+    stringInfo[index].position.height = ref.getBoundingClientRect().height
   });
 
+}
+
+const updateImageSize = () => {
   if (hcImage1Ele.value) {
     hcImage1Width.value = hcImage1Ele.value.clientWidth
   }
   if (hcImage2Ele.value) {
     hcImage2Width.value = hcImage2Ele.value.clientWidth - 4
   }
-  // drawCanvas()
 }
+
 function selectedNote(val, selectedNote, selectedTuning) {
   switch (selectedNote) {
     case '구음':
@@ -623,20 +628,6 @@ function setSelectedTechnic(technic) {
   };
 }
 
-onMounted(() => {
-  window.addEventListener('resize', handleResize)
-  getMedia();
-  loadSound()
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', handleResize)
-})
-
-watchEffect(() => {
-  handleResize();
-})
-
 watchEffect(() => {
   let count = 0;
   ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
@@ -654,11 +645,16 @@ watchEffect(() => {
 })
 
 onMounted(() => {
+  updateImageSize()
+  handleResize()
   getMedia()
   loadSound()
+  loadSound()
   window.addEventListener('resize', handleResize)
-  window.addEventListener('keyup', handleKeyup);
-  window.addEventListener('keydown', handleKeydown);
+  window.addEventListener('keyup', handleKeyup)
+  window.addEventListener('keydown', handleKeydown)
+  hcImage1Ele.value.addEventListener('load', updateImageSize)
+  hcImage2Ele.value.addEventListener('load', updateImageSize)
   // drawCanvas()
 })
 
@@ -671,7 +667,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
-    <div class="flex w-full flex-col mt-[69px] notMobile:h-[85%] mobile:mt-[12px]">
+    <div class="flex w-full flex-col h-[95%]">
       <div
           class="absolute top-0 left-0 h-full w-[10%] z-[100]"
           v-touch:press="setSelectedTechnic('농현')"
@@ -679,8 +675,7 @@ onBeforeUnmount(() => {
       />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
-          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[26px]"
-          :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px]"
         >
           <div class="flex justify-start items-center w-full h-[16px] border-none">
             <div
@@ -698,16 +693,14 @@ onBeforeUnmount(() => {
         </div>
         <!--     시김새 영역     -->
         <div
-            class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[26px]"
-            :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+            class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[0px]"
         >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
         </div>
         <!--     안족 배열     -->
-        <div class="relative w-[45%] flex items-center h-full border-none mobile:w-[30%] mobile:py-[26px]"
-             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'">
+        <div class="relative w-[45%] flex items-center h-full border-none mobile:w-[30%] mobile:py-[0px]">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
@@ -722,13 +715,11 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <!--     라벨 영역     -->
-        <div class="relative w-[5%] flex items-center h-full border-none mobile:py-[26px]"
-             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'">
+        <div class="relative w-[5%] flex items-center h-full border-none mobile:py-[0px]">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div
-              class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[20px]"
+              class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[20px]"
               style="z-index: 100"
-              :class="index === 0 ? 'mobile:top-[21px] notMobile:top-1/2' : 'top-1/2'"
               :style="settingStore.isLineColor ? { backgroundColor: val.hexCode } : {}"
             >
               <span
@@ -744,12 +735,11 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <!--     연주 영역     -->
-        <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"-->
-        <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"-->
+        <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"-->
+        <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[0px]'"-->
         <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
         <!--        >-->
-        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[26px]"
-             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'"
+        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"
              style="z-index: 99"
              ref="stringRef"
              v-touch:drag.once="dragString()"
@@ -760,24 +750,22 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <!--     현침     -->
-        <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[26px]"
-             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[26px]'">
+        <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="absolute right-0 top-[-72px] mobile:hidden flex flex-row" style="z-index: 2">
+    <div class="absolute right-0 top-[-53px] mobile:hidden flex flex-row" style="z-index: 2">
       <img
-        ref="hcImage1Ele"
         src="../assets/hyunchime-pattern.png"
         draggable="false"
         alt="pattern"
         class="h-screen absolute"
-        :style="`right: ${hcImage1Width + hcImage2Width - 34}px;`"
+        :style="`right: ${hcImage1Width + hcImage2Width - 4}px;`"
       >
-      <img src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
+      <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
       <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen" draggable="false" alt="hyunchime-2">
     </div>
 
