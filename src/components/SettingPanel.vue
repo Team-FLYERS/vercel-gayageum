@@ -3,6 +3,8 @@ import {defineEmits, ref} from 'vue';
 import {useSettingStore} from "../stores/settings.js";
 import {useGuideStore} from "../stores/guide.js";
 
+import ChevronRight from "../assets/chevron-right.vue";
+
 const emit = defineEmits(['close']);
 
 function closePanel() {
@@ -56,7 +58,7 @@ function handleGuide() {
 <template>
   <div
     id="settings-panel"
-    class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full px-10 pt-[32px] rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px] overflow-scroll"
+    class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full notMobile:px-10 mobile:px-8 notMobile:pt-8 mobile:pt-6 rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px] overflow-scroll"
     aria-label="셋팅 창"
   >
     <div class="relative flex flex-col overflow-scroll">
@@ -255,9 +257,7 @@ function handleGuide() {
           class="bg-transparent"
           @click="handleGuide"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#000" class="bi bi-chevron-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
-          </svg>
+          <ChevronRight />
         </button>
       </div>
     </div>
