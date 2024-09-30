@@ -693,8 +693,9 @@ onBeforeUnmount(() => {
                 }"
             />
             <img
-                class="absolute"
-                src="../assets/hole.png" draggable="false"
+                class="absolute mobile:hidden"
+                src="../assets/hole.png"
+                draggable="false"
                 alt="hole"
                 :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
             >
