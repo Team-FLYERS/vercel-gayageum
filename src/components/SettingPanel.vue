@@ -48,9 +48,9 @@ function toggleLineColor() {
 
 <template>
   <div
-      id="settings-panel"
-      class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full px-10 pt-[32px] rounded-tl-[24px] rounded-bl-[24px] overflow-y-auto mobile:max-w-[344px]"
-      aria-label="셋팅 창"
+    id="settings-panel"
+    class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full px-10 pt-[32px] rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px]"
+    aria-label="셋팅 창"
   >
     <div class="w-full flex justify-between items-center mb-6 select-none">
       <span class="text-[32px] font-semibold leading-[38px] text-[#000]">설정</span>

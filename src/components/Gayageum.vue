@@ -24,12 +24,12 @@ const stringInfo = reactive([
     ['구음']: '청',
     ['기보음']: {
       ['C본청']: '레',
-      ['Db본청']: '레♭',
-      ['A본청']: '미',
+      ['Db본청']: '레',
+      ['A본청']: '레',
     },
     ['실제음']: {
       ['C본청']: '솔',
-      ['Db본청']: '레♭',
+      ['Db본청']: '라♭',
       ['A본청']: '미',
     },
     audio: {
@@ -56,11 +56,11 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '2 흥',
     hexCode: '#0073FFCC',
-    ['구음']: '홍',
+    ['구음']: '흥',
     ['기보음']: {
       ['C본청']: '솔',
-      ['Db본청']: '레♭',
-      ['A본청']: '라',
+      ['Db본청']: '솔',
+      ['A본청']: '솔',
     },
     ['실제음']: {
       ['C본청']: '도',
@@ -91,11 +91,11 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '3 둥',
     hexCode: '#2F2D59CC',
-    ['구음']: '동',
+    ['구음']: '둥',
     ['기보음']: {
       ['C본청']: '라',
-      ['Db본청']: '미♭',
-      ['A본청']: '시',
+      ['Db본청']: '라',
+      ['A본청']: '라',
     },
     ['실제음']: {
       ['C본청']: '레',
@@ -129,8 +129,8 @@ const stringInfo = reactive([
     ['구음']: '당',
     ['기보음']: {
       ['C본청']: '레',
-      ['Db본청']: '라♭',
-      ['A본청']: '미',
+      ['Db본청']: '레',
+      ['A본청']: '레',
     },
     ['실제음']: {
       ['C본청']: '솔',
@@ -160,13 +160,13 @@ const stringInfo = reactive([
     id: 5,
     height: 7.5,
     position: { top: 0, height: 0 },
-    label: '5 동',
+    label: '5 둥',
     hexCode: '#FFC500CC',
-    ['구음']: '동',
+    ['구음']: '둥',
     ['기보음']: {
       ['C본청']: '미',
-      ['Db본청']: '시♭',
-      ['A본청']: '파',
+      ['Db본청']: '미',
+      ['A본청']: '미',
     },
     ['실제음']: {
       ['C본청']: '라',
@@ -200,8 +200,8 @@ const stringInfo = reactive([
     ['구음']: '징',
     ['기보음']: {
       ['C본청']: '솔',
-      ['Db본청']: '레♭',
-      ['A본청']: '라',
+      ['Db본청']: '솔',
+      ['A본청']: '솔',
     },
     ['실제음']: {
       ['C본청']: '도',
@@ -235,12 +235,12 @@ const stringInfo = reactive([
     ['구음']: '땅',
     ['기보음']: {
       ['C본청']: '라',
-      ['Db본청']: '파',
-      ['A본청']: '시',
+      ['Db본청']: '라',
+      ['A본청']: '라',
     },
     ['실제음']: {
-      ['C본청']: '미',
-      ['Db본청']: '파',
+      ['C본청']: '레',
+      ['Db본청']: '미♭',
       ['A본청']: '시',
     },
     audio: {
@@ -270,8 +270,8 @@ const stringInfo = reactive([
     ['구음']: '지',
     ['기보음']: {
       ['C본청']: '시',
-      ['Db본청']: '파',
-      ['A본청']: '도',
+      ['Db본청']: '시',
+      ['A본청']: '시',
     },
     ['실제음']: {
       ['C본청']: '미',
@@ -305,8 +305,8 @@ const stringInfo = reactive([
     ['구음']: '찡',
     ['기보음']: {
       ['C본청']: '레',
-      ['Db본청']: '라♭',
-      ['A본청']: '레',
+      ['Db본청']: '레',
+      ['A본청']: '도',
     },
     ['실제음']: {
       ['C본청']: '솔',
@@ -340,12 +340,12 @@ const stringInfo = reactive([
     ['구음']: '칭',
     ['기보음']: {
       ['C본청']: '미',
-      ['Db본청']: '라',
-      ['A본청']: '파',
+      ['Db본청']: '미',
+      ['A본청']: '미',
     },
     ['실제음']: {
       ['C본청']: '라',
-      ['Db본청']: '라',
+      ['Db본청']: '시♭',
       ['A본청']: '파',
     },
     audio: {
@@ -375,12 +375,12 @@ const stringInfo = reactive([
     ['구음']: '쫑',
     ['기보음']: {
       ['C본청']: '솔',
-      ['Db본청']: '도',
-      ['A본청']: '라',
+      ['Db본청']: '솔',
+      ['A본청']: '솔',
     },
     ['실제음']: {
       ['C본청']: '도',
-      ['Db본청']: '도',
+      ['Db본청']: '레♭',
       ['A본청']: '라',
     },
     audio: {
@@ -406,13 +406,13 @@ const stringInfo = reactive([
     isShaking: false,
     height: 4,
     position: { top: 0, height: 0 },
-    label: '12 챙',
+    label: '12 쨍',
     hexCode: '#2F2D59CC',
-    ['구음']: '챙',
+    ['구음']: '쨍',
     ['기보음']: {
       ['C본청']: '라',
-      ['Db본청']: '미♭',
-      ['A본청']: '시',
+      ['Db본청']: '라',
+      ['A본청']: '라',
     },
     ['실제음']: {
       ['C본청']: '레',
@@ -685,7 +685,12 @@ onBeforeUnmount(() => {
             <div
                 class="stringBackground border-none notMobile:rounded-r-full"
                 :class="{ shake: stringInfo[index].isShaking }"
-                :style="`width: calc(100% - ${hcImage2Width}px); height: ${val.height}px; z-index: 99`"
+                :style="{
+                  width: `calc(100% - ${hcImage2Width}px)`,
+                  height: `${val.height}px`,
+                  zIndex: 99,
+                  ...(settingStore.isLineColor ? { backgroundColor: val.hexCode } : { backgroundImage: 'linear-gradient(#eee, #999)' })
+                }"
             />
             <img
                 class="absolute"
@@ -788,7 +793,6 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .stringBackground {
-  background-image: linear-gradient(#eee, #999);
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.01s ease;
 }
