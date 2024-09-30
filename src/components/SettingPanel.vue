@@ -1,6 +1,7 @@
 <script setup>
 import {defineEmits, ref} from 'vue';
 import {useSettingStore} from "../stores/settings.js";
+import {useGuideStore} from "../stores/guide.js";
 
 const emit = defineEmits(['close']);
 
@@ -9,6 +10,7 @@ function closePanel() {
 }
 
 const settingStore = useSettingStore()
+const guideStore = useGuideStore()
 
 const noteTooltip = ref(false)
 
@@ -43,6 +45,11 @@ function handleChangeNote(event) {
 
 function toggleLineColor() {
   settingStore.isLineColor = !settingStore.isLineColor;
+}
+
+function handleGuide() {
+  guideStore.openGuide = true
+  // settingStore.isLineColor = !settingStore.isLineColor;
 }
 </script>
 
@@ -179,13 +186,12 @@ function toggleLineColor() {
         </label>
       </div>
     </div>
-    <div
-        class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center px-[32px] h-[64px] select-none">
+    <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center px-[32px] h-[64px] select-none mb-6">
       <span class="text-[18px] font-semibold leading-[21px] text-[#000]">줄 색깔</span>
       <button
-          :aria-pressed="settingStore.isLineColor.toString()"
-          @click="toggleLineColor"
-          class="bg-transparent"
+        :aria-pressed="settingStore.isLineColor.toString()"
+        @click="toggleLineColor"
+        class="bg-transparent"
       >
         <svg v-if="settingStore.isLineColor" width="48" height="28" viewBox="0 0 48 28" fill="none"
              xmlns="http://www.w3.org/2000/svg">
@@ -239,6 +245,17 @@ function toggleLineColor() {
               <rect width="48" height="28" rx="14" fill="white"/>
             </clipPath>
           </defs>
+        </svg>
+      </button>
+    </div>
+    <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center px-[32px] h-[64px] select-none">
+      <span class="text-[18px] font-semibold leading-[21px] text-[#000]">도움말</span>
+      <button
+        class="bg-transparent"
+        @click="handleGuide"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
         </svg>
       </button>
     </div>
