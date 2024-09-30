@@ -48,8 +48,8 @@ function toggleLineColor() {
 }
 
 function handleGuide() {
+  emit('close')
   guideStore.openGuide = true
-  // settingStore.isLineColor = !settingStore.isLineColor;
 }
 </script>
 

@@ -14,7 +14,7 @@ const settingsOpen = ref(false);
 
 function toggleSettings() {
   if (!guideStore.openGuide) {
-    settingsOpen.value = !settingsOpen.value;
+    settingsOpen.value = !settingsOpen.value
   }
 }
 </script>
@@ -39,7 +39,7 @@ function toggleSettings() {
         </button>
       </div>
       <transition name="slide-fade" style="z-index: 2">
-        <SettingsPanel v-if="settingsOpen" @close="toggleSettings"/>
+        <SettingsPanel v-if="settingsOpen" @close="toggleSettings" />
       </transition>
     </div>
   </header>

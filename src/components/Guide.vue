@@ -14,7 +14,7 @@ onMounted(() => {
       <button
           type="button"
           aria-label="닫기"
-          class="absolute bottom-[32px] notMobile:left-1/2 notMobile:-translate-x-1/2 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px]"
+          class="absolute bottom-[32px] notMobile:right-8 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px]"
           @click="guideStore.openGuide = false"
       >
         닫기

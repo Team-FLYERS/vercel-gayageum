@@ -21,7 +21,7 @@ const commonStore = useCommonStore()
     <div class="w-full flex flex-col h-full">
       <GayageumHeader/>
       <GayageumBody/>
-<!--      <Guide v-if="guideStore.openGuide"/>-->
+      <Guide v-if="guideStore.openGuide"/>
     </div>
     <Loading v-if="!commonStore.isLoadedAudios"/>
 
