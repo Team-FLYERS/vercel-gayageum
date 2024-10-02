@@ -442,6 +442,7 @@ const stringInfo = reactive([
 const stringRef = ref([]);
 
 const windowWidth = ref(window.innerWidth)
+const windowHeight = ref(window.innerHeight)
 const imageSrc = ref(mobileBridge)
 
 const selectedTechnic = ref('평음');
@@ -512,6 +513,7 @@ function handleKeydown(event) {
 
 function handleResize() {
   windowWidth.value = window.innerWidth
+  windowHeight.value = window.innerHeight
   updateImageSize()
   imageSrc.value = getImageSrc()
 
@@ -673,9 +675,16 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-          class="absolute top-0 left-0 h-full w-[10%] z-[100]"
-          v-touch:press="setSelectedTechnic('농현')"
-          v-touch:release="setSelectedTechnic('평음')"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[15%] mobile:w-[30%] z-[100] bg-[#fff] bg-opacity-15"
+        v-touch:press="setSelectedTechnic('농현')"
+        v-touch:release="setSelectedTechnic('평음')"
+        :style="`height: ${windowHeight}px;`"
+      />
+      <div
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[15%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
+        v-touch:press="setSelectedTechnic('농현')"
+        v-touch:release="setSelectedTechnic('평음')"
+        :style="`height: ${windowHeight}px;`"
       />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
@@ -701,16 +710,16 @@ onBeforeUnmount(() => {
             >
           </div>
         </div>
-        <!--     시김새 영역     -->
+        <!--     시김새 영역 15 45     -->
         <div
-            class="w-[15%] flex items-center h-full border-none mobile:w-[25%] mobile:py-[0px]"
+          class="w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px]"
         >
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
         </div>
-        <!--     안족 배열     -->
-        <div class="relative w-[45%] flex items-center h-full mobile:w-[30%] mobile:py-[0px] border-none">
+        <!--     안족 배열 60 55    -->
+        <div class="relative w-[45%] flex items-center h-full mobile:w-[10%] mobile:py-[0px] border-none">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
@@ -725,7 +734,7 @@ onBeforeUnmount(() => {
             >
           </div>
         </div>
-        <!--     라벨 영역     -->
+        <!--     라벨 영역 65 60    -->
         <div class="relative w-[5%] flex items-center h-full border-none mobile:py-[0px]">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div
@@ -745,7 +754,7 @@ onBeforeUnmount(() => {
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
         </div>
-        <!--     연주 영역     -->
+        <!--     연주 영역 90 100   -->
         <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"-->
         <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[0px]'"-->
         <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
@@ -760,7 +769,7 @@ onBeforeUnmount(() => {
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
           </div>
         </div>
-        <!--     현침     -->
+        <!--     현침  100 100   -->
         <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
@@ -779,17 +788,6 @@ onBeforeUnmount(() => {
       <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
       <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen" draggable="false" alt="hyunchime-2">
     </div>
-
-    <!--    <button-->
-    <!--        v-if="guideStore.openGuide"-->
-    <!--        type="button"-->
-    <!--        aria-label="닫기"-->
-    <!--        class="absolute bottom-[32px] notMobile:left-1/2 notMobile:-translate-x-1/2 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px]"-->
-    <!--        style="z-index: 101"-->
-    <!--        @click="guideStore.openGuide = false"-->
-    <!--    >-->
-    <!--      닫기-->
-    <!--    </button>-->
   </div>
 </template>
 
