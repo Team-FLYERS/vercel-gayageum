@@ -675,13 +675,13 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[15%] mobile:w-[30%] z-[100] bg-[#fff] bg-opacity-15"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[10%] mobile:w-[30%] z-[100] bg-[#fff] bg-opacity-15"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
         :style="`height: ${windowHeight}px;`"
       />
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[15%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
         :style="`height: ${windowHeight}px;`"
