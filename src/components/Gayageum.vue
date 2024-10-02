@@ -457,7 +457,7 @@ const hcImage1Width = ref(null)
 const hcImage2Width = ref(0)
 
 function getImageSrc() {
-  return windowWidth.value <= 599 ? mobileBridge : desktopBridge
+  return windowWidth.value <= 1023 ? mobileBridge : desktopBridge
 }
 
 function handleKeyup(event) {
@@ -710,17 +710,18 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <!--     안족 배열     -->
-        <div class="relative w-[45%] flex items-center h-full border-none mobile:w-[30%] mobile:py-[0px]">
+        <div class="relative w-[45%] flex items-center h-full mobile:w-[30%] mobile:py-[0px] border-none">
           <div class="flex justify-center items-center w-full h-[16px] border-none">
             <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
           <div class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
                :style="`left: calc(${index} * (100% / 12))`">
             <img
-                :src="imageSrc"
-                alt="안족"
-                class="max-w-full max-h-full object-contain min-w-[80px] min-h-[212px] miniTablet:min-w-[80px] miniTablet:min-h-[212px] mobile:min-w-[62px] mobile:min-h-[139px]"
-                draggable="false"
+              :src="imageSrc"
+              alt="안족"
+              class=""
+              style="max-width: none"
+              draggable="false"
             >
           </div>
         </div>
