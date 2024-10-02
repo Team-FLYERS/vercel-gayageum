@@ -38,6 +38,9 @@ function toggleSettings() {
           <BarsMobile class="hidden mobile:flex" />
         </button>
       </div>
+      <!--      <div v-if="guideStore.openGuide" class="absolute right-8 top-[100px] text-[#fff] flex justify-center items-center">-->
+      <!--        <p>여기서 조율, 음표시, 줄 색깔 옵션을 선택할 수 있어요.</p>-->
+      <!--      </div>-->
       <transition name="slide-fade" style="z-index: 2">
         <SettingsPanel v-if="settingsOpen" @close="toggleSettings" />
       </transition>

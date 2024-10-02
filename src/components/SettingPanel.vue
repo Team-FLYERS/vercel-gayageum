@@ -15,6 +15,7 @@ const settingStore = useSettingStore()
 const guideStore = useGuideStore()
 
 const noteTooltip = ref(false)
+const tuningTooltip = ref(false)
 
 const tuning = [
   { value: 'C본청', label: 'C 본청' },
@@ -77,7 +78,25 @@ function handleGuide() {
         </button>
       </div>
       <div class="flex flex-col w-full gap-2 notMobile:mb-6 mobile:mb-4 select-none">
-        <span class="text-[18px] font-semibold leading-[21px] text-[#000]">조율</span>
+        <div class="relative flex flex-row items-center gap-2">
+          <span class="text-[18px] font-semibold leading-[21px] text-[#000]">조율</span>
+<!--          <button-->
+<!--              type="button"-->
+<!--              aria-label="조율 툴팁"-->
+<!--              class="flex w-[21px] h-[21px] justify-center items-center border border-[#000] rounded-full leading-0 text-[#000] bg-transparent cursor-pointer"-->
+<!--              @click="tuningTooltip = !tuningTooltip"-->
+<!--          >-->
+<!--            ?-->
+<!--          </button>-->
+<!--          <div v-if="tuningTooltip" @click="tuningTooltip = !tuningTooltip" class="fixed top-0 left-0 w-full h-full bg-transparent"></div>-->
+<!--          <div v-if="tuningTooltip" class="absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]">-->
+<!--            <p class="text-[#fff] relative pl-3">-->
+<!--              이 서비스에 사용된 음원은 국립국악원과 서울-->
+<!--              대학교 예술과학센터에서 제공한 가야금 음원입-->
+<!--              니다.-->
+<!--            </p>-->
+<!--          </div>-->
+        </div>
         <div class="flex flex-col w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px]">
           <label
               v-for="(option, index) in tuning"
