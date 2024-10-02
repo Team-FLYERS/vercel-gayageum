@@ -77,7 +77,7 @@ function handleGuide() {
           </svg>
         </button>
       </div>
-      <div class="flex flex-col w-full gap-2 notMobile:mb-6 mobile:mb-4 select-none">
+      <div class="flex flex-col w-full gap-2 notMobile:mb-6 mobile:mb-3 select-none">
         <div class="relative flex flex-row items-center gap-2">
           <span class="text-[18px] font-semibold leading-[21px] text-[#000]">조율</span>
 <!--          <button-->
@@ -100,7 +100,7 @@ function handleGuide() {
         <div class="flex flex-col w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px]">
           <label
               v-for="(option, index) in tuning"
-              :key="option.value" class="flex items-center w-full h-[56px] px-[32px] cursor-pointer"
+              :key="option.value" class="flex items-center w-full notMobile:h-[56px] mobile:h-[48px] notMobile:px-8 mobile:px-4 cursor-pointer"
               :class="{ 'border-b border-[#E6E6E6]': index !== tuning.length - 1 }"
           >
             <input
@@ -139,7 +139,7 @@ function handleGuide() {
           </label>
         </div>
       </div>
-      <div class="flex flex-col w-full gap-2 notMobile:mb-6 mobile:mb-4 justify-center select-none">
+      <div class="flex flex-col w-full gap-2 notMobile:mb-6 mobile:mb-3 justify-center select-none">
         <div class="relative flex flex-row items-center gap-2">
           <span class="text-[18px] font-semibold leading-[21px] text-[#000]">음표시</span>
           <button
@@ -169,7 +169,7 @@ function handleGuide() {
         <div class="flex flex-col w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px]">
           <label
               v-for="(option, index) in note"
-              :key="option.value" class="flex items-center w-full h-[56px] px-[32px] cursor-pointer"
+              :key="option.value" class="flex items-center w-full notMobile:h-[56px] mobile:h-[48px] notMobile:px-8 mobile:px-4 cursor-pointer"
               :class="{ 'border-b border-[#E6E6E6]': index !== note.length - 1 }"
           >
             <input
@@ -208,7 +208,7 @@ function handleGuide() {
           </label>
         </div>
       </div>
-      <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center px-[32px] h-[64px] select-none notMobile:mb-6 mobile:mb-4">
+      <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center notMobile:px-8 mobile:px-4 notMobile:h-[64px] mobile:h-[56px] select-none notMobile:mb-6 mobile:mb-3">
         <span class="text-[18px] font-semibold leading-[21px] text-[#000]">줄 색깔</span>
         <button
           :aria-pressed="settingStore.isLineColor.toString()"
@@ -270,7 +270,7 @@ function handleGuide() {
           </svg>
         </button>
       </div>
-      <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center px-[32px] h-[64px] select-none notMobile:mb-6 mobile:mb-4">
+      <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center notMobile:px-8 mobile:px-4 notMobile:h-[64px] mobile:h-[56px] select-none notMobile:mb-6 mobile:mb-3">
         <span class="text-[18px] font-semibold leading-[21px] text-[#000]">도움말</span>
         <button
           class="bg-transparent"
