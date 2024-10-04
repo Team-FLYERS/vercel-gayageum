@@ -675,17 +675,27 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[10%] mobile:w-[30%] z-[100] bg-[#fff] bg-opacity-15"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[10%] mobile:w-[30%] bg-[#fff] bg-opacity-15"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
-        :style="`height: ${windowHeight}px;`"
+        :style="{
+          height: `${windowHeight}px`,
+          zIndex: guideStore.openGuide ? 103 : 100,
+        }"
       />
       <div
+        v-if="settingStore.selectedTuning === 'A본청' && !guideStore.openGuide"
         class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
-        :style="`height: ${windowHeight}px;`"
+        :style="`height: ${windowHeight}px`"
       />
+      <div
+        v-if="guideStore.openGuide"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
+        :style="`height: ${windowHeight}px`"
+      />
+      <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
           class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px]"
@@ -712,17 +722,21 @@ onBeforeUnmount(() => {
         </div>
         <!--     시김새 영역 15 45     -->
         <div
-          class="w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px]"
+          class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px]"
         >
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
+<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+<!--          </div>-->
+          <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[35%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
+          <div v-if="guideStore.openGuide && index === 2" class="absolute notMobile:top-[-20px] mobile:bottom-[-65px] notMobile:right-[-430px] mobile:right-[-200px] mobile:w-[313px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center" style="z-index: 102;">
+            <p class="text-center"><span class="text-green-700">이 영역</span>을 누르면 떠는 소리(농현)를 낼 수 있어요</p>
           </div>
         </div>
         <!--     안족 배열 60 55    -->
         <div class="relative w-[45%] flex items-center h-full mobile:w-[10%] mobile:py-[0px] border-none">
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
-          </div>
+<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+<!--          </div>-->
           <div class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
                :style="`left: calc(${index} * (100% / 12))`">
             <img
@@ -736,44 +750,52 @@ onBeforeUnmount(() => {
         </div>
         <!--     라벨 영역 65 60    -->
         <div class="relative w-[5%] flex items-center h-full border-none mobile:py-[0px]">
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
+          <div
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 notMobile:text-[24px] mobile:text-[20px]"
+            :style="[
+              { zIndex: 99 },
+              settingStore.isLineColor ? { backgroundColor: val.hexCode } : {},
+              windowHeight <= 659 ? { height: '95%', minHeight: 'auto', fontSize: '20px' } : {}
+            ]"
+          >
+            <span
+              class="font-normal text-[#fff] flex justify-center items-center w-[22px]">{{index + 1 }}</span>
             <div
-              class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 mobile:text-[20px]"
-              style="z-index: 100"
-              :style="settingStore.isLineColor ? { backgroundColor: val.hexCode } : {}"
+              v-if="settingStore.selectedNote !== '표시 안함'"
+              class="flex justify-center items-center rounded-full"
             >
-              <span
-                class="notMobile:text-[24px] mobile:text-[20px] font-normal text-[#fff] flex justify-center items-center w-[22px]">{{index + 1 }}</span>
-              <div
-                v-if="settingStore.selectedNote !== '표시 안함'"
-                class="flex justify-center items-center rounded-full"
-              >
-                <span class="notMobile:text-[24px] mobile:text-[20px] font-normal text-[#fff] flex justify-center items-center">{{selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}</span>
-              </div>
+              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}</span>
             </div>
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
           </div>
+<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
         </div>
         <!--     연주 영역 90 100   -->
         <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"-->
         <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[0px]'"-->
         <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
         <!--        >-->
-        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"
-             style="z-index: 99"
-             ref="stringRef"
-             v-touch:drag.once="dragString()"
-             v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
+        <div
+          ref="stringRef"
+          class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"
+          :style="{
+            zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
+          }"
+          v-touch:drag.once="dragString()"
+          v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
         >
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>
+<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
+<!--          </div>-->
+          <div v-if="guideStore.openGuide && index === 5" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
+          <div v-if="guideStore.openGuide && index === 5" class="absolute notMobile:left-1/2 transform notMobile:-translate-x-1/2 mobile:right-0 notMobile:top-[100px] mobile:top-[85px] notMobile:w-[350px] miniTablet:w-[260px] mobile:w-[300px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center" style="z-index: 102;">
+            <p class="text-center">연주 영역을 터치하여 <br class="notMobile:hidden" />가야금을 연주해보세요</p>
           </div>
         </div>
         <!--     현침  100 100   -->
         <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]">
-          <div class="flex justify-center items-center w-full h-[16px] border-none">
-            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>
-          </div>
+<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -783,7 +805,7 @@ onBeforeUnmount(() => {
         draggable="false"
         alt="pattern"
         class="h-screen absolute"
-        :style="`right: ${hcImage1Width + hcImage2Width - 4}px;`"
+        :style="`right: ${hcImage1Width + hcImage2Width - 4}px`"
       >
       <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
       <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen" draggable="false" alt="hyunchime-2">
