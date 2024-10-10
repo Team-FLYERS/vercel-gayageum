@@ -697,10 +697,13 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div
-        v-if="guideStore.openGuide"
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
-        :style="`height: ${windowHeight}px`"
-      />
+          v-if="guideStore.openGuide"
+          class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
+          :style="`height: ${windowHeight}px`"
+      >
+        <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-40">
+        </div>
+      </div>
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div

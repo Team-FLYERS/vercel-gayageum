@@ -62,7 +62,7 @@ function handleGuide() {
     class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full notMobile:px-10 mobile:px-8 notMobile:pt-8 mobile:pt-6 rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px]"
     aria-label="셋팅 창"
   >
-    <div class="relative flex flex-col overflow-scroll">
+    <div class="relative flex flex-col">
       <div class="w-full flex justify-between items-center select-none notMobile:mb-6 mobile:mb-4">
         <span class="text-[32px] font-semibold leading-[38px] text-[#000]">설정</span>
         <button
