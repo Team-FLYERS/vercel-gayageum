@@ -593,7 +593,7 @@ function loadSound() {
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
     console.log('>>>>>>>> playString', { direction, mouseEvent, event }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
-    if (lastEventHandled?.value?.eventType?.includes('move') && lastEventHandled?.value?.['구음'] === val['구음']) return;
+    // if (lastEventHandled?.value?.eventType?.includes('move') && lastEventHandled?.value?.['구음'] === val['구음']) return;
 
     (async () => {
       if (audioContext.state === 'suspended') {
