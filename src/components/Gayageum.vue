@@ -675,21 +675,27 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[10%] mobile:w-[30%] bg-[#fff] bg-opacity-15"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[7%] mobile:w-[20%]"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
         :style="{
           height: `${windowHeight}px`,
           zIndex: guideStore.openGuide ? 103 : 100,
         }"
-      />
+      >
+        <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15 justify-center items-center flex">
+        </div>
+      </div>
       <div
         v-if="settingStore.selectedTuning === 'A본청' && !guideStore.openGuide"
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
-        v-touch:press="setSelectedTechnic('농현')"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
+        v-touch:press="setSelectedTechnic('꺾는음')"
         v-touch:release="setSelectedTechnic('평음')"
         :style="`height: ${windowHeight}px`"
-      />
+      >
+        <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15">
+        </div>
+      </div>
       <div
         v-if="guideStore.openGuide"
         class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[10%] mobile:left-[30%] h-screen notMobile:w-[5%] mobile:w-[10%] z-[100] bg-[#fff] bg-opacity-50"
