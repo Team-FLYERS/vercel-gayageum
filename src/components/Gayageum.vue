@@ -628,8 +628,12 @@ function dragString(){
     console.log(">>>>>>>> dragString", { direction, mouseEvent });
     stringInfo.forEach((info, index) => {
       console.log(">>>>>>>> info.position", info.position);
-      if (info.position.top < direction.pageY && (info.position.top + info.position.height) > direction.pageY) {
-        playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
+      if (
+          lastEventHandled?.value?.['구음'] === val['구음']
+      ){
+        if (info.position.top < direction.pageY && (info.position.top + info.position.height) > direction.pageY) {
+          playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
+        }
       }
     });
   }
