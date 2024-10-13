@@ -618,7 +618,7 @@ function setSelectedTechnic(technic) {
 
 function openChrome() {
   if (/SamsungBrowser/i.test(navigator.userAgent)) {
-    alert("본 사이트는 삼성 인터넷보다 크롬 브라우저 사용을 권장합니다.");
+    alert("본 사이트는 크롬 브라우저 사용을 권장합니다.");
     window.location.href = `googlechrome://navigate?url=${window.location.href}`;
   }
 }
