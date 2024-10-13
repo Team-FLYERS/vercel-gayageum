@@ -619,12 +619,8 @@ function setSelectedTechnic(technic) {
 
 function openChrome() {
   if (/SamsungBrowser/i.test(navigator.userAgent)) {
-    const message = confirm("You are using Samsung Internet. For the best experience, we recommend using Google Chrome. Would you like to open this page in Chrome?");
-    if (message) {
-      // Chrome으로 이동할 URL 생성
-      const chromeUrl = `googlechrome://navigate?url=${window.location.href}`;
-      window.location.href = chromeUrl;
-    }
+    alert("본 사이트는 삼성 인터넷보다 크롬 브라우저 사용을 권장합니다.");
+    window.location.href = `googlechrome://navigate?url=${window.location.href}`;
   }
 }
 
