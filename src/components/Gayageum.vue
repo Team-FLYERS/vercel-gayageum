@@ -598,7 +598,6 @@ function playString(event, val, _selectedTuning, index) {
     if (
         lastEventHandled?.value?.eventType?.includes('move')
         && lastEventHandled?.value?.['구음'] === val['구음']
-        && !/Mobi/i.test(window.navigator.userAgent)
     ) {
       lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
       return;
