@@ -556,7 +556,7 @@ async function loadSound() {
   setTimeout(() => {
     commonStore.isLoadedAudios = true;
     openChrome()
-  }, 0);
+  }, 1000);
 }
 
 function playString(event, val, _selectedTuning, index) {
