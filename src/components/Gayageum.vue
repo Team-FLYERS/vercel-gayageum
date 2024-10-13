@@ -574,7 +574,7 @@ function loadSound() {
     ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
       ['평음', '농현', '꺾는음'].forEach((__info, __index) => {
         if (typeof info['audio'][_info][__info] !== 'string') return;
-        const _path = new URL(`/src/assets/wav/${info['audio'][_info][__info]}`, import.meta.url).href;
+        const _path = new URL(`/src/assets/aac/${info['audio'][_info][__info].replace('.wav', '.aac')}`, import.meta.url).href;
         try {
           (async () => {
             const response = await fetch(_path);
