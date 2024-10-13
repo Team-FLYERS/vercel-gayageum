@@ -629,7 +629,7 @@ function dragString(){
     stringInfo.forEach((info, index) => {
       console.log(">>>>>>>> info.position", info.position);
       if (
-          lastEventHandled?.value?.['구음'] === info['구음']
+          lastEventHandled?.value?.['구음'] !== info['구음']
       ){
         if (info.position.top < direction.pageY && (info.position.top + info.position.height) > direction.pageY) {
           playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
