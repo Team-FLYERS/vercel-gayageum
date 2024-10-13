@@ -601,18 +601,25 @@ function playString(event, val, _selectedTuning, index) {
     ) {
       lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
       return;
+    }
+
+    const _play = () => {
+      const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+      const source = audioContext.createBufferSource();
+      source.buffer = _audio;
+      source.connect(audioContext.destination);
+      source.start(0);
+      stringInfo[index].isShaking = true;
     };
 
     if (audioContext.state === 'suspended') {
       console.log('>>>>>> audioContext.state', audioContext.state);
-      audioContext.resume();
+      audioContext.resume().then(() => {
+        _play();
+      });
+    } else {
+      _play();
     }
-    const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-    const source = audioContext.createBufferSource();
-    source.buffer = _audio;
-    source.connect(audioContext.destination);
-    source.start(0);
-    stringInfo[index].isShaking = true;
     const _e = setTimeout(() => {
       stringInfo[index].isShaking = false;
       clearTimeout(_e);
