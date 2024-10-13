@@ -11,7 +11,8 @@ const settingStore = useSettingStore()
 const commonStore = useCommonStore()
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)({
-  latencyHint: 'interactive'
+  latencyHint: 'interactive', // 지연 시간을 최소화
+  sampleRate: 44100, // 표준 샘플 레이트 설정
 });
 
 const stringInfo = reactive([
@@ -604,14 +605,16 @@ function playString(event, val, _selectedTuning, index) {
     }
 
     const _play = () => {
-      const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-      const source = audioContext.createBufferSource();
-      source.buffer = _audio;
-      source.connect(audioContext.destination);
-      source.start(0);
-      source.onended = () => {
-        source.disconnect();
-      };
+      requestAnimationFrame(() => {
+        const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+        const source = audioContext.createBufferSource();
+        source.buffer = _audio;
+        source.connect(audioContext.destination);
+        source.start(0);
+        source.onended = () => {
+          source.disconnect();
+        };
+      });
       stringInfo[index].isShaking = true;
     };
 
