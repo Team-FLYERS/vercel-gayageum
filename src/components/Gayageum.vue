@@ -35,19 +35,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_01_SingleNote_G2.wav',
-        ['농현']: 'C_01a_NongB_G2.wav',
-        ['꺾는음']: 'C_01b_Break_G2.wav',
+        ['평음']: 'C_01_SingleNote_G2.aac',
+        ['농현']: 'C_01a_NongB_G2.aac',
+        ['꺾는음']: 'C_01b_Break_G2.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_01_SingleNote_Ab2.wav',
-        ['농현']: 'Db_01a_NongB_Ab2.wav',
-        ['꺾는음']: 'Db_01b_Break_Ab2.wav',
+        ['평음']: 'Db_01_SingleNote_Ab2.aac',
+        ['농현']: 'Db_01a_NongB_Ab2.aac',
+        ['꺾는음']: 'Db_01b_Break_Ab2.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_01_SingleNote_E2.wav',
-        ['농현']: 'A_01a_NongB_E2.wav',
-        ['꺾는음']: 'A_01b_Break_E2.wav',
+        ['평음']: 'A_01_SingleNote_E2.aac',
+        ['농현']: 'A_01a_NongB_E2.aac',
+        ['꺾는음']: 'A_01b_Break_E2.aac',
       },
     },
   },
@@ -70,19 +70,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_02_SingleNote_C3.wav',
-        ['농현']: 'C_02a_NongB_C3.wav',
-        ['꺾는음']: 'C_02b_Break_C3.wav',
+        ['평음']: 'C_02_SingleNote_C3.aac',
+        ['농현']: 'C_02a_NongB_C3.aac',
+        ['꺾는음']: 'C_02b_Break_C3.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_02_SingleNote_Db3.wav',
-        ['농현']: 'Db_02a_NongB_Db3.wav',
-        ['꺾는음']: 'Db_02b_Break_Db2.wav',
+        ['평음']: 'Db_02_SingleNote_Db3.aac',
+        ['농현']: 'Db_02a_NongB_Db3.aac',
+        ['꺾는음']: 'Db_02b_Break_Db2.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_02_SingleNote_A2.wav',
-        ['농현']: 'A_02a_NongB_A2.wav',
-        ['꺾는음']: 'A_02b_Break_A2.wav',
+        ['평음']: 'A_02_SingleNote_A2.aac',
+        ['농현']: 'A_02a_NongB_A2.aac',
+        ['꺾는음']: 'A_02b_Break_A2.aac',
       },
     },
   },
@@ -105,19 +105,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_03_SingleNote_D3.wav',
-        ['농현']: 'C_03a_NongB_D3.wav',
-        ['꺾는음']: 'C_03b_Break_D3.wav',
+        ['평음']: 'C_03_SingleNote_D3.aac',
+        ['농현']: 'C_03a_NongB_D3.aac',
+        ['꺾는음']: 'C_03b_Break_D3.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_03_SingleNote_Eb3.wav',
-        ['농현']: 'Db_03a_NongB_Eb3.wav',
-        ['꺾는음']: 'Db_03b_Break_Eb3.wav',
+        ['평음']: 'Db_03_SingleNote_Eb3.aac',
+        ['농현']: 'Db_03a_NongB_Eb3.aac',
+        ['꺾는음']: 'Db_03b_Break_Eb3.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_03_SingleNote_B2.wav',
-        ['농현']: 'A_03a_NongB_B1.wav',
-        ['꺾는음']: 'A_03b_Break_B2.wav',
+        ['평음']: 'A_03_SingleNote_B2.aac',
+        ['농현']: 'A_03a_NongB_B1.aac',
+        ['꺾는음']: 'A_03b_Break_B2.aac',
       },
     },
   },
@@ -140,19 +140,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_04_SingleNote_G3.wav',
-        ['농현']: 'C_04a_NongB_G3.wav',
-        ['꺾는음']: 'C_04b_Break_G3.wav',
+        ['평음']: 'C_04_SingleNote_G3.aac',
+        ['농현']: 'C_04a_NongB_G3.aac',
+        ['꺾는음']: 'C_04b_Break_G3.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_04_SingleNote_Ab3.wav',
-        ['농현']: 'Db_04a_NongB_Ab3.wav',
-        ['꺾는음']: 'Db_04b_Break_Ab3.wav',
+        ['평음']: 'Db_04_SingleNote_Ab3.aac',
+        ['농현']: 'Db_04a_NongB_Ab3.aac',
+        ['꺾는음']: 'Db_04b_Break_Ab3.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_04_SingleNote_E3.wav',
-        ['농현']: 'A_04a_NongB_E3.wav',
-        ['꺾는음']: 'A_04b_Break_E3.wav',
+        ['평음']: 'A_04_SingleNote_E3.aac',
+        ['농현']: 'A_04a_NongB_E3.aac',
+        ['꺾는음']: 'A_04b_Break_E3.aac',
       },
     },
   },
@@ -176,19 +176,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_05_SingleNote_A3.wav',
-        ['농현']: 'C_05a_NongB_A3.wav',
-        ['꺾는음']: 'C_05b_Break_A3.wav',
+        ['평음']: 'C_05_SingleNote_A3.aac',
+        ['농현']: 'C_05a_NongB_A3.aac',
+        ['꺾는음']: 'C_05b_Break_A3.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_05_SingleNote_Bb3.wav',
-        ['농현']: 'Db_05a_NongB_Bb3.wav',
-        ['꺾는음']: 'Db_05b_Break_Bb3.wav',
+        ['평음']: 'Db_05_SingleNote_Bb3.aac',
+        ['농현']: 'Db_05a_NongB_Bb3.aac',
+        ['꺾는음']: 'Db_05b_Break_Bb3.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_05_SingleNote_F3.wav',
-        ['농현']: 'A_05a_NongB_F3.wav',
-        ['꺾는음']: 'A_05b_Break_F3.wav',
+        ['평음']: 'A_05_SingleNote_F3.aac',
+        ['농현']: 'A_05a_NongB_F3.aac',
+        ['꺾는음']: 'A_05b_Break_F3.aac',
       },
     },
   },
@@ -211,19 +211,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_06_SingleNote_C4.wav',
-        ['농현']: 'C_06a_NongB_C4.wav',
-        ['꺾는음']: 'C_06b_Break_C4.wav',
+        ['평음']: 'C_06_SingleNote_C4.aac',
+        ['농현']: 'C_06a_NongB_C4.aac',
+        ['꺾는음']: 'C_06b_Break_C4.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_06_SingleNote_Db4.wav',
-        ['농현']: 'Db_06a_NongB_Db4.wav',
-        ['꺾는음']: 'Db_06b_Break_Db4.wav',
+        ['평음']: 'Db_06_SingleNote_Db4.aac',
+        ['농현']: 'Db_06a_NongB_Db4.aac',
+        ['꺾는음']: 'Db_06b_Break_Db4.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_06_SingleNote_A3.wav',
-        ['농현']: 'A_06a_NongB_A3.wav',
-        ['꺾는음']: 'A_06b_Break_A3.wav',
+        ['평음']: 'A_06_SingleNote_A3.aac',
+        ['농현']: 'A_06a_NongB_A3.aac',
+        ['꺾는음']: 'A_06b_Break_A3.aac',
       },
     },
   },
@@ -246,19 +246,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_07_SingleNote_D4.wav',
-        ['농현']: 'C_07a_NongB_D4.wav',
-        ['꺾는음']: 'C_07b_Break_D4.wav',
+        ['평음']: 'C_07_SingleNote_D4.aac',
+        ['농현']: 'C_07a_NongB_D4.aac',
+        ['꺾는음']: 'C_07b_Break_D4.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_07_SingleNote_Eb4.wav',
-        ['농현']: 'Db_07a_NongB_Eb4.wav',
-        ['꺾는음']: 'Db_07b_Break_Eb4.wav',
+        ['평음']: 'Db_07_SingleNote_Eb4.aac',
+        ['농현']: 'Db_07a_NongB_Eb4.aac',
+        ['꺾는음']: 'Db_07b_Break_Eb4.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_07_SingleNote_B3.wav',
-        ['농현']: 'A_07a_NongB_B3.wav',
-        ['꺾는음']: 'A_07b_Break_B3.wav',
+        ['평음']: 'A_07_SingleNote_B3.aac',
+        ['농현']: 'A_07a_NongB_B3.aac',
+        ['꺾는음']: 'A_07b_Break_B3.aac',
       },
     },
   },
@@ -281,19 +281,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_08_SingleNote_E4.wav',
-        ['농현']: 'C_08a_NongB_E4.wav',
-        ['꺾는음']: 'C_08b_Break_E4.wav',
+        ['평음']: 'C_08_SingleNote_E4.aac',
+        ['농현']: 'C_08a_NongB_E4.aac',
+        ['꺾는음']: 'C_08b_Break_E4.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_08_SingleNote_F4.wav',
-        ['농현']: 'Db_08a_NongB_F4.wav',
-        ['꺾는음']: 'Db_08b_Break_F4.wav',
+        ['평음']: 'Db_08_SingleNote_F4.aac',
+        ['농현']: 'Db_08a_NongB_F4.aac',
+        ['꺾는음']: 'Db_08b_Break_F4.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_08_SingleNote_C4.wav',
-        ['농현']: 'A_08a_NongB_C4.wav',
-        ['꺾는음']: 'A_08b_Break_C4.wav',
+        ['평음']: 'A_08_SingleNote_C4.aac',
+        ['농현']: 'A_08a_NongB_C4.aac',
+        ['꺾는음']: 'A_08b_Break_C4.aac',
       },
     },
   },
@@ -316,19 +316,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_09_SingleNote_G4.wav',
-        ['농현']: 'C_09a_NongB_G4.wav',
-        ['꺾는음']: 'C_09b_Break_G4.wav',
+        ['평음']: 'C_09_SingleNote_G4.aac',
+        ['농현']: 'C_09a_NongB_G4.aac',
+        ['꺾는음']: 'C_09b_Break_G4.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_09_SingleNote_Ab4.wav',
-        ['농현']: 'Db_09a_NongB_Ab4.wav',
-        ['꺾는음']: 'Db_09b_Break_Ab4.wav',
+        ['평음']: 'Db_09_SingleNote_Ab4.aac',
+        ['농현']: 'Db_09a_NongB_Ab4.aac',
+        ['꺾는음']: 'Db_09b_Break_Ab4.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_09_SingleNote_D4.wav',
-        ['농현']: 'A_09a_NongB_D4.wav',
-        ['꺾는음']: 'A_09b_Break_D4.wav',
+        ['평음']: 'A_09_SingleNote_D4.aac',
+        ['농현']: 'A_09a_NongB_D4.aac',
+        ['꺾는음']: 'A_09b_Break_D4.aac',
       },
     },
   },
@@ -351,19 +351,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_10_SingleNote_A4.wav',
-        ['농현']: 'C_10a_NongB_A4.wav',
-        ['꺾는음']: 'C_10b_Break_A4.wav',
+        ['평음']: 'C_10_SingleNote_A4.aac',
+        ['농현']: 'C_10a_NongB_A4.aac',
+        ['꺾는음']: 'C_10b_Break_A4.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_10_SingleNote_Bb4.wav',
-        ['농현']: 'Db_10a_NongB_Bb4.wav',
-        ['꺾는음']: 'Db_10b_Break_Bb4.wav',
+        ['평음']: 'Db_10_SingleNote_Bb4.aac',
+        ['농현']: 'Db_10a_NongB_Bb4.aac',
+        ['꺾는음']: 'Db_10b_Break_Bb4.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_10_SingleNote_F4.wav',
-        ['농현']: 'A_10a_NongB_F4.wav',
-        ['꺾는음']: 'A_10b_Break_F4.wav',
+        ['평음']: 'A_10_SingleNote_F4.aac',
+        ['농현']: 'A_10a_NongB_F4.aac',
+        ['꺾는음']: 'A_10b_Break_F4.aac',
       },
     },
   },
@@ -386,20 +386,20 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_11_SingleNote_C5.wav',
-        ['농현']: 'C_11a_NongB_C5.wav',
-        ['꺾는음']: 'C_11b_Break_C5.wav',
+        ['평음']: 'C_11_SingleNote_C5.aac',
+        ['농현']: 'C_11a_NongB_C5.aac',
+        ['꺾는음']: 'C_11b_Break_C5.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_11_SingleNote_Db5.wav',
-        ['농현']: 'Db_11a_NongB_Db5.wav',
-        ['꺾는음']: 'C_06b_Break_C4.wav',
-        // ['꺾는음']: 'Db_11b_Break_C4.wav', ///////////////////////// 파일없음
+        ['평음']: 'Db_11_SingleNote_Db5.aac',
+        ['농현']: 'Db_11a_NongB_Db5.aac',
+        ['꺾는음']: 'C_06b_Break_C4.aac',
+        // ['꺾는음']: 'Db_11b_Break_C4.aac', ///////////////////////// 파일없음
       },
       ['A본청']: {
-        ['평음']: 'A_11_SingleNote_A4.wav',
-        ['농현']: 'A_11a_NongB_A.wav',
-        ['꺾는음']: 'A_11b_Break_A4.wav',
+        ['평음']: 'A_11_SingleNote_A4.aac',
+        ['농현']: 'A_11a_NongB_A.aac',
+        ['꺾는음']: 'A_11b_Break_A4.aac',
       },
     },
   },
@@ -422,19 +422,19 @@ const stringInfo = reactive([
     },
     audio: {
       ['C본청']: {
-        ['평음']: 'C_12_SingleNote_D5.wav',
-        ['농현']: 'C_12a_NongB_D5.wav',
-        ['꺾는음']: 'C_12b_Break_D5.wav',
+        ['평음']: 'C_12_SingleNote_D5.aac',
+        ['농현']: 'C_12a_NongB_D5.aac',
+        ['꺾는음']: 'C_12b_Break_D5.aac',
       },
       ['Db본청']: {
-        ['평음']: 'Db_12_SingleNote_Eb5.wav',
-        ['농현']: 'Db_12a_NongB_Eb5.wav',
-        ['꺾는음']: 'Db_12b_Break_Eb5.wav',
+        ['평음']: 'Db_12_SingleNote_Eb5.aac',
+        ['농현']: 'Db_12a_NongB_Eb5.aac',
+        ['꺾는음']: 'Db_12b_Break_Eb5.aac',
       },
       ['A본청']: {
-        ['평음']: 'A_12_SingleNote_B4.wav',
-        ['농현']: 'A_12a_NongB_B4.wav',
-        ['꺾는음']: 'A_12b_Break_B4.wav',
+        ['평음']: 'A_12_SingleNote_B4.aac',
+        ['농현']: 'A_12a_NongB_B4.aac',
+        ['꺾는음']: 'A_12b_Break_B4.aac',
       },
     },
   },
@@ -538,7 +538,7 @@ async function loadSound() {
     for (const tuning of ['C본청', 'Db본청', 'A본청']) {
       for (const technic of ['평음', '농현', '꺾는음']) {
         if (typeof info.audio[tuning][technic] !== 'string') continue;
-        const path = new URL(`/src/assets/wav/${info.audio[tuning][technic]}`, import.meta.url).href;
+        const path = new URL(`/src/assets/aac/${info.audio[tuning][technic]}`, import.meta.url).href;
         try {
           const response = await fetch(path);
           const arrayBuffer = await response.arrayBuffer();
@@ -557,7 +557,6 @@ async function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log('>>>>>>>> playString', { direction, mouseEvent, event }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
     if (
         lastEventHandled?.value?.eventType?.includes('move')
         && lastEventHandled?.value?.['구음'] === val['구음']
@@ -579,7 +578,6 @@ function playString(event, val, _selectedTuning, index) {
     };
 
     if (audioContext.state === 'suspended') {
-      console.log('>>>>>> audioContext.state', audioContext.state);
       audioContext.resume().then(() => {
         _play();
       });
@@ -597,13 +595,11 @@ function playString(event, val, _selectedTuning, index) {
 function dragString(){
   return function (direction, mouseEvent) {
     const pageY = direction.pageY || direction.targetTouches?.[0]?.pageY
-    console.log(">>>>>>>> dragString", { direction, mouseEvent, pageY });
     stringInfo.forEach((info, index) => {
       if (
           lastEventHandled?.value?.['구음'] === info['구음']
       ) return;
       if (info.position.top < pageY && (info.position.top + info.position.height) > pageY) {
-        console.log(">>>>>>>> info.position", info.position);
         playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
       }
     });
@@ -612,7 +608,6 @@ function dragString(){
 
 function setSelectedTechnic(technic) {
   return function (direction, mouseEvent) {
-    console.log(">>>>>>>> setSelectedTechnic", technic);
     selectedTechnic.value = technic;
   };
 }
