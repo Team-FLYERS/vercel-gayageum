@@ -467,73 +467,39 @@ function handleKeyup(event) {
   else if (!event.altKey) selectedTechnic.value = '평음';
 }
 
+
 function handleKeydown(event) {
-  console.log(">>>>>>>>>> handleKeydown", event);
   if (event.ctrlKey) selectedTechnic.value = '농현';
-  if (event.altKey) selectedTechnic.value = '꺾는음';
+  else if (event.altKey) selectedTechnic.value = '꺾는음';
+
   if (event.repeat) return;
-  switch (event.keyCode) {
-    case 49:
-      playString(event, stringInfo?.[0], settingStore.selectedTuning, 0)();
-      return;
-    case 50:
-      playString(event, stringInfo?.[1], settingStore.selectedTuning, 1)();
-      return;
-    case 51:
-      playString(event, stringInfo?.[2], settingStore.selectedTuning, 2)();
-      return;
-    case 52:
-      playString(event, stringInfo?.[3], settingStore.selectedTuning, 3)();
-      return;
-    case 53:
-      playString(event, stringInfo?.[4], settingStore.selectedTuning, 4)();
-      return;
-    case 54:
-      playString(event, stringInfo?.[5], settingStore.selectedTuning, 5)();
-      return;
-    case 55:
-      playString(event, stringInfo?.[6], settingStore.selectedTuning, 6)();
-      return;
-    case 56:
-      playString(event, stringInfo?.[7], settingStore.selectedTuning, 7)();
-      return;
-    case 57:
-      playString(event, stringInfo?.[8], settingStore.selectedTuning, 8)();
-      return;
-    case 48:
-      playString(event, stringInfo?.[9], settingStore.selectedTuning, 9)();
-      return;
-    case 189:
-      playString(event, stringInfo?.[10], settingStore.selectedTuning, 10)();
-      return;
-    case 187:
-      playString(event, stringInfo?.[11], settingStore.selectedTuning, 11)();
-      return;
+  const keyMap = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187];
+  const index = keyMap.indexOf(event.keyCode);
+  if (index >= 0) {
+    playString(event, stringInfo?.[index], settingStore.selectedTuning, index)();
   }
 }
 
 function handleResize() {
-  windowWidth.value = window.innerWidth
-  windowHeight.value = window.innerHeight
-  updateImageSize()
-  imageSrc.value = getImageSrc()
+  windowWidth.value = window.innerWidth;
+  windowHeight.value = window.innerHeight;
+  updateImageSize();
+  imageSrc.value = getImageSrc();
 
-  let evt = null;
-  evt = setTimeout(() => {
+  nextTick(() => {
     stringRef.value.forEach((ref, index) => {
-      stringInfo[index].position.top = ref.getBoundingClientRect().top
-      stringInfo[index].position.height = ref.getBoundingClientRect().height
+      const rect = ref.getBoundingClientRect();
+      stringInfo[index].position = { top: rect.top, height: rect.height };
     });
-    clearTimeout(evt);
-  }, 500);
+  });
 }
 
-const updateImageSize = () => {
+function updateImageSize() {
   if (hcImage1Ele.value) {
-    hcImage1Width.value = hcImage1Ele.value.clientWidth
+    hcImage1Width.value = hcImage1Ele.value.clientWidth;
   }
   if (hcImage2Ele.value) {
-    hcImage2Width.value = hcImage2Ele.value.clientWidth - 4
+    hcImage2Width.value = hcImage2Ele.value.clientWidth - 4;
   }
 }
 
@@ -569,28 +535,23 @@ async function getMedia(constrains) {
   // }
 }
 
-function loadSound() {
-  console.log(">>> loadSound");
-  stringInfo.forEach((info, index) => {
-    ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
-      ['평음', '농현', '꺾는음'].forEach((__info, __index) => {
-        if (typeof info['audio'][_info][__info] !== 'string') return;
-        const _path = new URL(`/src/assets/wav/${info['audio'][_info][__info]}`, import.meta.url).href;
+async function loadSound() {
+  for (const info of stringInfo) {
+    for (const tuning of ['C본청', 'Db본청', 'A본청']) {
+      for (const technic of ['평음', '농현', '꺾는음']) {
+        if (typeof info.audio[tuning][technic] !== 'string') continue;
+        const path = new URL(`/src/assets/wav/${info.audio[tuning][technic]}`, import.meta.url).href;
         try {
-          (async () => {
-            const response = await fetch(_path);
-            const arrayBuffer = await response.arrayBuffer();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-            console.log(">>>>> audioBuffer", audioBuffer);
-            stringInfo[index].audio[_info][__info] = audioBuffer;
-            countLoadedAudios.value++;
-          })();
-        } catch (_e) {
+          const response = await fetch(path);
+          const arrayBuffer = await response.arrayBuffer();
+          info.audio[tuning][technic] = await audioContext.decodeAudioData(arrayBuffer);
+          countLoadedAudios.value++;
+        } catch (error) {
+          console.error(error);
         }
-      })
-    })
-  });
-  console.log(">>>>> stringInfo", stringInfo);
+      }
+    }
+  }
 }
 
 function playString(event, val, _selectedTuning, index) {
