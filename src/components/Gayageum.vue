@@ -576,21 +576,14 @@ function loadSound() {
         if (typeof info['audio'][_info][__info] !== 'string') return;
         const _path = new URL(`/src/assets/wav/${info['audio'][_info][__info]}`, import.meta.url).href;
         try {
-          if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            (async () => {
-              const response = await fetch(_path);
-              const arrayBuffer = await response.arrayBuffer();
-              const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-              console.log(">>>>> audioBuffer", audioBuffer);
-              stringInfo[index].audio[_info][__info] = audioBuffer;
-              countLoadedAudios.value++;
-            })();
-          } else {
-            const audio = new Audio();
-            audio.src = _path;
-            stringInfo[index].audio[_info][__info] = audio;
+          (async () => {
+            const response = await fetch(_path);
+            const arrayBuffer = await response.arrayBuffer();
+            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+            console.log(">>>>> audioBuffer", audioBuffer);
+            stringInfo[index].audio[_info][__info] = audioBuffer;
             countLoadedAudios.value++;
-          }
+          })();
         } catch (_e) {
         }
       })
@@ -610,29 +603,22 @@ function playString(event, val, _selectedTuning, index) {
       return;
     };
 
-    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      (async () => {
-        if (audioContext.state === 'suspended') {
-          console.log('>>>>>> audioContext.state', audioContext.state);
-          await audioContext.resume();
-        }
-        const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-        const source = audioContext.createBufferSource();
-        source.buffer = _audio;
-        source.connect(audioContext.destination);
-        source.start(0);
-      })();
-    } else {
+    (async () => {
+      if (audioContext.state === 'suspended') {
+        console.log('>>>>>> audioContext.state', audioContext.state);
+        await audioContext.resume();
+      }
       const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-      _audio.pause();
-      _audio.currentTime = 0;
-      _audio.play();
-    }
-    stringInfo[index].isShaking = true;
-    const _e = setTimeout(() => {
-      stringInfo[index].isShaking = false;
-      clearTimeout(_e);
-    }, 3000);
+      const source = audioContext.createBufferSource();
+      source.buffer = _audio;
+      source.connect(audioContext.destination);
+      source.start(0);
+      stringInfo[index].isShaking = true;
+      const _e = setTimeout(() => {
+        stringInfo[index].isShaking = false;
+        clearTimeout(_e);
+      }, 3000);
+    })();
     lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
   };
 }
