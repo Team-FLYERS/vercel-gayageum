@@ -603,22 +603,20 @@ function playString(event, val, _selectedTuning, index) {
       return;
     };
 
-    (async () => {
-      if (audioContext.state === 'suspended') {
-        console.log('>>>>>> audioContext.state', audioContext.state);
-        await audioContext.resume();
-      }
-      const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-      const source = audioContext.createBufferSource();
-      source.buffer = _audio;
-      source.connect(audioContext.destination);
-      source.start(0);
-      stringInfo[index].isShaking = true;
-      const _e = setTimeout(() => {
-        stringInfo[index].isShaking = false;
-        clearTimeout(_e);
-      }, 3000);
-    })();
+    if (audioContext.state === 'suspended') {
+      console.log('>>>>>> audioContext.state', audioContext.state);
+      audioContext.resume();
+    }
+    const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+    const source = audioContext.createBufferSource();
+    source.buffer = _audio;
+    source.connect(audioContext.destination);
+    source.start(0);
+    stringInfo[index].isShaking = true;
+    const _e = setTimeout(() => {
+      stringInfo[index].isShaking = false;
+      clearTimeout(_e);
+    }, 3000);
     lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
   };
 }
