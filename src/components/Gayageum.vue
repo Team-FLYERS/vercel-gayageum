@@ -552,17 +552,19 @@ function selectedNote(val, selectedNote, selectedTuning) {
 }
 
 async function getMedia(constrains) {
-  const initialContrains = {
-    audio: true,
-    video: false
-  } // 특별한 요구사항 없이 오디오와 비디오 요청
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
-    const video = document.createElement('video');
-    video.srcObject = stream;
-    video.muted = true;
-  } catch (error) {
-    console.log(error)
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    const initialContrains = {
+      audio: true,
+      video: false
+    } // 특별한 요구사항 없이 오디오와 비디오 요청
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia(initialContrains);
+      const video = document.createElement('video');
+      video.srcObject = stream;
+      video.muted = true;
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
