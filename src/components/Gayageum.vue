@@ -552,6 +552,10 @@ async function loadSound() {
       }
     }
   }
+  setTimeout(() => {
+    commonStore.isLoadedAudios = true;
+    openChrome()
+  }, 1000);
 }
 
 function playString(event, val, _selectedTuning, index) {
@@ -623,28 +627,11 @@ function openChrome() {
   }
 }
 
-watchEffect(() => {
-  let count = 0;
-  ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
-    ['평음', '농현', '꺾는음'].forEach((__info, __index) => {
-      if (stringInfo?.['audio']?.[_info]?.[__info]) {
-        count++;
-      }
-    });
-  });
-  if (countLoadedAudios.value === count) {
-    setTimeout(() => {
-      commonStore.isLoadedAudios = true;
-    }, 1000);
-  }
-})
-
 onMounted(() => {
   updateImageSize()
   handleResize()
   getMedia()
   loadSound()
-  openChrome()
   window.addEventListener('resize', handleResize)
   window.addEventListener('keyup', handleKeyup)
   window.addEventListener('keydown', handleKeydown)
