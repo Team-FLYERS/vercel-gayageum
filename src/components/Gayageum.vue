@@ -766,7 +766,7 @@ onBeforeUnmount(() => {
             <img
               :src="imageSrc"
               alt="안족"
-              class=""
+              class="pointer-events-none"
               style="max-width: none"
               draggable="false"
             >

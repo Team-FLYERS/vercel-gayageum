@@ -22,7 +22,7 @@ function toggleSettings() {
 <template>
   <header class="relative flex w-full notMobile:min-h-[53px] notMobile:h-[53px] mobile:h-[26px] bg-transparent" aria-label="Header" style="z-index:102">
     <div class="flex flex-row w-full justify-between" style="z-index: 2">
-      <div class="flex flex-1 h-fit justify-start notMobile:pt-8 mobile:pt-4 notMobile:pl-[28px] mobile:pl-5">
+      <div class="flex flex-1 h-fit justify-start notMobile:pt-8 mobile:pt-4 notMobile:pl-[28px] mobile:pl-5 pointer-events-none">
         <Logo class="hidden notMobile:flex" />
         <LogoMobile class="hidden mobile:flex" />
       </div>
