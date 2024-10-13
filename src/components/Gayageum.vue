@@ -534,25 +534,29 @@ async function getMedia(constrains) {
 }
 
 async function loadSound() {
+  const _que = [];
   for (const info of stringInfo) {
     for (const tuning of ['C본청', 'Db본청', 'A본청']) {
       for (const technic of ['평음', '농현', '꺾는음']) {
         if (typeof info.audio[tuning][technic] !== 'string') continue;
         const path = new URL(`/src/assets/aac/${info.audio[tuning][technic]}`, import.meta.url).href;
-        try {
-          const response = await fetch(path);
-          const arrayBuffer = await response.arrayBuffer();
-          info.audio[tuning][technic] = await audioContext.decodeAudioData(arrayBuffer);
-        } catch (error) {
-          console.error(error);
-        }
+        _que.push((async (_info) => {
+          try {
+            const response = await fetch(path);
+            const arrayBuffer = await response.arrayBuffer();
+            _info.audio[tuning][technic] = await audioContext.decodeAudioData(arrayBuffer);
+          } catch (error) {
+            console.error(error);
+          }
+        })(info));
       }
     }
   }
+  await Promise.all(_que);
   setTimeout(() => {
     commonStore.isLoadedAudios = true;
     openChrome()
-  }, 0);
+  }, 1000);
 }
 
 function playString(event, val, _selectedTuning, index) {
