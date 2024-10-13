@@ -448,8 +448,6 @@ const imageSrc = ref(mobileBridge)
 
 const selectedTechnic = ref('평음');
 
-const countLoadedAudios = ref(0)
-
 const lastEventHandled = ref(null);
 
 const hcImage1Ele = ref(null)
@@ -545,7 +543,6 @@ async function loadSound() {
           const response = await fetch(path);
           const arrayBuffer = await response.arrayBuffer();
           info.audio[tuning][technic] = await audioContext.decodeAudioData(arrayBuffer);
-          countLoadedAudios.value++;
         } catch (error) {
           console.error(error);
         }
@@ -555,7 +552,7 @@ async function loadSound() {
   setTimeout(() => {
     commonStore.isLoadedAudios = true;
     openChrome()
-  }, 1000);
+  }, 0);
 }
 
 function playString(event, val, _selectedTuning, index) {
