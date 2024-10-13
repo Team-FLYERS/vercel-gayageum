@@ -621,11 +621,6 @@ function playString(event, val, _selectedTuning, index) {
         source.buffer = _audio;
         source.connect(audioContext.destination);
         source.start(0);
-        stringInfo[index].isShaking = true;
-        const _e = setTimeout(() => {
-          stringInfo[index].isShaking = false;
-          clearTimeout(_e);
-        }, 3000);
       })();
     } else {
       const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
@@ -633,6 +628,11 @@ function playString(event, val, _selectedTuning, index) {
       _audio.currentTime = 0;
       _audio.play();
     }
+    stringInfo[index].isShaking = true;
+    const _e = setTimeout(() => {
+      stringInfo[index].isShaking = false;
+      clearTimeout(_e);
+    }, 3000);
     lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
   };
 }
