@@ -617,6 +617,7 @@ function setSelectedTechnic(technic) {
 }
 
 function openChrome() {
+  console.log("intent:" + window.location.href + "#Intent;scheme=http;package=com.android.chrome;end");
   if (/SamsungBrowser/i.test(navigator.userAgent)) {
     alert("본 사이트는 크롬 브라우저 사용을 권장합니다.");
     window.location.href = "intent:" + window.location.href + "#Intent;scheme=http;package=com.android.chrome;end";
