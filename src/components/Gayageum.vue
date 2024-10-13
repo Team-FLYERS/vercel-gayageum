@@ -609,6 +609,9 @@ function playString(event, val, _selectedTuning, index) {
       source.buffer = _audio;
       source.connect(audioContext.destination);
       source.start(0);
+      source.onended = () => {
+        source.disconnect();
+      };
       stringInfo[index].isShaking = true;
     };
 
