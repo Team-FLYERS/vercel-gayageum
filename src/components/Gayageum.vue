@@ -552,7 +552,6 @@ async function loadSound() {
       }
     }
   }
-  openChrome();
 }
 
 function playString(event, val, _selectedTuning, index) {
@@ -645,6 +644,7 @@ onMounted(() => {
   handleResize()
   getMedia()
   loadSound()
+  openChrome()
   window.addEventListener('resize', handleResize)
   window.addEventListener('keyup', handleKeyup)
   window.addEventListener('keydown', handleKeydown)
