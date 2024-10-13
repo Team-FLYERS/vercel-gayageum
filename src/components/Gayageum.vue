@@ -593,7 +593,14 @@ function loadSound() {
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
     console.log('>>>>>>>> playString', { direction, mouseEvent, event }, { _selectedTuning, selectedTechnic: selectedTechnic.value }, val, lastEventHandled.value);
-    // if (lastEventHandled?.value?.eventType?.includes('move') && lastEventHandled?.value?.['구음'] === val['구음']) return;
+    if (
+        lastEventHandled?.value?.eventType?.includes('move')
+        && lastEventHandled?.value?.['구음'] === val['구음']
+        && !/Mobi/i.test(window.navigator.userAgent)
+    ) {
+      lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
+      return;
+    };
 
     (async () => {
       if (audioContext.state === 'suspended') {
@@ -707,11 +714,11 @@ onBeforeUnmount(() => {
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
-          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px]"
+          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px] pointer-events-none"
         >
-          <div class="flex justify-start items-center w-full h-[16px] border-none">
+          <div class="flex justify-start items-center w-full h-[16px] border-none pointer-events-none">
             <div
-                class="stringBackground border-none notMobile:rounded-r-full"
+                class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
                 :class="{ shake: stringInfo[index].isShaking }"
                 :style="{
                   width: `calc(100% - ${hcImage2Width}px)`,
@@ -721,7 +728,7 @@ onBeforeUnmount(() => {
                 }"
             />
             <img
-                class="absolute mobile:hidden"
+                class="absolute mobile:hidden pointer-events-none"
                 src="../assets/hole.png"
                 draggable="false"
                 alt="hole"
