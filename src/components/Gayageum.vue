@@ -519,6 +519,14 @@ function selectedNote(val, selectedNote, selectedTuning) {
 }
 
 async function getMedia(constrains) {
+  if (/SamsungBrowser/i.test(navigator.userAgent)) {
+    const message = confirm("You are using Samsung Internet. For the best experience, we recommend using Google Chrome. Would you like to open this page in Chrome?");
+    if (message) {
+      // Chrome으로 이동할 URL 생성
+      const chromeUrl = `googlechrome://navigate?url=${window.location.href}`;
+      window.location.href = chromeUrl;
+    }
+  }
   // if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   //   const initialContrains = {
   //     audio: true,
