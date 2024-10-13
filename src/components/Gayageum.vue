@@ -816,23 +816,23 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <!--     현침  100 100   -->
-        <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]">
+        <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]" draggable="false">
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
 <!--          </div>-->
         </div>
       </div>
     </div>
-    <div class="absolute right-0 top-[-53px] mobile:hidden flex flex-row" style="z-index: 2">
+    <div class="absolute right-0 top-[-53px] mobile:hidden flex flex-row pointer-events-none" style="z-index: 2" draggable="false">
       <img
         src="../assets/hyunchime-pattern.png"
         draggable="false"
         alt="pattern"
-        class="h-screen absolute"
+        class="h-screen absolute pointer-events-none"
         :style="`right: ${hcImage1Width + hcImage2Width - 4}px`"
       >
-      <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen" draggable="false" alt="hyunchime-1" style="z-index: 1">
-      <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen" draggable="false" alt="hyunchime-2">
+      <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen pointer-events-none" draggable="false" alt="hyunchime-1" style="z-index: 1">
+      <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen pointer-events-none" draggable="false" alt="hyunchime-2">
     </div>
   </div>
 </template>
