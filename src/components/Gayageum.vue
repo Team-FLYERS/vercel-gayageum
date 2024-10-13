@@ -573,17 +573,24 @@ function loadSound() {
   stringInfo.forEach((info, index) => {
     ['C본청', 'Db본청', 'A본청'].forEach((_info, _index) => {
       ['평음', '농현', '꺾는음'].forEach((__info, __index) => {
+        if (typeof info['audio'][_info][__info] !== 'string') return;
         const _path = new URL(`/src/assets/wav/${info['audio'][_info][__info]}`, import.meta.url).href;
-        console.log('try', _path);
         try {
-          (async () => {
-            const response = await fetch(_path);
-            const arrayBuffer = await response.arrayBuffer();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-            console.log(">>>>> audioBuffer", audioBuffer);
-            stringInfo[index].audio[_info][__info] = audioBuffer;
+          if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            (async () => {
+              const response = await fetch(_path);
+              const arrayBuffer = await response.arrayBuffer();
+              const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+              console.log(">>>>> audioBuffer", audioBuffer);
+              stringInfo[index].audio[_info][__info] = audioBuffer;
+              countLoadedAudios.value++;
+            })();
+          } else {
+            const audio = new Audio();
+            audio.src = _path;
+            stringInfo[index].audio[_info][__info] = audio;
             countLoadedAudios.value++;
-          })();
+          }
         } catch (_e) {
         }
       })
@@ -603,22 +610,29 @@ function playString(event, val, _selectedTuning, index) {
       return;
     };
 
-    (async () => {
-      if (audioContext.state === 'suspended') {
-        console.log('>>>>>> audioContext.state', audioContext.state);
-        await audioContext.resume();
-      }
+    if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      (async () => {
+        if (audioContext.state === 'suspended') {
+          console.log('>>>>>> audioContext.state', audioContext.state);
+          await audioContext.resume();
+        }
+        const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+        const source = audioContext.createBufferSource();
+        source.buffer = _audio;
+        source.connect(audioContext.destination);
+        source.start(0);
+        stringInfo[index].isShaking = true;
+        const _e = setTimeout(() => {
+          stringInfo[index].isShaking = false;
+          clearTimeout(_e);
+        }, 3000);
+      })();
+    } else {
       const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-      const source = audioContext.createBufferSource();
-      source.buffer = _audio;
-      source.connect(audioContext.destination);
-      source.start(0);
-      stringInfo[index].isShaking = true;
-      const _e = setTimeout(() => {
-        stringInfo[index].isShaking = false;
-        clearTimeout(_e);
-      }, 3000);
-    })();
+      _audio.pause();
+      _audio.currentTime = 0;
+      _audio.play();
+    }
     lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
   };
 }
@@ -666,7 +680,6 @@ onMounted(() => {
   updateImageSize()
   handleResize()
   getMedia()
-  loadSound()
   loadSound()
   window.addEventListener('resize', handleResize)
   window.addEventListener('keyup', handleKeyup)
