@@ -566,7 +566,6 @@ async function loadSound() {
 
 function playString(event, val, index) {
   return function (direction, mouseEvent) {
-    console.log(">>>>> play", { selectedTuning: selectedTuning.value, selectedTechnic: selectedTechnic.value })
     if (
         lastEventHandled?.value?.eventType?.includes('move')
         && lastEventHandled?.value?.['구음'] === val['구음']
@@ -623,10 +622,6 @@ function openChrome() {
     window.location.href = "intent:" + window.location.host + "#Intent;scheme=https;package=com.android.chrome;end";
   }
 }
-
-watch(selectedTuning, async (newQuestion, oldQuestion) => {
-  console.log(">>> settingStore.selectedTuning", newQuestion);
-})
 
 onMounted(() => {
   updateImageSize()
