@@ -1,5 +1,6 @@
 <script setup>
 import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick, watch} from 'vue';
+import {storeToRefs} from "pinia";
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
 import GuideArrowLeft from '../assets/guide-arrow-left.vue'
@@ -7,7 +8,6 @@ import GuidePointer from '../assets/guide-pointer.vue'
 import {useGuideStore} from "../stores/guide.js";
 import {useSettingStore} from "../stores/settings.js";
 import {useCommonStore} from "../stores/common.js";
-import {storeToRefs} from "pinia";
 
 const guideStore = useGuideStore()
 const settingStore = useSettingStore()
@@ -479,7 +479,7 @@ function handleKeydown(event) {
   const keyMap = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187];
   const index = keyMap.indexOf(event.keyCode);
   if (index >= 0) {
-    playString(event, stringInfo?.[index], selectedTuning, index)();
+    playString(event, stringInfo?.[index], selectedTuning.value, index)();
   }
 }
 
@@ -665,7 +665,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div
-        v-if="selectedTuning === 'A본청' && !guideStore.openGuide"
+        v-if="selectedTuning.value === 'A본청' && !guideStore.openGuide"
         class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
         v-touch:press="setSelectedTechnic('꺾는음')"
         v-touch:release="setSelectedTechnic('평음')"
@@ -758,7 +758,7 @@ onBeforeUnmount(() => {
               v-if="settingStore.selectedNote !== '표시 안함'"
               class="flex justify-center items-center rounded-full"
             >
-              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning) }}</span>
+              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning.value) }}</span>
             </div>
           </div>
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
@@ -775,7 +775,7 @@ onBeforeUnmount(() => {
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
           v-touch:drag.once="dragString()"
-          v-touch:press="playString($event, val, selectedTuning, index)"
+          v-touch:press="playString($event, val, selectedTuning.value, index)"
         >
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
