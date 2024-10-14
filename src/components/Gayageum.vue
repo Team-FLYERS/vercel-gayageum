@@ -7,10 +7,13 @@ import GuidePointer from '../assets/guide-pointer.vue'
 import {useGuideStore} from "../stores/guide.js";
 import {useSettingStore} from "../stores/settings.js";
 import {useCommonStore} from "../stores/common.js";
+import {storeToRefs} from "pinia";
 
 const guideStore = useGuideStore()
 const settingStore = useSettingStore()
 const commonStore = useCommonStore()
+
+const { selectedTuning } = storeToRefs(settingStore);
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)({
   latencyHint: 'interactive', // 지연 시간을 최소화
@@ -476,7 +479,7 @@ function handleKeydown(event) {
   const keyMap = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187];
   const index = keyMap.indexOf(event.keyCode);
   if (index >= 0) {
-    playString(event, stringInfo?.[index], settingStore.selectedTuning, index)();
+    playString(event, stringInfo?.[index], selectedTuning, index)();
   }
 }
 
@@ -503,14 +506,14 @@ function updateImageSize() {
   }
 }
 
-function selectedNote(val, selectedNote, selectedTuning) {
-  switch (selectedNote) {
+function selectedNote(val, _selectedNote, _selectedTuning) {
+  switch (_selectedNote) {
     case '구음':
       return val['구음']
     case '기보음':
-      return val['기보음'][selectedTuning]
+      return val['기보음'][_selectedTuning]
     case '실제음':
-      return val['실제음'][selectedTuning]
+      return val['실제음'][_selectedTuning]
     case '표시 안함':
       return;
     default:
@@ -603,7 +606,7 @@ function dragString(){
           lastEventHandled?.value?.['구음'] === info['구음']
       ) return;
       if (info.position.top < pageY && (info.position.top + info.position.height) > pageY) {
-        playString(direction, stringInfo?.[index], settingStore.selectedTuning, index)();
+        playString(direction, stringInfo?.[index], selectedTuning, index)();
       }
     });
   }
@@ -622,7 +625,7 @@ function openChrome() {
   }
 }
 
-watch(settingStore.selectedTuning, async (newQuestion, oldQuestion) => {
+watch(selectedTuning, async (newQuestion, oldQuestion) => {
   console.log(">>> settingStore.selectedTuning", newQuestion);
 })
 
@@ -662,7 +665,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div
-        v-if="settingStore.selectedTuning === 'A본청' && !guideStore.openGuide"
+        v-if="selectedTuning === 'A본청' && !guideStore.openGuide"
         class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
         v-touch:press="setSelectedTechnic('꺾는음')"
         v-touch:release="setSelectedTechnic('평음')"
@@ -755,7 +758,7 @@ onBeforeUnmount(() => {
               v-if="settingStore.selectedNote !== '표시 안함'"
               class="flex justify-center items-center rounded-full"
             >
-              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, settingStore.selectedTuning) }}</span>
+              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning) }}</span>
             </div>
           </div>
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
@@ -772,7 +775,7 @@ onBeforeUnmount(() => {
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
           v-touch:drag.once="dragString()"
-          v-touch:press="playString($event, val, settingStore.selectedTuning, index)"
+          v-touch:press="playString($event, val, selectedTuning, index)"
         >
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
