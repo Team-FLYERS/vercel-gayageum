@@ -758,7 +758,7 @@ onBeforeUnmount(() => {
               v-if="settingStore.selectedNote !== '표시 안함'"
               class="flex justify-center items-center rounded-full"
             >
-              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning.value) }}</span>
+              <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning) }}</span>
             </div>
           </div>
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
@@ -775,7 +775,7 @@ onBeforeUnmount(() => {
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
           v-touch:drag.once="dragString()"
-          v-touch:press="playString($event, val, selectedTuning.value, index)"
+          v-touch:press="playString($event, val, selectedTuning, index)"
         >
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
