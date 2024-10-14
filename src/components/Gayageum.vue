@@ -565,6 +565,7 @@ async function loadSound() {
 }
 
 function playString(event, val, _selectedTuning, index) {
+  console.log(">>>>> play", { _selectedTuning, selectedTechnic: selectedTechnic.value })
   return function (direction, mouseEvent) {
     if (
         lastEventHandled?.value?.eventType?.includes('move')
@@ -577,8 +578,6 @@ function playString(event, val, _selectedTuning, index) {
     if (audioContext.state === 'suspended') {
       audioContext.resume()
     }
-
-    console.log(">>>>> play", { _selectedTuning, selectedTechnic: selectedTechnic.value })
 
     const _audio = val['audio']?.[_selectedTuning]?.[selectedTechnic.value];
     const source = audioContext.createBufferSource();
