@@ -479,7 +479,7 @@ function handleKeydown(event) {
   const keyMap = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187];
   const index = keyMap.indexOf(event.keyCode);
   if (index >= 0) {
-    playString(event, stringInfo?.[index], selectedTuning.value, index)();
+    playString(event, stringInfo?.[index], index)();
   }
 }
 
@@ -564,9 +564,9 @@ async function loadSound() {
   }, 1000);
 }
 
-function playString(event, val, _selectedTuning, index) {
+function playString(event, val, index) {
   return function (direction, mouseEvent) {
-    console.log(">>>>> play", { selectedTuning: selectedTuning.value, _selectedTuning, selectedTechnic: selectedTechnic.value })
+    console.log(">>>>> play", { selectedTuning: selectedTuning.value, selectedTechnic: selectedTechnic.value })
     if (
         lastEventHandled?.value?.eventType?.includes('move')
         && lastEventHandled?.value?.['구음'] === val['구음']
@@ -579,7 +579,7 @@ function playString(event, val, _selectedTuning, index) {
       audioContext.resume()
     }
 
-    const _audio = val['audio']?.[_selectedTuning]?.[selectedTechnic.value];
+    const _audio = val['audio']?.[selectedTuning.value]?.[selectedTechnic.value];
     const source = audioContext.createBufferSource();
     source.buffer = _audio;
     source.connect(audioContext.destination);
@@ -605,7 +605,7 @@ function dragString(){
           lastEventHandled?.value?.['구음'] === info['구음']
       ) return;
       if (info.position.top < pageY && (info.position.top + info.position.height) > pageY) {
-        playString(direction, stringInfo?.[index], selectedTuning.value, index)();
+        playString(direction, stringInfo?.[index], index)();
       }
     });
   }
@@ -774,7 +774,7 @@ onBeforeUnmount(() => {
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
           v-touch:drag.once="dragString()"
-          v-touch:press="playString($event, val, selectedTuning, index)"
+          v-touch:press="playString($event, val, index)"
         >
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
