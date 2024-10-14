@@ -562,7 +562,6 @@ async function loadSound() {
 }
 
 function playString(event, val, _selectedTuning, index) {
-  console.log(">>>> _selectedTuning", _selectedTuning);
   return function (direction, mouseEvent) {
     if (
         lastEventHandled?.value?.eventType?.includes('move')
@@ -572,25 +571,20 @@ function playString(event, val, _selectedTuning, index) {
       return;
     }
 
-    const _play = () => {
-      const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
-      const source = audioContext.createBufferSource();
-      source.buffer = _audio;
-      source.connect(audioContext.destination);
-      source.start(0);
-      source.onended = () => {
-        source.disconnect();
-      };
-      stringInfo[index].isShaking = true;
-    };
-
     if (audioContext.state === 'suspended') {
-      audioContext.resume().then(() => {
-        _play();
-      });
-    } else {
-      _play();
+      audioContext.resume()
     }
+
+    const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+    const source = audioContext.createBufferSource();
+    source.buffer = _audio;
+    source.connect(audioContext.destination);
+    source.start(0);
+    source.onended = () => {
+      source.disconnect();
+    };
+    stringInfo[index].isShaking = true;
+
     const _e = setTimeout(() => {
       stringInfo[index].isShaking = false;
       clearTimeout(_e);
