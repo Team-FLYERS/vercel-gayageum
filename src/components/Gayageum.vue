@@ -585,6 +585,8 @@ function playString(event, val, _selectedTuning, index) {
     };
     stringInfo[index].isShaking = true;
 
+    console.log(">>>>> play", { _selectedTuning, selectedTechnic: selectedTechnic.value, _audio })
+
     const _e = setTimeout(() => {
       stringInfo[index].isShaking = false;
       clearTimeout(_e);
