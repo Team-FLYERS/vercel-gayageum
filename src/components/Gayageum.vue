@@ -542,15 +542,15 @@ async function loadSound() {
       for (const technic of ['평음', '농현', '꺾는음']) {
         if (typeof info.audio[tuning][technic] !== 'string') continue;
         const path = new URL(`/src/assets/aac/${info.audio[tuning][technic]}`, import.meta.url).href;
-        _que.push((async (_info) => {
+        _que.push((async (_info, _tuning, _technic) => {
           try {
             const response = await fetch(path);
             const arrayBuffer = await response.arrayBuffer();
-            _info.audio[tuning][technic] = await audioContext.decodeAudioData(arrayBuffer);
+            _info.audio[_tuning][_technic] = await audioContext.decodeAudioData(arrayBuffer);
           } catch (error) {
             console.error(error);
           }
-        })(info));
+        })(info, tuning, technic));
       }
     }
   }
