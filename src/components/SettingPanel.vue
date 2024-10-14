@@ -32,6 +32,7 @@ const note = [
 
 function selectTuning(value) {
   settingStore.selectedTuning = value;
+  alert(settingStore.selectedTuning);
 }
 
 function selectNote(value) {
