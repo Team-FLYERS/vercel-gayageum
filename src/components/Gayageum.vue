@@ -578,7 +578,9 @@ function playString(event, val, _selectedTuning, index) {
       audioContext.resume()
     }
 
-    const _audio = val['audio'][_selectedTuning][selectedTechnic.value];
+    console.log(">>>>> play", { _selectedTuning, selectedTechnic: selectedTechnic.value })
+
+    const _audio = val['audio']?.[_selectedTuning]?.[selectedTechnic.value];
     const source = audioContext.createBufferSource();
     source.buffer = _audio;
     source.connect(audioContext.destination);
@@ -587,8 +589,6 @@ function playString(event, val, _selectedTuning, index) {
       source.disconnect();
     };
     stringInfo[index].isShaking = true;
-
-    console.log(">>>>> play", { _selectedTuning, selectedTechnic: selectedTechnic.value, _audio })
 
     const _e = setTimeout(() => {
       stringInfo[index].isShaking = false;
