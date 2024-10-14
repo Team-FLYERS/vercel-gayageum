@@ -102,6 +102,7 @@ function handleGuide() {
               v-for="(option, index) in tuning"
               :key="option.value" class="flex items-center w-full notMobile:h-[56px] mobile:h-[48px] notMobile:px-8 mobile:px-4 cursor-pointer"
               :class="{ 'border-b border-[#E6E6E6]': index !== tuning.length - 1 }"
+              @click="selectTuning(option.value)"
           >
             <input
                 type="radio"
@@ -110,7 +111,6 @@ function handleGuide() {
                 :value="option.value"
                 v-model="settingStore.selectedTuning"
                 class="sr-only"
-                @change="handleChangeTuning"
             />
             <div
                 :class="[
@@ -120,8 +120,6 @@ function handleGuide() {
                 :aria-checked="settingStore.selectedTuning === option.value"
                 role="radio"
                 tabindex="0"
-                @click="selectTuning(option.value)"
-                @keydown.enter.space.prevent="selectTuning(option.value)"
             >
               <span
                   :class="[
@@ -171,6 +169,7 @@ function handleGuide() {
               v-for="(option, index) in note"
               :key="option.value" class="flex items-center w-full notMobile:h-[56px] mobile:h-[48px] notMobile:px-8 mobile:px-4 cursor-pointer"
               :class="{ 'border-b border-[#E6E6E6]': index !== note.length - 1 }"
+              @click="selectNote(option.value)"
           >
             <input
                 type="radio"
@@ -179,7 +178,6 @@ function handleGuide() {
                 :value="option.value"
                 v-model="settingStore.selectedNote"
                 class="sr-only"
-                @change="handleChangeNote"
             />
             <div
                 :class="[
@@ -189,8 +187,6 @@ function handleGuide() {
                 :aria-checked="settingStore.selectedNote === option.value"
                 role="radio"
                 tabindex="0"
-                @click="selectNote(option.value)"
-                @keydown.enter.space.prevent="selectNote(option.value)"
             >
               <span
                   :class="[
