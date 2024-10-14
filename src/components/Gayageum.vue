@@ -606,7 +606,7 @@ function dragString(){
           lastEventHandled?.value?.['구음'] === info['구음']
       ) return;
       if (info.position.top < pageY && (info.position.top + info.position.height) > pageY) {
-        playString(direction, stringInfo?.[index], selectedTuning, index)();
+        playString(direction, stringInfo?.[index], selectedTuning.value, index)();
       }
     });
   }
