@@ -7,6 +7,7 @@ import Bars from '../assets/bars-3.vue'
 import BarsMobile from '../assets/bars-3-mobile.vue'
 import Logo from '../assets/logo.vue'
 import LogoMobile from '../assets/logo-mobile.vue'
+import GuideArrowRight from '../assets/guide-arrow-right.vue'
 
 const guideStore = useGuideStore()
 
@@ -38,8 +39,9 @@ function toggleSettings() {
           <BarsMobile class="hidden mobile:flex" />
         </button>
       </div>
-      <div v-if="guideStore.openGuide" class="absolute right-8 top-[100px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center select-none">
-        <p class="text-center">여기서 조율, 음표시, 줄 색깔<br class="notMobile:hidden" /> <span class="text-green-700">옵션</span>을<br class="mobile:hidden" /> <span class="text-green-700">선택</span>할 수 있어요.</p>
+      <GuideArrowRight v-if="guideStore.openGuide" class="absolute notMiniTablet:right-[80px] top-[20px] miniTablet:right-[60px]" />
+      <div v-if="guideStore.openGuide" class="absolute right-8 top-[100px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none">
+        <p class="text-center">여기서 조율, 음표시, 줄 색깔<br class="notMiniTablet:hidden" /> <span class="text-[#5E95FF]">옵션</span>을<br class="miniTablet:hidden" /> <span class="text-[#5E95FF]">선택</span>할 수 있어요.</p>
       </div>
       <transition name="slide-fade" style="z-index: 2">
         <SettingsPanel v-if="settingsOpen" @close="toggleSettings" />
