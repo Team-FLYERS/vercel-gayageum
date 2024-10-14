@@ -562,6 +562,7 @@ async function loadSound() {
 }
 
 function playString(event, val, _selectedTuning, index) {
+  console.log(">>>> _selectedTuning", _selectedTuning);
   return function (direction, mouseEvent) {
     if (
         lastEventHandled?.value?.eventType?.includes('move')
