@@ -34,16 +34,8 @@ function selectTuning(value) {
   settingStore.selectedTuning = value;
 }
 
-function handleChangeTuning(event) {
-  settingStore.selectedTuning = event.target.value;
-}
-
 function selectNote(value) {
   settingStore.selectedNote = value;
-}
-
-function handleChangeNote(event) {
-  settingStore.selectedNote = event.target.value;
 }
 
 function toggleLineColor() {
