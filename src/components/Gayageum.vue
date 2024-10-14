@@ -1,5 +1,5 @@
 <script setup>
-import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick} from 'vue';
+import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick, watch} from 'vue';
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
 import GuideArrowLeft from '../assets/guide-arrow-left.vue'
@@ -621,6 +621,10 @@ function openChrome() {
     window.location.href = "intent:" + window.location.host + "#Intent;scheme=https;package=com.android.chrome;end";
   }
 }
+
+watch(settingStore.selectedTuning, async (newQuestion, oldQuestion) => {
+  console.log(">>> settingStore.selectedTuning", newQuestion);
+})
 
 onMounted(() => {
   updateImageSize()
