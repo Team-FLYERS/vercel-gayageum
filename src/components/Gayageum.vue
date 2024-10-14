@@ -715,7 +715,7 @@ onBeforeUnmount(() => {
           </div>
           <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[70%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]" style="z-index: 102;">
             <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
-            <div v-if="guideStore.openGuide && index === 7" class="absolute notMiniTablet:top-1/2 miniTablet:bottom-[-130px] transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-520px] miniTablet:right-[-395px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+            <div v-if="guideStore.openGuide && index === 7" class="absolute notMiniTablet:top-1/2 miniTablet:bottom-[-130px] transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-520px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
               <p class="text-left"><span class="text-[#5E95FF]">A본청 옵션</span>을 선택한 경우<br class="notMiniTablet:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
             </div>
           </div>
