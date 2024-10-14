@@ -59,7 +59,7 @@ function handleGuide() {
 <template>
   <div
     id="settings-panel"
-    class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full notMobile:px-10 mobile:px-8 notMobile:pt-8 mobile:pt-6 rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px]"
+    class="fixed inset-y-0 right-0 h-full bg-custom-gradient shadow-lg max-w-[400px] w-full notMobile:px-10 mobile:px-8 notMobile:pt-8 mobile:pt-6 rounded-tl-[24px] rounded-bl-[24px] mobile:max-w-[344px] overflow-y-scroll"
     aria-label="셋팅 창"
   >
     <div class="relative flex flex-col">
