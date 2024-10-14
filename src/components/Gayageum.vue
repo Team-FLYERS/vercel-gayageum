@@ -659,7 +659,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div
-        v-if="selectedTuning.value === 'A본청' && !guideStore.openGuide"
+        v-if="selectedTuning === 'A본청' && !guideStore.openGuide"
         class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
         v-touch:press="setSelectedTechnic('꺾는음')"
         v-touch:release="setSelectedTechnic('평음')"
