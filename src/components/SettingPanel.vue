@@ -270,11 +270,13 @@ function handleGuide() {
           </svg>
         </button>
       </div>
-      <div class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center notMobile:px-8 mobile:px-4 notMobile:h-[64px] mobile:h-[56px] select-none notMobile:mb-6 mobile:mb-3">
+      <div
+          class="flex w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px] justify-between items-center notMobile:px-8 mobile:px-4 notMobile:h-[64px] mobile:h-[56px] select-none notMobile:mb-6 mobile:mb-3 cursor-pointer"
+          @click="handleGuide"
+      >
         <span class="text-[18px] font-semibold leading-[21px] text-[#000]">도움말</span>
         <button
-          class="bg-transparent"
-          @click="handleGuide"
+            class="bg-transparent"
         >
           <ChevronRight />
         </button>

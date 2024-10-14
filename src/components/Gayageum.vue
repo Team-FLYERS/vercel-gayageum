@@ -722,13 +722,15 @@ onBeforeUnmount(() => {
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
 <!--          </div>-->
-          <div class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
-               :style="`left: calc(${index} * (100% / 12))`">
+          <div
+            class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
+            :style="`left: calc(${index} * (100% / 12))`"
+          >
             <img
               :src="imageSrc"
               alt="안족"
-              class="pointer-events-none"
-              style="max-width: none"
+              class="pointer-events-none mobile:w-[42px] mobile:h-[84px]"
+              style="max-width: none; aspect-ratio: 1/1;"
               draggable="false"
             >
           </div>
