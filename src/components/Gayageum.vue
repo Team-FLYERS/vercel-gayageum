@@ -566,7 +566,7 @@ async function loadSound() {
 
 function playString(event, val, _selectedTuning, index) {
   return function (direction, mouseEvent) {
-    console.log(">>>>> play", { selectedTuning, _selectedTuning, selectedTechnic: selectedTechnic.value })
+    console.log(">>>>> play", { selectedTuning: selectedTuning.value, _selectedTuning, selectedTechnic: selectedTechnic.value })
     if (
         lastEventHandled?.value?.eventType?.includes('move')
         && lastEventHandled?.value?.['구음'] === val['구음']
