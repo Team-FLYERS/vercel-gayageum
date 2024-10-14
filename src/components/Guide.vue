@@ -9,7 +9,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="fixed top-0 left-0 w-full h-full" style="z-index: 101">
+  <div class="fixed top-0 left-0 w-full h-full" style="z-index: 103">
 <!--    <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index:1"></div>-->
     <div class="relative w-full h-full flex flex-row">
 <!--      &lt;!&ndash;     시김새 영역 15 45     &ndash;&gt;-->
@@ -39,7 +39,7 @@ onMounted(() => {
       <button
         type="button"
         aria-label="닫기"
-        class="absolute bottom-[32px] notMobile:right-8 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer mobile:bottom-[16px] mobile:px-5 mobile:py-3 mobile:rounded-[16px] mobile:right-[16px] select-none"
+        class="absolute bottom-[32px] notMiniTablet:right-8 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer miniTablet:bottom-[16px] miniTablet:px-5 miniTablet:py-3 miniTablet:rounded-[16px] miniTablet:right-[16px] select-none"
         style="z-index: 2"
         @click="guideStore.openGuide = false"
       >

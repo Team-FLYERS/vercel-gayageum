@@ -8,7 +8,8 @@ export default {
     screens: {
       'mobile': {'max': '599px'},
       'notMobile': {'min': '600px'},
-      'miniTablet': {'min': '600px', 'max': '1023px'},
+      'notMiniTablet': {'min': '1024px'},
+      'miniTablet': {'max': '1023px'},
       'tablet': {'min': '1024px', 'max': '1439px'},
       'desktop': {'min': '1440px'},
     },

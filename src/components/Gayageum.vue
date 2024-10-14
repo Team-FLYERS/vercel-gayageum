@@ -2,6 +2,8 @@
 import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick} from 'vue';
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
+import GuideArrowLeft from '../assets/guide-arrow-left.vue'
+import GuidePointer from '../assets/guide-pointer.vue'
 import {useGuideStore} from "../stores/guide.js";
 import {useSettingStore} from "../stores/settings.js";
 import {useCommonStore} from "../stores/common.js";
@@ -705,16 +707,17 @@ onBeforeUnmount(() => {
         <div
           class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px]"
         >
-<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
-<!--          </div>-->
-          <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[35%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
-          <div v-if="guideStore.openGuide && index === 2" class="absolute notMobile:top-[-20px] mobile:bottom-[-65px] notMobile:right-[-430px] mobile:right-[-200px] mobile:w-[313px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-            <p class="text-center"><span class="text-green-700">이 영역</span>을 누르면 떠는 소리(농현)를 낼 수 있어요</p>
+          <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[35%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
+            <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
+            <GuideArrowLeft v-if="guideStore.openGuide && index === 2" class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
+            <GuidePointer v-if="guideStore.openGuide && index === 2" class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
+            <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-580px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+              <p class="text-center"><span class="text-[#5E95FF]">이 영역</span>을 누르면 떠는 <br class="notMiniTablet:hidden"/>소리(농현)를 낼 수 있어요</p>
+            </div>
           </div>
-          <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMobile:left-[85%] mobile:left-[77%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
-          <div v-if="guideStore.openGuide && index === 7" class="absolute notMobile:bottom-[-70px] mobile:bottom-[-120px] notMobile:right-[-480px] mobile:right-[-200px] mobile:w-[313px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-            <p class="text-left"><span class="text-green-700">A본청 옵션</span>을 선택한 경우<br class="notMobile:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는 소리를 낼 수 있어요</p>
+          <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMiniTablet:left-[85%] mobile:left-[77%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
+          <div v-if="guideStore.openGuide && index === 7" class="absolute notMiniTablet:bottom-[-70px] miniTablet:bottom-[-120px] notMiniTablet:right-[-480px] miniTablet:right-[-200px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+            <p class="text-left"><span class="text-[#5E95FF]">A본청 옵션</span>을 선택한 경우<br class="notMiniTablet:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는 소리를 낼 수 있어요</p>
           </div>
         </div>
         <!--     안족 배열 60 55    -->
@@ -773,9 +776,12 @@ onBeforeUnmount(() => {
 <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
 <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
 <!--          </div>-->
-          <div v-if="guideStore.openGuide && index === 5" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full bg-white opacity-50" style="z-index: 102;" />
-          <div v-if="guideStore.openGuide && index === 5" class="absolute notMobile:left-1/2 transform notMobile:-translate-x-1/2 mobile:right-0 notMobile:top-[100px] mobile:top-[85px] notMobile:w-[350px] miniTablet:w-[260px] mobile:w-[300px] notMobile:text-[28px] mobile:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-            <p class="text-center">연주 영역을 터치하여 <br class="notMobile:hidden" />가야금을 연주해보세요</p>
+          <div v-if="guideStore.openGuide && index === 5" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
+            <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
+            <GuidePointer v-if="guideStore.openGuide && index === 5" class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
+          </div>
+          <div v-if="guideStore.openGuide && index === 5" class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-42px] notMiniTablet:top-[100px] miniTablet:top-[105px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+            <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>
           </div>
         </div>
         <!--     현침  100 100   -->
