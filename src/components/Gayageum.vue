@@ -685,21 +685,21 @@ onBeforeUnmount(() => {
         >
           <div class="flex justify-start items-center w-full h-[16px] border-none pointer-events-none">
             <div
-                class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
-                :class="{ shake: stringInfo[index].isShaking }"
-                :style="{
-                  width: `calc(100% - ${hcImage2Width}px)`,
-                  height: `${val.height}px`,
-                  zIndex: 99,
-                  ...(settingStore.isLineColor ? { backgroundColor: val.hexCode } : { backgroundImage: 'linear-gradient(#eee, #999)' })
-                }"
+              class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
+              :class="{ shake: stringInfo[index].isShaking }"
+              :style="{
+                width: `calc(100% - ${hcImage2Width}px)`,
+                height: `${val.height}px`,
+                zIndex: 99,
+                ...(settingStore.isLineColor ? { backgroundColor: val.hexCode } : { backgroundImage: 'linear-gradient(#eee, #999)' })
+              }"
             />
             <img
-                class="absolute mobile:hidden pointer-events-none"
-                src="../assets/hole.png"
-                draggable="false"
-                alt="hole"
-                :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
+              class="absolute mobile:hidden pointer-events-none"
+              src="../assets/hole.png"
+              draggable="false"
+              alt="hole"
+              :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
             >
           </div>
         </div>
@@ -735,7 +735,11 @@ onBeforeUnmount(() => {
               :src="imageSrc"
               alt="안족"
               class="pointer-events-none mobile:w-[42px] mobile:h-[84px]"
-              style="max-width: none; aspect-ratio: 1/1;"
+              :style="{
+                maxWidth: 'none',
+                aspectRatio: '1/1',
+                height: windowWidth <= 599 ? `${windowHeight / 10}px` : 'auto'
+              }"
               draggable="false"
             >
           </div>
