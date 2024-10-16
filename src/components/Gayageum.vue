@@ -97,10 +97,10 @@ const stringInfo = reactive([
     isShaking: false,
     height: 8.5,
     position: { top: 0, height: 0 },
-    label: '3 동',
+    label: '3 둥',
     hexCode: '#2F2D59CC',
     alterHexCode: '#2F2D59CC',
-    ['구음']: '동',
+    ['구음']: '둥',
     ['기보음']: {
       ['C본청']: '라',
       ['Db본청']: '라',
