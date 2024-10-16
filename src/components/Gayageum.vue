@@ -1,5 +1,5 @@
 <script setup>
-import {onBeforeUnmount, onMounted, reactive, ref, watchEffect, nextTick, watch} from 'vue';
+import {nextTick, onBeforeUnmount, onMounted, reactive, ref} from 'vue';
 import {storeToRefs} from "pinia";
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
@@ -581,7 +581,7 @@ function playString(event, val, index) {
     const _audio = val['audio']?.[selectedTuning.value]?.[selectedTechnic.value];
     if (
         (lastEventHandled?.value?.eventType?.includes('move')
-        && lastEventHandled?.value?.['구음'] === val['구음'])
+            && lastEventHandled?.value?.['구음'] === val['구음'])
         || _audio === null
     ) {
       lastEventHandled.value = { eventType: (event || direction)?.type, ['구음']: val['구음'] };
@@ -660,10 +660,10 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
-        v-touch:press="setSelectedTechnic('농현')"
-        v-touch:release="setSelectedTechnic('평음')"
-        :style="{
+          class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
+          v-touch:press="setSelectedTechnic('농현')"
+          v-touch:release="setSelectedTechnic('평음')"
+          :style="{
           height: `${windowHeight}px`,
           zIndex: 100
         }"
@@ -672,10 +672,10 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
-        v-touch:press="setSelectedTechnic('꺾는음')"
-        v-touch:release="setSelectedTechnic('평음')"
-        :style="`height: ${windowHeight}px; z-index: 100;`"
+          class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
+          v-touch:press="setSelectedTechnic('꺾는음')"
+          v-touch:release="setSelectedTechnic('평음')"
+          :style="`height: ${windowHeight}px; z-index: 100;`"
       >
         <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15">
         </div>
@@ -683,13 +683,13 @@ onBeforeUnmount(() => {
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
-          class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px] pointer-events-none"
+            class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px] pointer-events-none"
         >
           <div class="flex justify-start items-center w-full h-[16px] border-none pointer-events-none">
             <div
-              class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
-              :class="{ shake: stringInfo[index].isShaking }"
-              :style="{
+                class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
+                :class="{ shake: stringInfo[index].isShaking }"
+                :style="{
                 width: `calc(100% - ${hcImage2Width}px)`,
                 height: `${val.height}px`,
                 zIndex: 99,
@@ -697,75 +697,79 @@ onBeforeUnmount(() => {
               }"
             />
             <img
-              class="absolute mobile:hidden pointer-events-none"
-              src="../assets/hole.png"
-              draggable="false"
-              alt="hole"
-              :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
+                class="absolute mobile:hidden pointer-events-none"
+                src="../assets/hole.png"
+                draggable="false"
+                alt="hole"
+                :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
             >
           </div>
         </div>
         <!--     시김새 영역 15 45     -->
         <div
-          class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
+            class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
-          <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
-            <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
-            <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
-            <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
-            <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-580px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-              <p class="text-center"><span class="text-[#5E95FF]">이 영역</span>을 누르면 떠는 <br class="notMiniTablet:hidden"/>소리(농현)를 낼 수 있어요</p>
+          <Transition name="fade">
+            <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+              <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
+              <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
+              <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
+              <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-580px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+                <p class="text-center"><span class="text-[#5E95FF]">이 영역</span>을 누르면 떠는 <br class="notMiniTablet:hidden"/>소리(농현)를 낼 수 있어요</p>
+              </div>
             </div>
-          </div>
-          <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[70%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]" style="z-index: 102;">
-            <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
-            <div class="absolute notMiniTablet:top-1/2 miniTablet:bottom-[-130px] transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-520px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-              <p class="text-left"><span class="text-[#5E95FF]">A본청 옵션</span>을 선택한 경우<br class="notMiniTablet:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
+          </Transition>
+          <Transition name="fade">
+            <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[70%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+              <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
+              <div class="absolute notMiniTablet:top-1/2 miniTablet:bottom-[-130px] transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-520px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+                <p class="text-left"><span class="text-[#5E95FF]">A본청 옵션</span>을 선택한 경우<br class="notMiniTablet:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
+              </div>
             </div>
-          </div>
+          </Transition>
         </div>
         <!--     안족 배열 60 55    -->
         <div class="relative w-[45%] flex items-center h-full mobile:w-[10%] mobile:py-[0px] border-none">
-<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
-<!--          </div>-->
+          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+          <!--          </div>-->
           <div
-            class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
-            :style="`left: calc(${index} * (100% / 12))`"
+              class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
+              :style="`left: calc(${index} * (100% / 12))`"
           >
             <img
-              :src="imageSrc"
-              alt="안족"
-              class="pointer-events-none mobile:w-[42px] mobile:h-[84px]"
-              :style="{
+                :src="imageSrc"
+                alt="안족"
+                class="pointer-events-none mobile:w-[42px] mobile:h-[84px]"
+                :style="{
                 maxWidth: 'none',
                 aspectRatio: '1/1',
                 height: windowWidth <= 599 ? `${windowHeight / 10}px` : 'auto'
               }"
-              draggable="false"
+                draggable="false"
             >
           </div>
         </div>
         <!--     라벨 영역 65 60    -->
         <div class="relative w-[5%] flex items-center h-full border-none mobile:py-[0px]">
           <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 notMobile:text-[24px] mobile:text-[20px]"
-            :style="[
+              class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 notMobile:text-[24px] mobile:text-[20px]"
+              :style="[
               { zIndex: 99 },
               settingStore.isLineColor ? { backgroundColor: settingStore.selectedTuning === 'A본청' && index === 8 ? val.alterHexCode : val.hexCode } : {},
               windowHeight <= 659 ? { height: '95%', minHeight: 'auto', fontSize: '20px' } : {}
             ]"
           >
             <span
-              class="font-normal text-[#fff] flex justify-center items-center w-[22px]">{{index + 1 }}</span>
+                class="font-normal text-[#fff] flex justify-center items-center w-[22px]">{{index + 1 }}</span>
             <div
-              v-if="settingStore.selectedNote !== '표시 안함'"
-              class="flex justify-center items-center rounded-full"
+                v-if="settingStore.selectedNote !== '표시 안함'"
+                class="flex justify-center items-center rounded-full"
             >
               <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning) }}</span>
             </div>
           </div>
-<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
         </div>
         <!--     연주 영역 90 100   -->
         <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"-->
@@ -773,43 +777,45 @@ onBeforeUnmount(() => {
         <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
         <!--        >-->
         <div
-          ref="stringRef"
-          class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px] cursor-pointer"
-          :style="{
+            ref="stringRef"
+            class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px] cursor-pointer"
+            :style="{
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
-          v-touch:drag.once="dragString()"
-          v-touch:press="playString($event, val, index)"
+            v-touch:drag.once="dragString()"
+            v-touch:press="playString($event, val, index)"
         >
-<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
-<!--          </div>-->
-          <div v-if="guideStore.openGuide && index === 5" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
-            <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
-            <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
-            <div class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-48px] notMiniTablet:top-[85px] miniTablet:top-[85px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-              <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>
+          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
+          <!--          </div>-->
+          <Transition name="fade">
+            <div v-if="guideStore.openGuide && index === 5" v-show="guideStore.selectedIndex === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
+              <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
+              <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
+              <div class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-48px] notMiniTablet:top-[85px] miniTablet:top-[85px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+                <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>
+              </div>
             </div>
-          </div>
-<!--          <div v-if="guideStore.openGuide && index === 5" class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-32px] notMiniTablet:top-[100px] miniTablet:top-[105px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">-->
-<!--            <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>-->
-<!--          </div>-->
+          </Transition>
+          <!--          <div v-if="guideStore.openGuide && index === 5" class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-32px] notMiniTablet:top-[100px] miniTablet:top-[105px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">-->
+          <!--            <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>-->
+          <!--          </div>-->
         </div>
         <!--     현침  100 100   -->
         <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]" draggable="false">
-<!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-<!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
-<!--          </div>-->
+          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
+          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
+          <!--          </div>-->
         </div>
       </div>
     </div>
     <div class="absolute right-0 top-[-53px] mobile:hidden flex flex-row pointer-events-none" style="z-index: 2" draggable="false">
       <img
-        src="../assets/hyunchime-pattern.png"
-        draggable="false"
-        alt="pattern"
-        class="h-screen absolute pointer-events-none"
-        :style="`right: ${hcImage1Width + hcImage2Width - 4}px`"
+          src="../assets/hyunchime-pattern.png"
+          draggable="false"
+          alt="pattern"
+          class="h-screen absolute pointer-events-none"
+          :style="`right: ${hcImage1Width + hcImage2Width - 4}px`"
       >
       <img ref="hcImage1Ele" src="../assets/hyunchime-1.png" class="h-screen pointer-events-none" draggable="false" alt="hyunchime-1" style="z-index: 1">
       <img ref="hcImage2Ele" src="../assets/hyunchime-2.png" class="h-screen pointer-events-none" draggable="false" alt="hyunchime-2">
@@ -838,5 +844,15 @@ onBeforeUnmount(() => {
   20%, 40%, 60%, 80% {
     transform: translateY(0.7px);
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

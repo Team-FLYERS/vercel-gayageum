@@ -31,20 +31,24 @@ function toggleSettings() {
       </div>
       <div v-if="!settingsOpen" class="flex flex-1 h-full justify-end notMobile:pt-4 notMobile:pr-4 mobile:pt-2 mobile:pr-2">
         <button
-          type="button"
-          aria-label="셋팅"
-          class="notMobile:w-[56px] notMobile:h-[56px] mobile:w-[40px] mobile:h-[40px] flex justify-center items-center bg-[#fff] border-[1px] border-[#0000001A] rounded-full"
-          style="box-shadow: 0 8px 8px 0 #000000A6"
-          @click="toggleSettings"
+            type="button"
+            aria-label="셋팅"
+            class="notMobile:w-[56px] notMobile:h-[56px] mobile:w-[40px] mobile:h-[40px] flex justify-center items-center bg-[#fff] border-[1px] border-[#0000001A] rounded-full"
+            style="box-shadow: 0 8px 8px 0 #000000A6"
+            @click="toggleSettings"
         >
           <Bars class="hidden notMobile:flex" />
           <BarsMobile class="hidden mobile:flex" />
         </button>
       </div>
-      <GuideArrowRight v-if="guideStore.openGuide" class="absolute notMiniTablet:right-[80px] top-[20px] miniTablet:right-[75px]" />
-      <div v-if="guideStore.openGuide" class="absolute right-8 top-[100px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none">
-        <p class="text-center">여기서 조율, 음표시, 줄 색깔<br class="notMiniTablet:hidden" /> <span class="text-[#5E95FF]">옵션</span>을<br class="miniTablet:hidden" /> <span class="text-[#5E95FF]">선택</span>할 수 있어요.</p>
-      </div>
+      <Transition name="fade">
+        <GuideArrowRight v-if="guideStore.openGuide" v-show="guideStore.selectedIndex === 0" class="absolute notMiniTablet:right-[80px] top-[20px] miniTablet:right-[75px]" />
+      </Transition>
+      <Transition name="fade">
+        <div v-if="guideStore.openGuide" v-show="guideStore.selectedIndex === 0" class="absolute right-8 top-[100px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none">
+          <p class="text-center">여기서 조율, 음표시, 줄 색깔<br class="notMiniTablet:hidden" /> <span class="text-[#5E95FF]">옵션</span>을<br class="miniTablet:hidden" /> <span class="text-[#5E95FF]">선택</span>할 수 있어요.</p>
+        </div>
+      </Transition>
       <transition name="slide-fade" style="z-index: 2">
         <SettingsPanel v-if="settingsOpen" @close="toggleSettings" />
       </transition>
@@ -64,6 +68,16 @@ function toggleSettings() {
 .slide-fade-enter-from,
 .slide-fade-leave-to {
   transform: translateX(20px);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

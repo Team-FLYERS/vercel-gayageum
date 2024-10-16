@@ -6,4 +6,7 @@ import Vue3TouchEvents from "vue3-touch-events";
 
 const pinia = createPinia();
 
-createApp(App).use(pinia).use(Vue3TouchEvents, { dragFrequency: 10 }).mount('#app')
+createApp(App)
+    .use(pinia)
+    .use(Vue3TouchEvents, { dragFrequency: 10 })
+    .mount('#app')
