@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: NanumBarunGothic, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: GmarketSansBold, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -51,10 +51,10 @@ h1 {
 }
 
 .v-application {
-  font-family: 'NanumBarunGothic', sans-serif !important;
+  font-family: 'GmarketSansBold', sans-serif !important;
 }
 @font-face {
-  font-family:'NanumBarunGothic';
+  font-family:'GmarketSansBold';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('truetype');
   font-weight: 400;
 }
