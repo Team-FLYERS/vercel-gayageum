@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: GmarketSans, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: GmarketSansMedium, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -51,11 +51,11 @@ h1 {
 }
 
 .v-application {
-  font-family: 'GmarketSans', sans-serif !important;
+  font-family: 'GmarketSansMedium', sans-serif !important;
 }
 @font-face {
-  font-family:'GmarketSans';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSans.woff') format('truetype');
+  font-family:'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('truetype');
   font-weight: 400;
 }
 
