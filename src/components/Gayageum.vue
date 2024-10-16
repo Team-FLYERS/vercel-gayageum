@@ -660,33 +660,24 @@ onBeforeUnmount(() => {
   <div class="relative w-full h-full flex flex-row select-none" @contextmenu.native="$event.preventDefault();">
     <div class="flex w-full flex-col h-[95%]">
       <div
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[7%] mobile:w-[20%]"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] left-0 h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
         v-touch:press="setSelectedTechnic('농현')"
         v-touch:release="setSelectedTechnic('평음')"
         :style="{
           height: `${windowHeight}px`,
-          zIndex: guideStore.openGuide ? 103 : 100,
+          zIndex: 100
         }"
       >
         <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15 justify-center items-center flex">
         </div>
       </div>
       <div
-        v-if="!guideStore.openGuide"
-        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
+        class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] cursor-pointer"
         v-touch:press="setSelectedTechnic('꺾는음')"
         v-touch:release="setSelectedTechnic('평음')"
-        :style="`height: ${windowHeight}px`"
+        :style="`height: ${windowHeight}px; z-index: 100;`"
       >
         <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15">
-        </div>
-      </div>
-      <div
-          v-if="guideStore.openGuide"
-          class="absolute notMobile:top-[-53px] mobile:top-[-26px] notMobile:left-[7%] mobile:left-[20%] h-screen notMobile:w-[7%] mobile:w-[20%] z-[100]"
-          :style="`height: ${windowHeight}px`"
-      >
-        <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-40">
         </div>
       </div>
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
@@ -716,7 +707,7 @@ onBeforeUnmount(() => {
         </div>
         <!--     시김새 영역 15 45     -->
         <div
-          class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px]"
+          class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
           <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
             <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
@@ -783,7 +774,7 @@ onBeforeUnmount(() => {
         <!--        >-->
         <div
           ref="stringRef"
-          class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"
+          class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px] cursor-pointer"
           :style="{
             zIndex: guideStore.openGuide && index === 5 ? 102 : 1,
           }"
