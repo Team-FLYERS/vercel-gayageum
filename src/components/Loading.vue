@@ -1,11 +1,14 @@
 <script setup>
 import LoadingLogo from '../assets/logo-loading.vue'
+import {useCommonStore} from "../stores/common.js";
+
+const commonStore = useCommonStore()
 </script>
 
 <template>
   <div class="fixed flex top-0 left-0 w-full h-full bg-black bg-opacity-50 justify-center items-center" style="z-index: 105">
     <div class="flex flex-col justify-center items-center w-[240px] py-6 bg-[#fff] rounded-[24px] gap-6">
-      <LoadingLogo />
+      <LoadingLogo v-if="commonStore.isShownLogo" />
       <div class="flex w-full text-center justify-center items-center">
         <svg class="animate-spin h-[48px] w-[48px] text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" stroke="#FFECE0" stroke-width="4"></circle>
