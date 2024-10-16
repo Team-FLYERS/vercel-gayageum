@@ -710,7 +710,7 @@ onBeforeUnmount(() => {
             class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 2" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+            <div v-if="guideStore.openGuide && index === 3" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
@@ -720,7 +720,7 @@ onBeforeUnmount(() => {
             </div>
           </Transition>
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 7" class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[70%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+            <div v-if="guideStore.openGuide && index === 8" class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[70%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
               <div class="absolute notMiniTablet:top-1/2 miniTablet:bottom-[-130px] transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-520px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
                 <p class="text-left"><span class="text-[#5E95FF]">A본청 옵션</span>을 선택한 경우<br class="notMiniTablet:hidden"/>에만 보여요.<br /> 노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
