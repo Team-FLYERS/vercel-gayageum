@@ -27,6 +27,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '1 청',
     hexCode: '#FF7C00CC',
+    alterHexCode: '#FF7C00CC',
     ['구음']: '청',
     ['기보음']: {
       ['C본청']: '레',
@@ -62,6 +63,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '2 흥',
     hexCode: '#0073FFCC',
+    alterHexCode: '#0073FFCC',
     ['구음']: '흥',
     ['기보음']: {
       ['C본청']: '솔',
@@ -97,6 +99,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '3 둥',
     hexCode: '#2F2D59CC',
+    alterHexCode: '#2F2D59CC',
     ['구음']: '둥',
     ['기보음']: {
       ['C본청']: '라',
@@ -132,6 +135,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '4 당',
     hexCode: '#FF7C00CC',
+    alterHexCode: '#FF7C00CC',
     ['구음']: '당',
     ['기보음']: {
       ['C본청']: '레',
@@ -163,11 +167,11 @@ const stringInfo = reactive([
   },
   {
     isShaking: false,
-    id: 5,
     height: 7.5,
     position: { top: 0, height: 0 },
     label: '5 둥',
     hexCode: '#FFC500CC',
+    alterHexCode: '#FFC500CC',
     ['구음']: '둥',
     ['기보음']: {
       ['C본청']: '미',
@@ -203,6 +207,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '6 징',
     hexCode: '#0073FFCC',
+    alterHexCode: '#0073FFCC',
     ['구음']: '징',
     ['기보음']: {
       ['C본청']: '솔',
@@ -238,6 +243,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '7 땅',
     hexCode: '#2F2D59CC',
+    alterHexCode: '#2F2D59CC',
     ['구음']: '땅',
     ['기보음']: {
       ['C본청']: '라',
@@ -273,6 +279,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '8 지',
     hexCode: '#8C2FE8CC',
+    alterHexCode: '#8C2FE8CC',
     ['구음']: '지',
     ['기보음']: {
       ['C본청']: '시',
@@ -308,6 +315,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '9 찡',
     hexCode: '#FF7C00CC',
+    alterHexCode: '#00CC66',
     ['구음']: '찡',
     ['기보음']: {
       ['C본청']: '레',
@@ -343,6 +351,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '10 칭',
     hexCode: '#FFC500CC',
+    alterHexCode: '#FFC500CC',
     ['구음']: '칭',
     ['기보음']: {
       ['C본청']: '미',
@@ -378,6 +387,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '11 쫑',
     hexCode: '#0073FFCC',
+    alterHexCode: '#0073FFCC',
     ['구음']: '쫑',
     ['기보음']: {
       ['C본청']: '솔',
@@ -414,6 +424,7 @@ const stringInfo = reactive([
     position: { top: 0, height: 0 },
     label: '12 쨍',
     hexCode: '#2F2D59CC',
+    alterHexCode: '#2F2D59CC',
     ['구음']: '쨍',
     ['기보음']: {
       ['C본청']: '라',
@@ -685,21 +696,21 @@ onBeforeUnmount(() => {
         >
           <div class="flex justify-start items-center w-full h-[16px] border-none pointer-events-none">
             <div
-                class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
-                :class="{ shake: stringInfo[index].isShaking }"
-                :style="{
-                  width: `calc(100% - ${hcImage2Width}px)`,
-                  height: `${val.height}px`,
-                  zIndex: 99,
-                  ...(settingStore.isLineColor ? { backgroundColor: val.hexCode } : { backgroundImage: 'linear-gradient(#eee, #999)' })
-                }"
+              class="stringBackground border-none notMobile:rounded-r-full pointer-events-none"
+              :class="{ shake: stringInfo[index].isShaking }"
+              :style="{
+                width: `calc(100% - ${hcImage2Width}px)`,
+                height: `${val.height}px`,
+                zIndex: 99,
+                ...(settingStore.isLineColor ? { backgroundColor: settingStore.selectedTuning === 'A본청' && index === 8 ? val.alterHexCode : val.hexCode } : { backgroundImage: 'linear-gradient(#eee, #999)' })
+              }"
             />
             <img
-                class="absolute mobile:hidden pointer-events-none"
-                src="../assets/hole.png"
-                draggable="false"
-                alt="hole"
-                :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
+              class="absolute mobile:hidden pointer-events-none"
+              src="../assets/hole.png"
+              draggable="false"
+              alt="hole"
+              :style="`right: ${hcImage2Width - 25}px; z-index: 98`"
             >
           </div>
         </div>
@@ -735,7 +746,11 @@ onBeforeUnmount(() => {
               :src="imageSrc"
               alt="안족"
               class="pointer-events-none mobile:w-[42px] mobile:h-[84px]"
-              style="max-width: none; aspect-ratio: 1/1;"
+              :style="{
+                maxWidth: 'none',
+                aspectRatio: '1/1',
+                height: windowWidth <= 599 ? `${windowHeight / 10}px` : 'auto'
+              }"
               draggable="false"
             >
           </div>
@@ -746,7 +761,7 @@ onBeforeUnmount(() => {
             class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#000] flex justify-center items-center whitespace-nowrap rounded-[24px] bg-opacity-50 notMobile:min-w-[76px] notMobile:min-h-[48px] mobile:min-w-[68px] mobile:h-[40px] mobile:px-1 gap-2 mobile:gap-1 mobile:w-auto py-[6px] mobile:py-0 notMobile:text-[24px] mobile:text-[20px]"
             :style="[
               { zIndex: 99 },
-              settingStore.isLineColor ? { backgroundColor: val.hexCode } : {},
+              settingStore.isLineColor ? { backgroundColor: settingStore.selectedTuning === 'A본청' && index === 8 ? val.alterHexCode : val.hexCode } : {},
               windowHeight <= 659 ? { height: '95%', minHeight: 'auto', fontSize: '20px' } : {}
             ]"
           >
