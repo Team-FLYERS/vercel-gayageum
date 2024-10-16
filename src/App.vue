@@ -1,5 +1,16 @@
 <script setup>
+import {onMounted} from "vue";
 import Home from './pages/index.vue'
+import {useCommonStore} from "./stores/common.js";
+
+const commonStore = useCommonStore()
+
+onMounted(() => {
+  if (window.location.search.includes('iscream')) {
+    console.log(">>>>>>>>>>>> window", window.location.search.includes('iscream'));
+    commonStore.isShownLogo = true;
+  }
+});
 </script>
 
 <template>

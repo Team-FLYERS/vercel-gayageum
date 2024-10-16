@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from 'vue';
 import SettingsPanel from './SettingPanel.vue';
+import {useCommonStore} from "../stores/common.js";
 import {useGuideStore} from "../stores/guide.js";
 
 import Bars from '../assets/bars-3.vue'
@@ -9,6 +10,7 @@ import Logo from '../assets/logo.vue'
 import LogoMobile from '../assets/logo-mobile.vue'
 import GuideArrowRight from '../assets/guide-arrow-right.vue'
 
+const commonStore = useCommonStore()
 const guideStore = useGuideStore()
 
 const settingsOpen = ref(false);
@@ -24,8 +26,8 @@ function toggleSettings() {
   <header class="relative flex w-full notMobile:min-h-[53px] notMobile:h-[53px] mobile:h-[26px] bg-transparent" aria-label="Header" style="z-index:102">
     <div class="flex flex-row w-full justify-between" style="z-index: 2">
       <div class="flex flex-1 h-fit justify-start notMobile:pt-8 mobile:pt-4 notMobile:pl-[28px] mobile:pl-5 pointer-events-none">
-        <Logo class="hidden notMobile:flex" />
-        <LogoMobile class="hidden mobile:flex" />
+        <Logo class="hidden notMobile:flex" v-if="commonStore.isShownLogo" />
+        <LogoMobile class="hidden mobile:flex" v-if="commonStore.isShownLogo" />
       </div>
       <div v-if="!settingsOpen" class="flex flex-1 h-full justify-end notMobile:pt-4 notMobile:pr-4 mobile:pt-2 mobile:pr-2">
         <button
