@@ -483,7 +483,7 @@ function handleKeyup(event) {
 
 
 function handleKeydown(event) {
-  if (event.ctrlKey) selectedTechnic.value = '농현';
+  if (event.shiftKey) selectedTechnic.value = '농현';
   else if (event.altKey) selectedTechnic.value = '꺾는음';
 
   if (event.repeat) return;
