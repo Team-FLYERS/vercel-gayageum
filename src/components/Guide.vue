@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted} from 'vue'
+import {computed} from 'vue'
 import {useGuideStore} from "../stores/guide.js";
 import 'vue3-carousel/dist/carousel.css'
 import {Carousel, Pagination, Slide} from 'vue3-carousel'
@@ -12,6 +12,20 @@ const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCo
   console.log(">>>>>>>>", { slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCount })
   guideStore.selectedIndex = slidingToIndex;
 };
+
+const isMobile = computed(() => {
+  const info = navigator.userAgent;
+  var flag = false;
+
+  if( info.indexOf("iPhone") > -1
+      || info.indexOf("Android") > -1
+      || info.indexOf("iPad") > -1
+      || info.indexOf("iPod") > -1
+  ) {
+    flag = true;
+  }
+  return flag;
+});
 </script>
 
 <template>
@@ -23,11 +37,11 @@ const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCo
           class="absolute flex top-0 left-0 w-full h-full justify-center items-center"
           style="z-index: 1"
       >
-        <img class="max-w-[1280px] max-h-[80%]" :src="guide2"  alt=""/>
+        <img class="max-w-[1280px] max-h-[80%] w-[100%]" :src="guide2"  alt=""/>
       </div>
     </Transition>
     <div class="relative w-full h-full flex flex-row" style="z-index: 100">
-      <Carousel @slide-start="slideStart">
+      <Carousel @slide-start="slideStart" v-if="!isMobile">
         <Slide :key="0">
           <div class="carousel__item"></div>
         </Slide>
