@@ -4,6 +4,8 @@ import {useGuideStore} from "../stores/guide.js";
 import 'vue3-carousel/dist/carousel.css'
 import {Carousel, Pagination, Slide} from 'vue3-carousel'
 
+import guide2 from '../assets/guide_2.png'
+
 const guideStore = useGuideStore()
 
 const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCount}) => {
@@ -15,19 +17,22 @@ const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCo
 <template>
   <div class="fixed top-0 left-0 w-full h-full" style="z-index: 103">
     <!--    <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index:1"></div>-->
-    <div class="relative w-full h-full flex flex-row">
+    <Transition name="fade">
+      <div
+          v-show="guideStore.openGuide && guideStore.selectedIndex === 1"
+          class="absolute flex top-0 left-0 w-full h-full justify-center items-center"
+          style="z-index: 1"
+      >
+        <img class="max-w-[1280px] max-h-[80%]" :src="guide2"  alt=""/>
+      </div>
+    </Transition>
+    <div class="relative w-full h-full flex flex-row" style="z-index: 100">
       <Carousel @slide-start="slideStart">
         <Slide :key="0">
           <div class="carousel__item"></div>
         </Slide>
-        <Slide :key="1" v-show="guideStore.selectedIndex === 1">
-          <div class="carousel__item">
-            <Transition name="fade">
-              <div>
-
-              </div>
-            </Transition>
-          </div>
+        <Slide :key="1">
+          <div class="carousel__item"></div>
         </Slide>
 
         <template #addons>
