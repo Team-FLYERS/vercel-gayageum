@@ -43,7 +43,7 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_01_SingleNote_G2.wav',
         ['농현']: 'C_01a_NongB_G2.wav',
-        ['꺾는음']: 'C_01b_Break_G2.wav',
+        ['꺾는음']: 'C_01_SingleNote_G2.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_01_SingleNote_Ab2.wav',
@@ -53,7 +53,7 @@ const stringInfo = reactive([
       ['A본청']: {
         ['평음']: 'A_01_SingleNote_E2.wav',
         ['농현']: 'A_01a_NongB_E2.wav',
-        ['꺾는음']: 'A_01b_Break_E2.wav',
+        ['꺾는음']: 'Db_01_SingleNote_Ab2.wav',
       },
     },
   },
@@ -79,17 +79,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_02_SingleNote_C3.wav',
         ['농현']: 'C_02a_NongB_C3.wav',
-        ['꺾는음']: 'C_02b_Break_C3.wav',
+        ['꺾는음']: 'C_02_SingleNote_C3.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_02_SingleNote_Db3.wav',
         ['농현']: 'Db_02a_NongB_Db3.wav',
-        ['꺾는음']: 'Db_02b_Break_Db2.wav',
+        ['꺾는음']: 'Db_02_SingleNote_Db3.wav',
       },
       ['A본청']: {
         ['평음']: 'A_02_SingleNote_A2.wav',
         ['농현']: 'A_02a_NongB_A2.wav',
-        ['꺾는음']: 'A_02b_Break_A2.wav',
+        ['꺾는음']: 'A_02_SingleNote_A2.wav',
       },
     },
   },
@@ -151,17 +151,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_04_SingleNote_G3.wav',
         ['농현']: 'C_04a_NongB_G3.wav',
-        ['꺾는음']: 'C_04b_Break_G3.wav',
+        ['꺾는음']: 'C_04_SingleNote_G3.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_04_SingleNote_Ab3.wav',
         ['농현']: 'Db_04a_NongB_Ab3.wav',
-        ['꺾는음']: 'Db_04b_Break_Ab3.wav',
+        ['꺾는음']: 'Db_04_SingleNote_Ab3.wav',
       },
       ['A본청']: {
         ['평음']: 'A_04_SingleNote_E3.wav',
         ['농현']: 'A_04a_NongB_E3.wav',
-        ['꺾는음']: 'A_04b_Break_E3.wav',
+        ['꺾는음']: 'A_04_SingleNote_E3.wav',
       },
     },
   },
@@ -187,17 +187,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_05_SingleNote_A3.wav',
         ['농현']: 'C_05a_NongB_A3.wav',
-        ['꺾는음']: 'C_05b_Break_A3.wav',
+        ['꺾는음']: 'C_05_SingleNote_A3.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_05_SingleNote_Bb3.wav',
         ['농현']: 'Db_05a_NongB_Bb3.wav',
-        ['꺾는음']: 'Db_05b_Break_Bb3.wav',
+        ['꺾는음']: 'Db_05_SingleNote_Bb3.wav',
       },
       ['A본청']: {
         ['평음']: 'A_05_SingleNote_F3.wav',
         ['농현']: 'A_05a_NongB_F3.wav',
-        ['꺾는음']: 'A_05b_Break_F3.wav',
+        ['꺾는음']: 'A_05_SingleNote_F3.wav',
       },
     },
   },
@@ -223,17 +223,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_06_SingleNote_C4.wav',
         ['농현']: 'C_06a_NongB_C4.wav',
-        ['꺾는음']: 'C_06b_Break_C4.wav',
+        ['꺾는음']: 'C_06_SingleNote_C4.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_06_SingleNote_Db4.wav',
         ['농현']: 'Db_06a_NongB_Db4.wav',
-        ['꺾는음']: 'Db_06b_Break_Db4.wav',
+        ['꺾는음']: 'Db_06_SingleNote_Db4.wav',
       },
       ['A본청']: {
         ['평음']: 'A_06_SingleNote_A3.wav',
         ['농현']: 'A_06a_NongB_A3.wav',
-        ['꺾는음']: 'A_06b_Break_A3.wav',
+        ['꺾는음']: 'A_06_SingleNote_A3.wav',
       },
     },
   },
@@ -295,17 +295,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_08_SingleNote_E4.wav',
         ['농현']: 'C_08a_NongB_E4.wav',
-        ['꺾는음']: 'C_08b_Break_E4.wav',
+        ['꺾는음']: 'C_08_SingleNote_E4.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_08_SingleNote_F4.wav',
         ['농현']: 'Db_08a_NongB_F4.wav',
-        ['꺾는음']: 'Db_08b_Break_F4.wav',
+        ['꺾는음']: 'Db_08_SingleNote_F4.wav',
       },
       ['A본청']: {
         ['평음']: 'A_08_SingleNote_C4.wav',
         ['농현']: 'A_08a_NongB_C4.wav',
-        ['꺾는음']: 'A_08b_Break_C4.wav',
+        ['꺾는음']: 'A_08_SingleNote_C4.wav',
       },
     },
   },
@@ -331,17 +331,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_09_SingleNote_G4.wav',
         ['농현']: 'C_09a_NongB_G4.wav',
-        ['꺾는음']: 'C_09b_Break_G4.wav',
+        ['꺾는음']: 'C_09_SingleNote_G4.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_09_SingleNote_Ab4.wav',
         ['농현']: 'Db_09a_NongB_Ab4.wav',
-        ['꺾는음']: 'Db_09b_Break_Ab4.wav',
+        ['꺾는음']: 'Db_09_SingleNote_Ab4.wav',
       },
       ['A본청']: {
         ['평음']: 'A_09_SingleNote_D4.wav',
         ['농현']: 'A_09a_NongB_D4.wav',
-        ['꺾는음']: 'A_09b_Break_D4.wav',
+        ['꺾는음']: 'A_09_SingleNote_D4.wav',
       },
     },
   },
@@ -367,17 +367,17 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_10_SingleNote_A4.wav',
         ['농현']: 'C_10a_NongB_A4.wav',
-        ['꺾는음']: 'C_10b_Break_A4.wav',
+        ['꺾는음']: 'C_10_SingleNote_A4.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_10_SingleNote_Bb4.wav',
         ['농현']: 'Db_10a_NongB_Bb4.wav',
-        ['꺾는음']: 'Db_10b_Break_Bb4.wav',
+        ['꺾는음']: 'Db_10_SingleNote_Bb4.wav',
       },
       ['A본청']: {
         ['평음']: 'A_10_SingleNote_F4.wav',
         ['농현']: 'A_10a_NongB_F4.wav',
-        ['꺾는음']: 'A_10b_Break_F4.wav',
+        ['꺾는음']: 'A_10_SingleNote_F4.wav',
       },
     },
   },
@@ -403,18 +403,18 @@ const stringInfo = reactive([
       ['C본청']: {
         ['평음']: 'C_11_SingleNote_C5.wav',
         ['농현']: 'C_11a_NongB_C5.wav',
-        ['꺾는음']: 'C_11b_Break_C5.wav',
+        ['꺾는음']: 'C_11_SingleNote_C5.wav',
       },
       ['Db본청']: {
         ['평음']: 'Db_11_SingleNote_Db5.wav',
         ['농현']: 'Db_11a_NongB_Db5.wav',
-        ['꺾는음']: 'C_06b_Break_C4.wav',
+        ['꺾는음']: 'Db_11_SingleNote_Db5.wav',
         // ['꺾는음']: 'Db_11b_Break_C4.wav', ///////////////////////// 파일없음
       },
       ['A본청']: {
         ['평음']: 'A_11_SingleNote_A4.wav',
         ['농현']: 'A_11a_NongB_A.wav',
-        ['꺾는음']: 'A_11b_Break_A4.wav',
+        ['꺾는음']: 'A_11_SingleNote_A4.wav',
       },
     },
   },
@@ -677,11 +677,15 @@ onBeforeUnmount(() => {
           v-touch:release="setSelectedTechnic('평음')"
           :style="`height: ${windowHeight}px; z-index: 100;`"
       >
-        <div class="absolute w-[90%] h-[90%] top-[5%] left-[5%] bg-[#fff] rounded-lg bg-opacity-15">
-        </div>
       </div>
       <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
+        <div
+            v-if="[2, 6, 11].includes(index)"
+            class="absolute h-full notMobile:top-0 mobile:top-0 notMobile:left-[7%] mobile:left-[20%] notMobile:w-[7%] mobile:w-[20%]"
+        >
+          <div class="absolute w-full h-full top-0 left-0 bg-[#fff] rounded-lg bg-opacity-15" />
+        </div>
         <div
             class="absolute top-0 left-0 w-[100%] flex items-center h-full border-none mobile:w-[100%] mobile:py-[0px] pointer-events-none"
         >

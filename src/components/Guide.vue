@@ -16,7 +16,7 @@ const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCo
   <div class="fixed top-0 left-0 w-full h-full" style="z-index: 103">
     <!--    <div class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index:1"></div>-->
     <div class="relative w-full h-full flex flex-row">
-      <Carousel @slide-start="slideStart" v-if="false">
+      <Carousel @slide-start="slideStart">
         <Slide :key="0">
           <div class="carousel__item"></div>
         </Slide>
