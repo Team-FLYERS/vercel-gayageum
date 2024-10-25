@@ -17,7 +17,8 @@ const settingsOpen = ref(false);
 
 function toggleSettings() {
   if (!guideStore.openGuide) {
-    settingsOpen.value = !settingsOpen.value
+    settingsOpen.value = !settingsOpen.value;
+    guideStore.selectedIndex = 0;
   }
 }
 </script>
