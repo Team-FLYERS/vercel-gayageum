@@ -741,9 +741,6 @@ onBeforeUnmount(() => {
               v-show="guideStore.selectedIndex === 0"
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
-              <div class="absolute notMiniTablet:top-1/2 transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-570px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex flex-col justify-center items-start select-none" style="z-index: 102;">
-                <p class="text-left">노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
-              </div>
             </div>
           </Transition>
           <Transition name="fade">
@@ -754,6 +751,9 @@ onBeforeUnmount(() => {
               v-show="guideStore.selectedIndex === 0"
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
+              <div class="absolute notMiniTablet:top-1/2 transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-570px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex flex-col justify-center items-start select-none" style="z-index: 102;">
+                <p class="text-left">노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
+              </div>
             </div>
           </Transition>
         </div>
@@ -809,7 +809,7 @@ onBeforeUnmount(() => {
             ref="stringRef"
             class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px] cursor-pointer"
             :style="{
-            zIndex: guideStore.openGuide && index === 7 ? 102 : 1,
+            zIndex: guideStore.openGuide && index === 6 ? 102 : 1,
           }"
             v-touch:drag.once="dragString()"
             v-touch:press="playString($event, val, index)"
@@ -818,7 +818,7 @@ onBeforeUnmount(() => {
           <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
           <!--          </div>-->
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 7" v-show="guideStore.selectedIndex === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
+            <div v-if="guideStore.openGuide && index === 6" v-show="guideStore.selectedIndex === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
               <div class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-48px] notMiniTablet:top-[85px] miniTablet:top-[85px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
