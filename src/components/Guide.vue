@@ -9,7 +9,6 @@ import guide2 from '../assets/guide_2.png'
 const guideStore = useGuideStore()
 
 const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCount}) => {
-  console.log(">>>>>>>>", { slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCount })
   guideStore.selectedIndex = slidingToIndex;
 };
 
