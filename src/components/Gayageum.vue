@@ -766,7 +766,7 @@ onBeforeUnmount(() => {
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
               <div class="absolute miniTablet:top-[-115%] notMiniTablet:top-1/2 transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-570px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex flex-col justify-center items-start select-none" style="z-index: 102;">
-                <p class="text-left">노란색 버튼을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
+                <p class="text-left">노란색 영역을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
               </div>
             </div>
           </Transition>
