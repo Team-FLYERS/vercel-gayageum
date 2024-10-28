@@ -718,7 +718,7 @@ onBeforeUnmount(() => {
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
-              <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-580px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
+              <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-610px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
                 <p class="text-center"><span class="text-[#5E95FF]">이 영역</span>을 누르면 떠는 <br class="notMiniTablet:hidden"/>소리(농현)를 낼 수 있어요</p>
               </div>
             </div>
