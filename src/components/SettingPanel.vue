@@ -148,11 +148,11 @@ function handleGuide() {
             </p>
             <p class="text-[#fff] relative pl-3">
               <span class="absolute left-0 top-0 text-[#fff]">·</span>
-              기보음은 악보에 기록되는 음입니다.
+              기보음: 악보에 기록되는 음입니다.
             </p>
             <p class="text-[#fff] relative pl-3">
               <span class="absolute left-0 top-0 text-[#fff]">·</span>
-              실제음은 실제로 들리는 음을 의미합니다.
+              실제음: 실제로 들리는 음을 의미합니다.
             </p>
           </div>
         </div>
