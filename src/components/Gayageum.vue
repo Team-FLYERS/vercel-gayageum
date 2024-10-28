@@ -1,5 +1,5 @@
 <script setup>
-import {nextTick, onBeforeUnmount, onMounted, reactive, ref} from 'vue';
+import {computed, nextTick, onBeforeUnmount, onMounted, reactive, ref} from 'vue';
 import {storeToRefs} from "pinia";
 import mobileBridge from '../assets/bridge-mobile.png'
 import desktopBridge from '../assets/bridge-lg.png'
@@ -636,6 +636,20 @@ function openChrome() {
   }
 }
 
+const isMobile = computed(() => {
+  const info = navigator.userAgent;
+  var flag = false;
+
+  if( info.indexOf("iPhone") > -1
+      || info.indexOf("Android") > -1
+      || info.indexOf("iPad") > -1
+      || info.indexOf("iPod") > -1
+  ) {
+    flag = true;
+  }
+  return flag;
+});
+
 onMounted(() => {
   updateImageSize()
   handleResize()
@@ -714,7 +728,7 @@ onBeforeUnmount(() => {
           class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 4" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+            <div v-if="guideStore.openGuide && ((!isMobile && index === 4) || (isMobile && index === 3))" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
