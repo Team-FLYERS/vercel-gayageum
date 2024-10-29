@@ -728,7 +728,7 @@ onBeforeUnmount(() => {
           class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && ((!isMobile && index === 4) || (isMobile && index === 3))" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex === 0">
+            <div v-if="guideStore.openGuide && ((!isMobile && index === 4) || (isMobile && index === 3))" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex%2 === 0">
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
@@ -742,7 +742,7 @@ onBeforeUnmount(() => {
               v-if="guideStore.openGuide && index === 2"
               class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
               style="z-index: 102;"
-              v-show="guideStore.selectedIndex === 0"
+              v-show="guideStore.selectedIndex%2 === 0"
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
             </div>
@@ -752,7 +752,7 @@ onBeforeUnmount(() => {
               v-if="guideStore.openGuide && index === 6"
               class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
               style="z-index: 102;"
-              v-show="guideStore.selectedIndex === 0"
+              v-show="guideStore.selectedIndex%2 === 0"
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
             </div>
@@ -762,7 +762,7 @@ onBeforeUnmount(() => {
               v-if="guideStore.openGuide && index === 11"
               class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
               style="z-index: 102;"
-              v-show="guideStore.selectedIndex === 0"
+              v-show="guideStore.selectedIndex%2 === 0"
             >
               <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
               <div class="absolute miniTablet:top-[-115%] notMiniTablet:top-1/2 transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-570px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex flex-col justify-center items-start select-none" style="z-index: 102;">
@@ -832,7 +832,7 @@ onBeforeUnmount(() => {
           <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
           <!--          </div>-->
           <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 6" v-show="guideStore.selectedIndex === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
+            <div v-if="guideStore.openGuide && index === 6" v-show="guideStore.selectedIndex%2 === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
               <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
               <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
               <div class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-48px] notMiniTablet:top-[85px] miniTablet:top-[85px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">

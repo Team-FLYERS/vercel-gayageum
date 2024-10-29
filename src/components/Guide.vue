@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from 'vue'
+import {computed, ref} from 'vue'
 import {useGuideStore} from "../stores/guide.js";
 import 'vue3-carousel/dist/carousel.css'
 import {Carousel, Pagination, Slide} from 'vue3-carousel'
@@ -8,8 +8,14 @@ import guide2 from '../assets/guide_2.png'
 
 const guideStore = useGuideStore()
 
+const myCarousel = ref(null)
+
 const slideStart = ({slidingToIndex, currentSlideIndex, prevSlideIndex, slidesCount}) => {
   guideStore.selectedIndex = slidingToIndex;
+};
+
+const onClickItem = (index) => {
+  myCarousel.value.slideTo(index);
 };
 
 const isMobile = computed(() => {
@@ -40,7 +46,7 @@ const isMobile = computed(() => {
       </div>
     </Transition>
     <div class="relative w-full h-full flex flex-row" style="z-index: 100">
-      <Carousel @slide-start="slideStart" v-if="!isMobile">
+      <Carousel ref="myCarousel" @slide-start="slideStart" v-if="!isMobile" :wrapAround="true" :autoplay="5000">
         <Slide :key="0">
           <div class="carousel__item"></div>
         </Slide>
@@ -48,8 +54,19 @@ const isMobile = computed(() => {
           <div class="carousel__item"></div>
         </Slide>
 
-        <template #addons>
-          <Pagination />
+        <template #addons="{ currentSlide, slidesCount }">
+          <ol class="carousel__pagination">
+            <li class="carousel__pagination-item" v-for="index in slidesCount">
+              <button
+                  type="button"
+                  class="carousel__pagination-button"
+                  :class="{ 'carousel__pagination-button--active': (index-1) === currentSlide }"
+                  :id="(index-1)"
+                  :aria-label="`Navigate to slide ${(index-1) === currentSlide}`"
+                  @click="onClickItem(index-1)"
+              />
+            </li>
+          </ol>
         </template>
       </Carousel>
       <!--      &lt;!&ndash;     시김새 영역 15 45     &ndash;&gt;-->
@@ -106,6 +123,7 @@ const isMobile = computed(() => {
   height: 100%;
 }
 
+
 .carousel__item {
   width: 100%;
   height: 100%;
@@ -115,19 +133,34 @@ const isMobile = computed(() => {
 }
 
 .carousel__pagination {
-  margin-top: -30px;
+  position: absolute;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  line-height: 0;
+  padding: 0;
+  margin: -40px 0 0;
+  margin-left: -38px;
+  z-index: 200;
 }
 
 .carousel__pagination-button::after {
   background-color: #fff;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 15px;
 }
 
 .carousel__pagination-button--active::after {
-  width: 25px;
+  width: 40px;
   background-color: rgb(21 128 61);
+}
+
+@media (hover: hover) {
+  .carousel__pagination-button:hover::after {
+    background-color: rgb(21 128 61);
+  }
 }
 
 .fade-enter-active,
