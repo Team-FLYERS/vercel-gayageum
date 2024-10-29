@@ -7,7 +7,6 @@ const commonStore = useCommonStore()
 
 onMounted(() => {
   if (window.location.search.includes('iscream')) {
-    console.log(">>>>>>>>>>>> window", window.location.search.includes('iscream'));
     commonStore.isShownLogo = true;
   }
 });
