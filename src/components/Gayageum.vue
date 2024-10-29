@@ -490,6 +490,8 @@ function handleKeydown(event) {
   const index = keyMap.indexOf(event.keyCode);
   if (index >= 0) {
     playString(event, stringInfo?.[index], index)();
+  } else if (event.keyCode === 23) {
+    playString(event, stringInfo?.[11], 11)();
   }
 }
 
