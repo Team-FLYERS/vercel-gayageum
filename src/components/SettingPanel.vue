@@ -78,8 +78,8 @@ function handleGuide() {
               class="flex w-[21px] h-[21px] justify-center items-center border border-[#000] rounded-full leading-0 text-[#000] bg-transparent cursor-pointer"
               @click="tuningTooltip = !tuningTooltip"
           >?</button>
-          <div v-if="tuningTooltip" @click="tuningTooltip = !tuningTooltip" class="fixed top-0 left-0 w-full h-full bg-transparent"></div>
-          <div v-if="tuningTooltip" class="absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]">
+          <div v-if="tuningTooltip" @click="tuningTooltip = !tuningTooltip" class="z-10 fixed top-0 left-0 w-full h-full bg-transparent" />
+          <div v-if="tuningTooltip" class="bubbleChat bubbleChatForTuning absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]">
             <p class="text-[#fff] relative pl-3">이 서비스에 사용된 음원은<br/>국립국악원과 서울대학교 예술과학센터에서 제공한 가야금 음원입니다.</p>
           </div>
         </div>
@@ -134,7 +134,7 @@ function handleGuide() {
           >
             ?
           </button>
-          <div v-if="noteTooltip" @click="noteTooltip = !noteTooltip" class="fixed top-0 left-0 w-full h-full bg-transparent"></div>
+          <div v-if="noteTooltip" @click="noteTooltip = !noteTooltip" class="z-10 fixed top-0 left-0 w-full h-full bg-transparent"></div>
           <div v-if="noteTooltip" class="bubbleChat absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]">
             <p class="text-[#fff] relative pl-3">
               <span class="absolute left-0 top-0 text-[#fff]">·</span>
@@ -287,6 +287,11 @@ function handleGuide() {
 .bubbleChat::after {
   top: -13px;
   left: 55px;
+}
+
+.bubbleChatForTuning::after {
+  top: -13px;
+  left: 40px;
 }
 
 </style>
