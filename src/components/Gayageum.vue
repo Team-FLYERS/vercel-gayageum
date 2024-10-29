@@ -17,7 +17,6 @@ const { selectedTuning } = storeToRefs(settingStore);
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)({
   latencyHint: 'interactive', // 지연 시간을 최소화
-  sampleRate: 44100, // 표준 샘플 레이트 설정
 });
 
 const stringInfo = reactive([
