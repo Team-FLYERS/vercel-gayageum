@@ -4,6 +4,7 @@ import {useSettingStore} from "../stores/settings.js";
 import {useGuideStore} from "../stores/guide.js";
 
 import ChevronRight from "../assets/chevron-right.vue";
+import KoIMark01 from "../assets/koglmark01.jpg";
 
 const emit = defineEmits(['close']);
 
@@ -79,8 +80,10 @@ function handleGuide() {
               @click="tuningTooltip = !tuningTooltip"
           >?</button>
           <div v-if="tuningTooltip" @click="tuningTooltip = !tuningTooltip" class="z-10 fixed top-0 left-0 w-full h-full bg-transparent" />
-          <div v-if="tuningTooltip" class="bubbleChat bubbleChatForTuning absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]">
-            <p class="text-[#fff] relative pl-3">이 서비스에 사용된 음원은<br/>국립국악원과 서울대학교 예술과학센터에서 제공한 가야금 음원입니다.</p>
+          <div v-if="tuningTooltip" class="bubbleChat bubbleChatForTuning absolute top-[28px] bg-black bg-opacity-70 p-2 rounded-[8px]" style="left: -20px">
+            <p class="text-[#fff] relative pl-3">본 서비스에 사용된 가야금 음원은 아래 출처에서 제공된 음원을 바탕으로 제작되었습니다.<br/><br/>
+              출처-서울대학교 예술과학센터, 국악 가상악기 음원 라이브러리<br/>(https://www.catsnu.com)<br/><br/>
+              출처-국립국악원, 국악디지털 음원<br/>(https://www.gugak.go.kr/digitaleum)<br/><img :src="KoIMark01" alt="" style="width: 120px; margin-top: 20px;" /></p>
           </div>
         </div>
         <div class="flex flex-col w-full bg-[#fff] border border-[#E6E6E6] rounded-[16px]">
@@ -291,7 +294,7 @@ function handleGuide() {
 
 .bubbleChatForTuning::after {
   top: -13px;
-  left: 40px;
+  left: 60px;
 }
 
 </style>
