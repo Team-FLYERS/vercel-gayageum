@@ -116,6 +116,7 @@ onBeforeUnmount(() => {
           class="absolute bottom-[50%] notMiniTablet:left-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:left-[16px] select-none btn-nav"
           style="z-index: 2;"
           @click="onClickItem((guideStore.selectedIndex - 1)%2)"
+          v-if="!isMobile"
       >
         <img :src="BtnPrev" alt="" />
       </button>
@@ -125,6 +126,7 @@ onBeforeUnmount(() => {
           class="absolute bottom-[50%] notMiniTablet:right-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:right-[16px] select-none btn-nav"
           style="z-index: 2"
           @click="onClickItem((guideStore.selectedIndex + 1)%2)"
+          v-if="!isMobile"
       >
         <img :src="BtnNext" alt="" />
       </button>
