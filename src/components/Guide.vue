@@ -1,10 +1,13 @@
 <script setup>
-import {computed, ref} from 'vue'
+import {computed, onBeforeUnmount, onMounted, ref} from 'vue'
 import {useGuideStore} from "../stores/guide.js";
 import 'vue3-carousel/dist/carousel.css'
-import {Carousel, Pagination, Slide} from 'vue3-carousel'
+import {Carousel, Slide} from 'vue3-carousel'
 
 import guide2 from '../assets/guide_2.png'
+
+import BtnPrev from '../assets/btn_prev.png'
+import BtnNext from '../assets/btn_next.png'
 
 const guideStore = useGuideStore()
 
@@ -31,6 +34,20 @@ const isMobile = computed(() => {
   }
   return flag;
 });
+
+const handleKeyup = (event) => {
+  if (event.keyCode === 37 || event.keyCode === 39) {
+    myCarousel.value.next();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keyup', handleKeyup);
+})
+
+onBeforeUnmount(() => {
+  window.addEventListener('keyup', handleKeyup);
+})
 </script>
 
 <template>
@@ -96,6 +113,24 @@ const isMobile = computed(() => {
       <button
           type="button"
           aria-label="닫기"
+          class="absolute bottom-[50%] notMiniTablet:left-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:left-[16px] select-none btn-nav"
+          style="z-index: 2;"
+          @click="onClickItem((guideStore.selectedIndex - 1)%2)"
+      >
+        <img :src="BtnPrev" alt="" />
+      </button>
+      <button
+          type="button"
+          aria-label="닫기"
+          class="absolute bottom-[50%] notMiniTablet:right-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:right-[16px] select-none btn-nav"
+          style="z-index: 2"
+          @click="onClickItem((guideStore.selectedIndex + 1)%2)"
+      >
+        <img :src="BtnNext" alt="" />
+      </button>
+      <button
+          type="button"
+          aria-label="닫기"
           class="absolute bottom-[32px] notMiniTablet:right-8 transform px-14 py-3 font-bold text-[#fff] text-xl bg-green-700 rounded-[32px] cursor-pointer miniTablet:bottom-[16px] miniTablet:px-5 miniTablet:py-3 miniTablet:rounded-[16px] miniTablet:right-[16px] select-none"
           style="z-index: 2"
           @click="guideStore.openGuide = false"
@@ -155,6 +190,14 @@ const isMobile = computed(() => {
 .carousel__pagination-button--active::after {
   width: 40px;
   background-color: rgb(21 128 61);
+}
+
+.btn-nav {
+  opacity: 0.2;
+}
+
+.btn-nav:hover {
+  opacity: 0.7;
 }
 
 @media (hover: hover) {
