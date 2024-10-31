@@ -693,7 +693,6 @@ onBeforeUnmount(() => {
           :style="`height: ${windowHeight}px; z-index: 100;`"
       >
       </div>
-      <div v-if="guideStore.openGuide" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50" style="z-index: 100" />
       <div v-for="(val, index) in stringInfo" class="relative flex flex-1 items-center">
         <div
             v-if="[2, 6, 11].includes(index)"
@@ -724,59 +723,12 @@ onBeforeUnmount(() => {
             >
           </div>
         </div>
-        <!--     시김새 영역 15 45     -->
         <div
-          class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
+            class="relative w-[15%] flex items-center h-full border-none mobile:w-[45%] mobile:py-[0px] cursor-pointer pointer-events-none"
         >
-          <Transition name="fade">
-            <div v-if="guideStore.openGuide && ((!isMobile && index === 4) || (isMobile && index === 3))" class="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;" v-show="guideStore.selectedIndex%2 === 0">
-              <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
-              <GuideArrowLeft class="absolute top-[-50px] left-[21px] miniTablet:hidden" style="z-index: 103;"/>
-              <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
-              <div class="absolute notMiniTablet:top-[-40px] miniTablet:bottom-[-72px] notMiniTablet:right-[-610px] miniTablet:right-[-256px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-                <p class="text-center"><span class="text-[#5E95FF]">이 영역</span>을 누르면 떠는 <br class="notMiniTablet:hidden"/>소리(농현)를 낼 수 있어요</p>
-              </div>
-            </div>
-          </Transition>
-          <Transition name="fade">
-            <div
-              v-if="guideStore.openGuide && index === 2"
-              class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
-              style="z-index: 102;"
-              v-show="guideStore.selectedIndex%2 === 0"
-            >
-              <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
-            </div>
-          </Transition>
-          <Transition name="fade">
-            <div
-              v-if="guideStore.openGuide && index === 6"
-              class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
-              style="z-index: 102;"
-              v-show="guideStore.selectedIndex%2 === 0"
-            >
-              <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]"></div>
-            </div>
-          </Transition>
-          <Transition name="fade">
-            <div
-              v-if="guideStore.openGuide && index === 11"
-              class="absolute top-1/2 notMiniTablet:left-[70%] miniTablet:left-[67%] transform -translate-y-1/2 -translate-x-1/2 w-[75px] h-[54px] rounded-[27px]"
-              style="z-index: 102;"
-              v-show="guideStore.selectedIndex%2 === 0"
-            >
-              <div class="w-full h-full rounded-[27px] bg-[#FFFC5E66]" />
-              <div class="absolute miniTablet:top-[-115%] notMiniTablet:top-1/2 transform notMiniTablet:-translate-y-1/2 miniTablet:-translate-x-1/2 notMiniTablet:right-[-570px] miniTablet:right-[-375px] miniTablet:w-[313px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex flex-col justify-center items-start select-none" style="z-index: 102;">
-                <p class="text-left">노란색 영역을 누르면 꺾는<br class="notMiniTablet:hidden"/> 소리를 낼 수 있어요</p>
-              </div>
-            </div>
-          </Transition>
         </div>
         <!--     안족 배열 60 55    -->
         <div class="relative w-[45%] flex items-center h-full mobile:w-[10%] mobile:py-[0px] border-none">
-          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
-          <!--          </div>-->
           <div
               class="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 z-[3]"
               :style="`left: calc(${index} * (100% / 12))`"
@@ -813,43 +765,18 @@ onBeforeUnmount(() => {
               <span class="font-normal text-[#fff] flex justify-center items-center">{{ selectedNote(val, settingStore.selectedNote, selectedTuning) }}</span>
             </div>
           </div>
-          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
         </div>
-        <!--     연주 영역 90 100   -->
-        <!--        <div class="w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px]"-->
-        <!--             :class="index === 0 ? 'mobile:pt-[12px] mobile:pb-[26px]' : 'mobile:py-[0px]'"-->
-        <!--             @mousedown="playString($event, val, settingStore.selectedTuning, selectedTechnic)"-->
-        <!--        >-->
         <div
             ref="stringRef"
             class="relative w-[25%] flex items-center h-full border-none mobile:w-[40%] mobile:py-[0px] cursor-pointer"
             :style="{
-            zIndex: guideStore.openGuide && index === 6 ? 102 : 1,
+            zIndex: 1,
           }"
             v-touch:drag.once="dragString()"
             v-touch:press="playString($event, val, index)"
         >
-          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px;`"></div>-->
-          <!--          </div>-->
-          <Transition name="fade">
-            <div v-if="guideStore.openGuide && index === 6" v-show="guideStore.selectedIndex%2 === 0" class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 w-[50px] h-[50px] rounded-full" style="z-index: 102;">
-              <div class="w-full h-full bg-white opacity-50 rounded-full"></div>
-              <GuidePointer class="absolute bottom-[-32px] left-[66%] transform -translate-x-1/2" style="width:40px; height: 50px; z-index: 103;"/>
-              <div class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-48px] notMiniTablet:top-[85px] miniTablet:top-[85px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">
-                <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>
-              </div>
-            </div>
-          </Transition>
-          <!--          <div v-if="guideStore.openGuide && index === 5" class="absolute notMiniTablet:left-1/2 transform notMiniTablet:-translate-x-1/2 miniTablet:right-[-32px] notMiniTablet:top-[100px] miniTablet:top-[105px] notMiniTablet:w-[350px] miniTablet:w-[260px] notMiniTablet:text-[28px] miniTablet:text-[21px] text-[#fff] flex justify-center items-center select-none" style="z-index: 102;">-->
-          <!--            <p class="text-center">연주 영역을 터치하여 <br class="notMiniTablet:hidden" />가야금을 연주해보세요</p>-->
-          <!--          </div>-->
         </div>
-        <!--     현침  100 100   -->
         <div class="w-[10%] flex items-center h-full border-none mobile:hidden mobile:py-[0px]" draggable="false">
-          <!--          <div class="flex justify-center items-center w-full h-[16px] border-none">-->
-          <!--            <div :class="[`w-full border-none`]" :style="`height: ${val.height}px; z-index: 99`"></div>-->
-          <!--          </div>-->
         </div>
       </div>
     </div>
