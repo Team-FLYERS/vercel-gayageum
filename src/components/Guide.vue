@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
           type="button"
           aria-label="닫기"
           class="absolute bottom-[50%] notMiniTablet:left-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:left-[16px] select-none btn-nav"
-          style="z-index: 2;"
+          style="z-index: 2; background: none;"
           @click="onClickItem((guideStore.selectedIndex - 1) % (isMobile ? 3 : 2))"
       >
         <img :src="BtnPrev" alt="" />
@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
           type="button"
           aria-label="닫기"
           class="absolute bottom-[50%] notMiniTablet:right-8 transform cursor-pointer miniTablet:bottom-[50%] miniTablet:right-[16px] select-none btn-nav"
-          style="z-index: 2"
+          style="z-index: 2; background: none;"
           @click="onClickItem((guideStore.selectedIndex + 1) % (isMobile ? 3 : 2))"
       >
         <img :src="BtnNext" alt="" />
