@@ -698,13 +698,13 @@ onBeforeUnmount(() => {
             v-if="index === 0"
             class="absolute h-full notMobile:top-1 mobile:top-2 notMobile:left-0 mobile:left-0 notMobile:w-[7%] mobile:w-[20%]"
         >
-          <p class="text-center">떠는 소리</p>
+          <p class="text-center text-white">떠는 소리</p>
         </div>
         <div
             v-if="index === 0"
             class="absolute h-full notMobile:top-1 mobile:top-2 notMobile:left-[7%] mobile:left-[20%] notMobile:w-[7%] mobile:w-[20%]"
         >
-          <p class="text-center">꺽는 소리</p>
+          <p class="text-center text-white">꺽는 소리</p>
         </div>
         <div
             v-if="[2, 6, 11].includes(index)"
