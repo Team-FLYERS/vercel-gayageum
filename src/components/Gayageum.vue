@@ -704,7 +704,7 @@ onBeforeUnmount(() => {
             v-if="index === 0"
             class="absolute h-full notMobile:top-1 mobile:top-[-1%] notMobile:left-[7%] mobile:left-[20%] notMobile:w-[7%] mobile:w-[20%]"
         >
-          <p class="text-center text-white">꺽는 소리</p>
+          <p class="text-center text-white">꺾는 소리</p>
         </div>
         <div
             v-if="[2, 6, 11].includes(index)"
